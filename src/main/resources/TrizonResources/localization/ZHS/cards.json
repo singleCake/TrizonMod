@@ -1,0 +1,385 @@
+{
+    "Trizon:Strike": {
+        "NAME": "打击",
+        "DESCRIPTION": "造成 !D! 点伤害。"
+    },
+
+    "Trizon:Defend": {
+        "NAME": "防御",
+        "DESCRIPTION": "获得 !B! 点 格挡 。"
+    },
+
+    "Trizon:Meat": {
+        "NAME": "肉",
+        "DESCRIPTION": "获得 [E] 。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "获得 [E][E] 。 NL 消耗 。"
+    },
+
+    "Trizon:Bear": {
+        "NAME": "熊",
+        "DESCRIPTION": "造成 !D! 点伤害。"
+    },
+
+
+    "Trizon:Bird": {
+        "NAME": "鸟",
+        "DESCRIPTION": "对最右侧的敌人造成 !RD! 点伤害 !RT! 次。"
+    },
+
+    "Trizon:Coward": {
+        "NAME": "逃兵",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 抽到这张牌时， trizon:冻结 这张牌。 NL 你受到伤害时，这张牌从手牌返回抽牌堆。"
+    },
+
+    "Trizon:Cat": {
+        "NAME": "猫",
+        "DESCRIPTION": "造成 !D! 点伤害。 增加一张随机非稀有牌到你的手牌。"
+    },
+
+    "Trizon:Butterfly": {
+        "NAME": "蝶",
+        "DESCRIPTION": "造成 !D! 点伤害。这张牌在手牌中时，你每打出一张非攻击牌，伤害+ !M! 。"
+    },
+
+    "Trizon:Yandere": {
+        "NAME": "病娇",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 你的生命值变化后，无论这张牌在哪里，将其加入手牌。 NL 消耗 。"
+    },
+
+    "Trizon:Alfney": {
+        "NAME": "阿尔芙尼",
+        "DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗后，增加一张此牌的复制到抽牌堆。"
+    },
+
+    "Trizon:Lycoris": {
+        "NAME": "石蒜",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌在手牌中时，每消耗一张攻击牌，这张牌伤害+ !M! 。"
+    },
+
+    "Trizon:Firefly": {
+        "NAME": "萤火虫",
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗时，抽 !M! 张 trizon:火焰 牌。"
+    },
+
+    "Trizon:RedFox": {
+        "NAME": "赤狐",
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 伤害。 NL 此牌攻击后，增加一张 *火球 到手牌。"
+    },
+
+    "Trizon:Retreat": {
+        "NAME": "撤退",
+        "DESCRIPTION": "将弃牌堆顶端的牌放入手牌。"
+    },
+
+    "Trizon:Fireball": {
+        "NAME": "火球",
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !M! 点 trizon:法术 伤害。 NL 消耗 。"
+    },
+
+    "Trizon:Snowball": {
+        "NAME": "雪球",
+        "DESCRIPTION": " trizon:冻结 一张手牌或一名敌人。 NL 消耗 。"
+    },
+
+    "Trizon:Sunshine": {
+        "NAME": "暖阳",
+        "DESCRIPTION": " trizon:火焰 。 获得 !B! 点格挡。 NL 这张牌被 消耗 时，增加一张 trizon:火焰 牌到你的手牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": " trizon:火焰 。 获得 !B! 点格挡。 NL 这张牌被 消耗 时，增加一张升级过的 trizon:火焰 牌到你的手牌。 NL 消耗 。"
+    },
+
+    "Trizon:Roadblock": {
+        "NAME": "路障",
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 本回合无法再打出攻击牌 。 NL 消耗 。"
+    },
+
+    "Trizon:Pinata": {
+        "NAME": "彩带马",
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 本回合每受到一次伤害，增加一张随机非稀有牌到你的手牌。"
+    },
+
+    "Trizon:SeaStar": {
+        "NAME": "海星",
+        "DESCRIPTION": "获得 !B! 点格挡。 NL 本回合每受到一次伤害，增加一张 *海星 到你的手牌。 NL 消耗 。"
+    },
+
+    "Trizon:Crab": {
+        "NAME": "蟹",
+        "DESCRIPTION": "获得1层 trizon:护盾 。 NL 获得 !B! 点 格挡 。"
+    },
+
+    "Trizon:Igloo": {
+        "NAME": "雪屋",
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被冻结时，获得 !B! 点 格挡 与1层 trizon:护盾 。"
+    },
+
+    "Trizon:Letter": {
+        "NAME": "信",
+        "DESCRIPTION": "抽 !M! 张牌。",
+        "UPGRADE_DESCRIPTION": " 保留 。 NL 抽 !M! 张牌。"
+    },
+
+    "Trizon:GiftBox": {
+        "NAME": "礼盒",
+        "DESCRIPTION": "获得 [E] 。 NL 增加一张非稀有牌到手牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 增加一张非稀有牌到手牌，这张牌本回合耗能变为0 NL 消耗 。"
+    },
+
+    "Trizon:Summon": {
+        "NAME": "招魂",
+        "DESCRIPTION": "将随机一张已 消耗 的牌加入手牌。"
+    },
+
+    "Trizon:Swim": {
+        "NAME": "冬泳",
+        "DESCRIPTION": "使一张已 trizon:冻结 的手牌解冻，然后你获得 !M! 点 力量 。",
+        "UPGRADE_DESCRIPTION": " 保留 。 NL 使一张已 trizon:冻结 的手牌解冻，然后你获得 !M! 点 力量 。"
+    },
+
+    "Trizon:Attack": {
+        "NAME": "出击",
+        "DESCRIPTION": "打出手牌中一张攻击牌。 NL 消耗 。"
+    },
+
+    "Trizon:Orchardist": {
+        "NAME": "果农",
+        "DESCRIPTION": "接下来 !M! 回合开始时，额外抽一张牌。"
+    },
+
+    "Trizon:Scavenger": {
+        "NAME": "拾荒者",
+        "DESCRIPTION": "接下来 !M! 回合开始时，增加一张非稀有牌到你的手牌。"
+    },
+
+
+    "Trizon:Fodder": {
+        "NAME": "炮灰",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 。"
+    },
+
+    "Trizon:Hunter": {
+        "NAME": "猎手",
+        "DESCRIPTION": "造成 !D! 点伤害。 此牌击杀敌人后，返回手牌。"
+    },
+
+    "Trizon:Demon": {
+        "NAME": "恶魔",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 最右侧的手牌。"
+    },
+
+    "Trizon:Penguin": {
+        "NAME": "企鹅",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 本场战斗中每有一张手牌或一名敌人被 trizon:冻结 ，伤害+ !M! 。"
+    },
+
+    "Trizon:Snowman": {
+        "NAME": "雪人",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 增加一张 *雪球 到手牌。"
+    },
+
+    "Trizon:Ghost": {
+        "NAME": "幽灵",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 本场战斗中你每 消耗 一张牌，这张牌耗能减 [E] 。"
+    },
+
+    "Trizon:Maid": {
+        "NAME": "女仆",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合每打出一张非攻击牌，增加一张 *肉 到手牌。"
+    },
+
+    "Trizon:Bamboo": {
+        "NAME": "竹林",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 增加多张 *竹林 到你的手牌直至达到上限，且这些 *竹林 本回合耗能变为0。 NL 消耗 。"
+    },
+
+    "Trizon:Chimera": {
+        "NAME": "喀迈拉",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌被 消耗 时，打出并消耗所有与其融合的牌。"
+    },
+
+    "Trizon:Phoenix": {
+        "NAME": "不死鸟",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌被消耗后，下回合开始时增加一张此牌复制到手牌。"
+    },
+
+    "Trizon:Dragon": {
+        "NAME": "龙",
+        "DESCRIPTION": "造成 !D! 点伤害 !T! 次。"
+    },
+
+    "Trizon:Vampire": {
+        "NAME": "吸血鬼",
+        "DESCRIPTION": "造成 !D! 点 trizon:法术 伤害。 NL 此牌造成的未被格挡的 trizon:法术 伤害将回复你的生命。 NL 消耗 。"
+    },
+
+    "Trizon:Workaholic": {
+        "NAME": "加班狗",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合结束时，从消耗牌堆打出这张牌。",
+        "UPGRADE_DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 每回合结束时，从消耗牌堆打出这张牌。"
+    },
+
+    "Trizon:Mushroom": {
+        "NAME": "蘑菇",
+        "DESCRIPTION": "保留 。 NL 获得 [E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。",
+        "UPGRADE_DESCRIPTION": "保留 。 NL 获得 [E][E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。"
+    },
+
+    "Trizon:Harvest": {
+        "NAME": "秋收",
+        "DESCRIPTION": "对你与所有敌人造成 !M! 点 trizon:法术 伤害。 NL 每造成一次未被格挡的 trizon:法术 伤害，抽1张牌。"
+    },
+
+    "Trizon:Raid": {
+        "NAME": "突袭",
+        "DESCRIPTION": "将 !M! 张 *炮灰 放入抽牌堆。",
+        "UPGRADE_DESCRIPTION": "将 !M! 张 *炮灰+ 放入抽牌堆。"
+    },
+
+    "Trizon:Torture": {
+        "NAME": "凌迟",
+        "DESCRIPTION": "对你或一名敌人造成1点 trizon:法术 伤害。 NL 消耗 。"
+    },
+
+    "Trizon:GoldFish": {
+        "NAME": "金鱼",
+        "DESCRIPTION": " trizon:金鱼 。 NL 抽到这张牌时，增加一张随机0费牌到你的手牌。"
+    },
+
+    "Trizon:NewYear": {
+        "NAME": "过年",
+        "DESCRIPTION": "本回合结束后执行一个额外回合。 NL 结束你的回合。 NL 消耗 。"
+    },
+
+    "Trizon:Truce": {
+        "NAME": "休战",
+        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 本回合无法再打出任何牌。 NL 消耗 。"
+    },
+
+    "Trizon:Wise": {
+        "NAME": "启英",
+        "DESCRIPTION": "抽取每种费用的牌各一张。 NL 消耗 。"
+    },
+
+    "Trizon:Scapegoat": {
+        "NAME": "替罪羊",
+        "DESCRIPTION": "保留 。 NL 你受到未被格挡的伤害时，消耗手牌中这张牌并防止此伤害。"
+    },
+
+    "Trizon:Healing": {
+        "NAME": "治疗",
+        "DESCRIPTION": "固有 。 NL 回复 !M! 点生命。 NL 从牌组中移除这张牌。 NL 消耗 。"
+    },
+
+    "Trizon:Cremation": {
+        "NAME": "火葬",
+        "DESCRIPTION": "trizon:火焰 。 NL 本回合每 消耗 一张非 trizon:火焰 牌，增加一张 *火球 到手牌。"
+    },
+
+    "Trizon:Typhoid": {
+        "NAME": "伤寒",
+        "DESCRIPTION": "这张牌被 消耗 后，每当一张手牌或一名敌人被 trizon:冻结 时，对随机敌人造成 !M! 点 trizon:法术 伤害。 NL 消耗 。"
+    },
+
+    "Trizon:IceCream": {
+        "NAME": "甜筒",
+        "DESCRIPTION": "每有一张被 trizon:冻结 的手牌，抽一张牌。"
+    },
+
+    "Trizon:Fighter": {
+        "NAME": "街霸",
+        "DESCRIPTION": "每当你受到伤害时，对所有敌人造成 !M! 点伤害。"
+    },
+
+    "Trizon:MeatWall": {
+        "NAME": "肉山",
+        "DESCRIPTION": "每回合结束时，增加一张 *肉 到抽牌堆。"
+    },
+
+    "Trizon:Bonfire": {
+        "NAME": "篝火",
+        "DESCRIPTION": "trizon:火焰 。 NL 每当你抽到一张 trizon:火焰 牌，抽 !M! 张牌。"
+    },
+
+    "Trizon:Arctic": {
+        "NAME": "北极",
+        "DESCRIPTION": "不可被打出 。 NL 保留 。 NL 这张牌在手牌中时即可触发效果。 NL 所有 trizon:法术 伤害+ !M! 。 NL 这张牌每次 trizon:冻结 或解冻时，使所有 trizon:法术 伤害额外+1。"
+    },
+
+    "Trizon:Twins": {
+        "NAME": "双子",
+        "DESCRIPTION": "所有 *火球 额外造成一次伤害。"
+    },
+
+    "Trizon:IceAmber": {
+        "NAME": "冰琥珀",
+        "DESCRIPTION": "接下来 !M! 回合，每有一张手牌被 trizon:冻结 时，增加一张随机非稀有牌到手牌。"
+    },
+
+
+    "Trizon:PizzaGuy": {
+        "NAME": "快递",
+        "DESCRIPTION": "固有 。 NL 造成 !D! 点伤害。"
+    },
+
+    "Trizon:King": {
+        "NAME": "王",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点格挡。"
+    },
+
+    "Trizon:Capture": {
+        "NAME": "逮捕",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 斩杀 ：本场战斗胜利后额外获得一次卡牌奖励。"
+    },
+
+    "Trizon:Thunder": {
+        "NAME": "天罚",
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌造成攻击伤害时，额外随机造成 !M! 点伤害。"
+    },
+
+    "Trizon:Antimatter": {
+        "NAME": "反物质",
+        "DESCRIPTION": "这张牌参与 *融合 时，使融合牌费用减少 [E] 。"
+    },
+
+    "Trizon:Blizzard": {
+        "NAME": "暴风雪",
+        "DESCRIPTION": " trizon:冻结 所有敌人。 NL 消耗 。"
+    },
+
+    "Trizon:Stillbirth": {
+        "NAME": "死胎",
+        "DESCRIPTION": "每场战斗的第一回合开始时， 消耗 这张牌。",
+        "UPGRADE_DESCRIPTION": "每场战斗的第一回合开始时， 消耗 这张牌，获得 [E] 。"
+    },
+
+    "Trizon:Recycle": {
+        "NAME": "回收",
+        "DESCRIPTION": "本回合每 消耗 一张牌，抽 !M! 张牌。",
+        "UPGRADE_DESCRIPTION": "保留 本回合每 消耗 一张牌，抽 !M! 张牌。"
+    },
+    
+    "Trizon:Abyss": {
+        "NAME": "深渊",
+        "DESCRIPTION": "这张牌被 消耗 后，每回合开始时增加一张非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "这张牌被 消耗 后，每回合开始时增加一张升级过的非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。"
+    },
+
+    "Trizon:Rain": {
+        "NAME": "雨",
+        "DESCRIPTION": " trizon:湿哒哒 。 NL 消耗 。"
+    },
+
+    "Trizon:Croissant": {
+        "NAME": "可颂",
+        "DESCRIPTION": " 消耗 所有手牌，抽等量的牌。 NL 消耗 。"
+    },
+
+    "Trizon:Noodle": {
+        "NAME": "阳春面",
+        "DESCRIPTION": "所有 trizon:法术 伤害 + !M! 。"
+    },
+
+    "Trizon:Traveler": {
+        "NAME": "旅人",
+        "DESCRIPTION": "将牌组中所有已 消耗 的牌放入抽牌堆。"
+    }
+}

@@ -1,0 +1,112 @@
+package card;
+
+import java.util.ArrayList;
+
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import basemod.abstracts.CustomCard;
+import card.helper.CardBehavior;
+import card.helper.DefaultCardBooleans;
+import card.helper.TrizonCardBooleans;
+import card.helper.CardModifier;
+import power.factory.AbstractTrizonPowerFactory;
+
+import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
+
+public abstract class TrizonCard extends CustomCard {
+    protected CardBehavior behavior;
+    protected ArrayList<AbstractTrizonPowerFactory> powerFactorys;
+    protected ArrayList<CardModifier> modifiers = new ArrayList<>();
+
+    public int baseDamage = 0;
+    public int baseDamageTimes = 0;
+    public int baseRightDamage = 0;
+    public int baseRightDamageTimes = 0;
+    public int baseBlock = 0;
+
+    protected DefaultCardBooleans booleans = null;
+    protected TrizonCardBooleans trizonBooleans = null;
+
+    protected String img = "";
+
+    public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
+        super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);
+        this.img = img;
+    }
+
+    // 原版接口
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        behavior.useBehavior(this, p, m);
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return trizonBooleans.canUse;
+    }
+
+    @Override
+    public void triggerOnExhaust() {
+        behavior.onExhaustBehavior();
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        behavior.onDrawnBehavior();
+    }
+
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c) {
+        behavior.onOtherCardPlayedBehavior(c);
+    }
+
+    // 新的接口
+
+    public void triggerOnAttack(AbstractCreature monster, DamageInfo info) {
+        behavior.onAttackBehavior(monster, info);
+    }
+
+    public int triggerOnAttacked(TrizonCard this_card, DamageInfo info, int damageAmount) {
+        behavior.onAttackedBehavior(this_card, info, damageAmount);
+        return damageAmount;
+    }
+
+    public void triggerOnOtherCardExhausted(AbstractCard c) {
+        behavior.onOtherCardExhaustedBehavior(c);
+    }
+    
+    public void triggerOnFrozen() {
+        behavior.onFrozenBehavior();
+    }
+
+    // 消耗后接口
+
+    public void triggerAtEndOfTurnAfterExhausted() {
+        behavior.atEndOfTurnAfterExhaustedBehavior();
+    }
+
+    public void triggerAtStartOfTurnAfterExhausted() {
+        behavior.atStartOfTurnAfterExhaustedBehavior();
+    }
+
+    public void triggerOnOtherCardFrozenAfterExhausted() {
+        behavior.onOtherCardFrozenAfterExhaustedBehavior();
+    }
+
+    public void triggerOnEnemyFrozenAfterExhausted() {
+        behavior.onEnemyFrozenAfterExhaustedBehavior();
+    }
+
+    // 不需要融合行为，始终固定的接口
+
+    public void triggerYandere() {
+        if (trizonBooleans.yandere) {
+            
+        }
+    }
+}

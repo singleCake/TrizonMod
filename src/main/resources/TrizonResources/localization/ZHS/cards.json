@@ -198,7 +198,7 @@
 
     "Trizon:Phoenix": {
         "NAME": "不死鸟",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌被消耗后，下回合开始时增加一张此牌复制到手牌。"
+        "DESCRIPTION": "trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗后，下回合开始时增加一张此牌复制到手牌。"
     },
 
     "Trizon:Dragon": {
@@ -306,12 +306,17 @@
 
     "Trizon:Twins": {
         "NAME": "双子",
-        "DESCRIPTION": "所有 *火球 额外造成一次伤害。"
+        "DESCRIPTION": "trizon:火焰 。 NL 所有 *火球 额外造成一次伤害。"
     },
 
     "Trizon:IceAmber": {
         "NAME": "冰琥珀",
         "DESCRIPTION": "接下来 !M! 回合，每有一张手牌被 trizon:冻结 时，增加一张随机非稀有牌到手牌。"
+    },
+
+    "Trizon:Hermit": {
+        "NAME": "隐者",
+        "DESCRIPTION": "接下来 !M! 回合，每受到一次伤害， trizon:冻结 随机敌人。"
     },
 
 

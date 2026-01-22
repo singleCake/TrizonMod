@@ -19,6 +19,21 @@ public class CardBehavior implements Fusable<CardBehavior> {
 
     }
 
+    public void clearBehavior() {
+        this.useActionFactorys = new ArrayList<>();
+        this.exhaustActionFactorys = new ArrayList<>();
+        this.drawnActionFactorys = new ArrayList<>();
+        this.otherCardPlayedActionFactorys = new ArrayList<>();
+        this.otherCardExhaustedActionFactorys = new ArrayList<>();
+        this.attackActionFactorys = new ArrayList<>();
+        this.attackedActionFactorys = new ArrayList<>();
+        this.frozenActionFactorys = new ArrayList<>();
+        this.endOfTurnAfterExhaustedActionFactorys = new ArrayList<>();
+        this.startOfTurnAfterExhaustedActionFactorys = new ArrayList<>();
+        this.onOtherCardFrozenAfterExhaustedActionFactorys = new ArrayList<>();
+        this.onEnemyFrozenAfterExhaustedActionFactorys = new ArrayList<>();
+    }
+
     // 打出时
     private ArrayList<AbstractTrizonFactory> useActionFactorys;
     public void useBehavior(TrizonCard cardPlayed, AbstractPlayer p, AbstractMonster m) {

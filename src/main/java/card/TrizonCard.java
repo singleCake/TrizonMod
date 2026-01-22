@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import basemod.abstracts.CustomCard;
 import card.helper.CardBehavior;
-import card.helper.DefaultCardBooleans;
 import card.helper.TrizonCardBooleans;
 import card.helper.CardModifier;
 import power.factory.AbstractTrizonPowerFactory;
@@ -28,7 +27,6 @@ public abstract class TrizonCard extends CustomCard {
     public int baseRightDamageTimes = 0;
     public int baseBlock = 0;
 
-    protected DefaultCardBooleans booleans = null;
     protected TrizonCardBooleans trizonBooleans = null;
 
     protected String img = "";
@@ -37,6 +35,8 @@ public abstract class TrizonCard extends CustomCard {
         super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);
         this.img = img;
     }
+
+    public abstract void setBehavior();
 
     // 原版接口
 

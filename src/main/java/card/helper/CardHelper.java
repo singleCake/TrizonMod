@@ -8,6 +8,9 @@ import card.TrizonCard;
 import card.TrizonFusedCard;
 
 public class CardHelper {
+    public static String makeID(Class<? extends TrizonCard> cardClass) {
+        return "Trizon:" + cardClass.getSimpleName();
+    }
 
     public static String getFusedCardRawDescription(TrizonFusedCard fusedCard) {
         String rawDescription = "";

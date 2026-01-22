@@ -45,6 +45,10 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         this.rawDescription = CardHelper.getFusedCardRawDescription(this);
         this.initializeDescription();
     }
+
+    @Override
+    public void setBehavior() {
+    }
     
     @Override
     public void upgrade() {
@@ -73,17 +77,16 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
     // 融合词条
     private void fuseBoolean(TrizonCard card1, TrizonCard card2) {
+        DefaultCardBooleans booleans;
         if (card1.type == CardType.ATTACK && card2.type == CardType.SKILL) {
-            this.booleans = card1.booleans;
+            booleans = new DefaultCardBooleans(card1);
         } else if (card1.type == CardType.SKILL && card2.type == CardType.ATTACK) {
-            this.booleans = card2.booleans;
+            booleans = new DefaultCardBooleans(card2);
         } else {
-            this.booleans = card1.booleans;
-            this.booleans.fuse(card2.booleans);
+            booleans = new DefaultCardBooleans(card1);
+            booleans.fuse(new DefaultCardBooleans(card2));
         }
-        this.trizonBooleans = card1.trizonBooleans;
-        this.trizonBooleans.fuse(card2.trizonBooleans);
-        DefaultCardBooleans.applyBooleansToCard(this.booleans, this);
+        DefaultCardBooleans.applyBooleansToCard(booleans, this);
     }
 
     // 融合伤害与格挡值（用于生成描述）
@@ -125,8 +128,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
             this.fusionData = data.fusionData;
             this.powerFactorys = data.powerFactorys;
-            this.booleans = data.booleans;
-            DefaultCardBooleans.applyBooleansToCard(this.booleans, this);
+            DefaultCardBooleans.applyBooleansToCard(data.booleans, this);
             this.trizonBooleans = data.trizonBooleans;
             this.behavior = data.behavior;
             this.rawDescription = CardHelper.getFusedCardRawDescription(this);
@@ -164,7 +166,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
             this.fusionData = card.fusionData;
             this.powerFactorys = card.powerFactorys;
-            this.booleans = card.booleans;
+            this.booleans = new DefaultCardBooleans(card);
             this.trizonBooleans = card.trizonBooleans;
             this.behavior = card.behavior;
         }

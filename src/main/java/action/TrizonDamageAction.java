@@ -13,10 +13,11 @@ public class TrizonDamageAction extends TrizonAction {
     private DamageInfo info;
     private AttackEffect attackEffect;
     
-    public TrizonDamageAction(TrizonCard cardPlayed, AbstractCreature target, DamageInfo info) {
+    public TrizonDamageAction(TrizonCard cardPlayed, AbstractCreature target, DamageInfo info, AttackEffect attackEffect) {
         this.cardPlayed = cardPlayed;
         this.target = target;
         this.info = info;
+        this.attackEffect = attackEffect;
     }
 
     @Override

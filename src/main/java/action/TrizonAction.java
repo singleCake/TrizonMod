@@ -14,14 +14,27 @@ import card.TrizonCard;
 
 public abstract class TrizonAction extends AbstractGameAction {
     protected TrizonCard cardPlayed;
+    protected int times;
 
     protected int baseDamage;
     protected int damage;
-    protected int baseDamageTimes;
-    protected int damageTimes;
     protected int baseBlock;
     protected int block;
     protected DamageType damageType = DamageType.NORMAL;
+
+    @Override
+    public void update() {
+        actionBegin();
+        for (int i = 0; i < this.times; i++) {
+            actionRepeat();
+        }
+        actionEnd();
+        this.isDone = true;
+    }
+
+    public void actionBegin() {}
+    public void actionEnd() {}
+    public void actionRepeat() {}
 
     @SuppressWarnings("rawtypes")
     protected void applyPowersToDamage() {

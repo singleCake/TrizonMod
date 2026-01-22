@@ -13,6 +13,7 @@ import fusable.Fusable;
 public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFactory> {
     protected AbstractCreature target;
     protected TrizonCard cardPlayed;
+    protected int amount;
 
     public abstract AbstractGameAction create();
 

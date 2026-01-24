@@ -23,8 +23,6 @@ public abstract class TrizonCard extends CustomCard {
 
     public int baseDamage = 0;
     public int baseDamageTimes = 0;
-    public int baseRightDamage = 0;
-    public int baseRightDamageTimes = 0;
     public int baseBlock = 0;
 
     protected TrizonCardBooleans trizonBooleans = null;
@@ -37,6 +35,10 @@ public abstract class TrizonCard extends CustomCard {
     }
 
     public abstract void setBehavior();
+
+    protected void upgradeDamageTimes(int amount) {
+        this.baseDamageTimes += amount;
+    }
 
     // 原版接口
 

@@ -111,11 +111,8 @@ public abstract class TrizonCard extends CustomCard {
         behavior.onEnemyFrozenAfterExhaustedBehavior();
     }
 
-    // 不需要融合行为，始终固定的接口
 
-    public void triggerYandere() {
-        if (trizonBooleans.yandere) {
-            
-        }
+    public boolean isYandere() {
+        return trizonBooleans.yandere;
     }
 }

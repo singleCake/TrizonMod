@@ -15,8 +15,9 @@ import card.TrizonCard;
 import fusable.Fusable;
 
 public class CardBehavior implements Fusable<CardBehavior> {
-    public CardBehavior() {
+    TrizonCard this_card = null;
 
+    public CardBehavior() {
     }
 
     public void clearBehavior() {
@@ -36,10 +37,9 @@ public class CardBehavior implements Fusable<CardBehavior> {
 
     // 打出时
     private ArrayList<AbstractTrizonFactory> useActionFactorys;
-    public void useBehavior(TrizonCard cardPlayed, AbstractPlayer p, AbstractMonster m) {
+    public void useBehavior(AbstractPlayer p, AbstractMonster m) {
         for (AbstractTrizonFactory factory : useActionFactorys) {
             factory.receiveTarget(m);
-            factory.receiveCardPlayed(cardPlayed);
             this.addToBot(factory.create());
         }
     }
@@ -109,9 +109,8 @@ public class CardBehavior implements Fusable<CardBehavior> {
 
     // 受到伤害时
     private ArrayList<AbstractTrizonFactory> attackedActionFactorys;
-    public void onAttackedBehavior(TrizonCard cardPlayed, DamageInfo info, int damageAmount) {
+    public void onAttackedBehavior(DamageInfo info, int damageAmount) {
         for (AbstractTrizonFactory factory : attackedActionFactorys) {
-            factory.receiveCardPlayed(cardPlayed);
             factory.receiveDamageInfo(info);
             this.addToBot(factory.create());
         }
@@ -183,6 +182,24 @@ public class CardBehavior implements Fusable<CardBehavior> {
         AbstractDungeon.actionManager.addToTop(action);
     }
 
+    public CardBehavior clone() {
+        CardBehavior copy = new CardBehavior();
+        copy.useActionFactorys = new ArrayList<>(this.useActionFactorys);
+        copy.exhaustActionFactorys = new ArrayList<>(this.exhaustActionFactorys);
+        copy.drawnActionFactorys = new ArrayList<>(this.drawnActionFactorys);
+        copy.otherCardPlayedActionFactorys = new ArrayList<>(this.otherCardPlayedActionFactorys);
+        copy.otherCardExhaustedActionFactorys = new ArrayList<>(this.otherCardExhaustedActionFactorys);
+        copy.attackActionFactorys = new ArrayList<>(this.attackActionFactorys);
+        copy.attackedActionFactorys = new ArrayList<>(this.attackedActionFactorys);
+        copy.frozenActionFactorys = new ArrayList<>(this.frozenActionFactorys);
+        copy.endOfTurnAfterExhaustedActionFactorys = new ArrayList<>(this.endOfTurnAfterExhaustedActionFactorys);
+        copy.startOfTurnAfterExhaustedActionFactorys = new ArrayList<>(this.startOfTurnAfterExhaustedActionFactorys);
+        copy.onOtherCardFrozenAfterExhaustedActionFactorys = new ArrayList<>(this.onOtherCardFrozenAfterExhaustedActionFactorys);
+        copy.onEnemyFrozenAfterExhaustedActionFactorys = new ArrayList<>(this.onEnemyFrozenAfterExhaustedActionFactorys);
+        copy.this_card = null;
+        return copy;
+    }
+
     @Override
     public void fuse(CardBehavior other) {
         this.useActionFactorys = AbstractTrizonFactory.fuseFactories(this.useActionFactorys, other.useActionFactorys);
@@ -197,5 +214,22 @@ public class CardBehavior implements Fusable<CardBehavior> {
         this.startOfTurnAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.startOfTurnAfterExhaustedActionFactorys, other.startOfTurnAfterExhaustedActionFactorys);
         this.onOtherCardFrozenAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.onOtherCardFrozenAfterExhaustedActionFactorys, other.onOtherCardFrozenAfterExhaustedActionFactorys);
         this.onEnemyFrozenAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.onEnemyFrozenAfterExhaustedActionFactorys, other.onEnemyFrozenAfterExhaustedActionFactorys);
+    }
+
+    public void setThisCard(TrizonCard card) {
+        this.this_card = card;
+
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.useActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.exhaustActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.drawnActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.otherCardPlayedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.otherCardExhaustedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.attackActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.attackedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.frozenActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.endOfTurnAfterExhaustedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.startOfTurnAfterExhaustedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.onOtherCardFrozenAfterExhaustedActionFactorys, card);
+        AbstractTrizonFactory.factoriesReceiveThisCard(this.onEnemyFrozenAfterExhaustedActionFactorys, card);
     }
 }

@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import card.TrizonCard;
 
-public abstract class TrizonAction extends AbstractGameAction {
-    protected TrizonCard cardPlayed;
+public abstract class AbstractTrizonAction extends AbstractGameAction {
+    protected TrizonCard this_card;     // 触发这个action的卡牌
     protected int times;
 
     protected int baseDamage;
@@ -37,24 +37,26 @@ public abstract class TrizonAction extends AbstractGameAction {
     public void actionRepeat() {}
 
     @SuppressWarnings("rawtypes")
-    protected void applyPowersToDamage() {
+    protected void applyPowersToAttackDamage() {
         AbstractPlayer player = AbstractDungeon.player;
         float tmp = (float)this.baseDamage;
-        Iterator var3 = player.relics.iterator();
 
+        tmp += this_card.modifier.damage;
+
+        Iterator var3 = player.relics.iterator();
         while(var3.hasNext()) {
             AbstractRelic r = (AbstractRelic)var3.next();
-            tmp = r.atDamageModify(tmp, cardPlayed);
+            tmp = r.atDamageModify(tmp, this_card);
         }
 
         AbstractPower p;
-        for(var3 = player.powers.iterator(); var3.hasNext(); tmp = p.atDamageGive(tmp, damageType, cardPlayed)) {
+        for(var3 = player.powers.iterator(); var3.hasNext(); tmp = p.atDamageGive(tmp, damageType, this_card)) {
             p = (AbstractPower)var3.next();
         }
 
-        tmp = player.stance.atDamageGive(tmp, damageType, cardPlayed);
+        tmp = player.stance.atDamageGive(tmp, damageType, this_card);
 
-        for(var3 = player.powers.iterator(); var3.hasNext(); tmp = p.atDamageFinalGive(tmp, damageType, cardPlayed)) {
+        for(var3 = player.powers.iterator(); var3.hasNext(); tmp = p.atDamageFinalGive(tmp, damageType, this_card)) {
             p = (AbstractPower)var3.next();
         }
 

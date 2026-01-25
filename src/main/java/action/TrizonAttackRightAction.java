@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import card.TrizonCard;
 
-public class TrizonAttackRightAction extends TrizonAction {
+public class TrizonAttackRightAction extends AbstractTrizonAction {
     public TrizonAttackRightAction(TrizonCard cardPlayed, int damage, int times) {
-        this.cardPlayed = cardPlayed;
+        this.this_card = cardPlayed;
         this.target = AbstractDungeon.getCurrRoom().monsters.monsters.get(AbstractDungeon.getCurrRoom().monsters.monsters.size() - 1);
         this.damage = this.baseDamage = damage;
         this.times = times;
@@ -17,11 +17,11 @@ public class TrizonAttackRightAction extends TrizonAction {
 
     @Override
     public void actionBegin() {
-        this.applyPowersToDamage();
+        this.applyPowersToAttackDamage();
     }
 
     @Override
     public void actionRepeat() {
-        this.addToBot(new TrizonDamageAction(this.cardPlayed, this.target, new DamageInfo(AbstractDungeon.player, damage), this.attackEffect));
+        this.addToBot(new TrizonDamageAction(this.this_card, this.target, new DamageInfo(AbstractDungeon.player, damage), this.attackEffect));
     }
 }

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class TrizonGainEnergyAction extends TrizonAction {
+public class TrizonGainEnergyAction extends AbstractTrizonAction {
 
     public TrizonGainEnergyAction(int energyAmount) {
         this.amount = energyAmount;

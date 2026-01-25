@@ -17,13 +17,14 @@ import power.factory.AbstractTrizonPowerFactory;
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
 
 public abstract class TrizonCard extends CustomCard {
-    protected CardBehavior behavior;
+    protected CardBehavior behavior = new CardBehavior();
     protected ArrayList<AbstractTrizonPowerFactory> powerFactorys;
-    protected ArrayList<CardModifier> modifiers = new ArrayList<>();
 
     public int baseDamage = 0;
     public int baseDamageTimes = 0;
     public int baseBlock = 0;
+
+    public CardModifier modifier = new CardModifier();
 
     protected TrizonCardBooleans trizonBooleans = null;
 
@@ -32,9 +33,15 @@ public abstract class TrizonCard extends CustomCard {
     public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);
         this.img = img;
+        this.behavior.setThisCard(this);
     }
 
-    public abstract void setBehavior();
+    protected abstract void setBehavior();
+    protected void reInitBehavior() {
+        this.behavior.clearBehavior();
+        setBehavior();
+        this.behavior.setThisCard(this);
+    }
 
     protected void upgradeDamageTimes(int amount) {
         this.baseDamageTimes += amount;
@@ -44,7 +51,7 @@ public abstract class TrizonCard extends CustomCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        behavior.useBehavior(this, p, m);
+        behavior.useBehavior(p, m);
     }
 
     @Override
@@ -73,8 +80,8 @@ public abstract class TrizonCard extends CustomCard {
         behavior.onAttackBehavior(monster, info);
     }
 
-    public int triggerOnAttacked(TrizonCard this_card, DamageInfo info, int damageAmount) {
-        behavior.onAttackedBehavior(this_card, info, damageAmount);
+    public int triggerOnAttacked(DamageInfo info, int damageAmount) {
+        behavior.onAttackedBehavior(info, damageAmount);
         return damageAmount;
     }
 

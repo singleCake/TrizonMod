@@ -1,11 +1,12 @@
 package card.helper;
 
-public abstract class CardModifier {
+public class CardModifier {
     public CardModifier() {
-
     }
 
-    public int modifyAmount(int amount) {
-        return amount;
+    public int damage = 0;
+
+    public void addDamage(int amount) {
+        this.damage += amount;
     }
 }

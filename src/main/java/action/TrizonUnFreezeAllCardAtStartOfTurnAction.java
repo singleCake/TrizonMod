@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import patch.FreezeCardPatch;
 
-public class TrizonUnFreezeAllCardAtStartOfTurnAction extends TrizonAction{
+public class TrizonUnFreezeAllCardAtStartOfTurnAction extends AbstractTrizonAction{
 
     public TrizonUnFreezeAllCardAtStartOfTurnAction() {
     }

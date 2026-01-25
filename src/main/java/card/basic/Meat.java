@@ -21,6 +21,8 @@ public class Meat extends TrizonCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
         this.baseMagicNumber = 1;
+        
+        reInitBehavior();
     }
 
     @Override
@@ -29,14 +31,13 @@ public class Meat extends TrizonCard {
             this.upgradeName();
             this.upgradeMagicNumber(1);
 
-            setBehavior();
+            reInitBehavior();
             this.initializeDescription();
         }
     }
 
     @Override
-    public void setBehavior() {
-        this.behavior.clearBehavior();
+    protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonGainEnergyActionFactory(this.baseMagicNumber));
     }
 }

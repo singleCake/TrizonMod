@@ -47,19 +47,6 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     @Override
-    public void setBehavior() {
-    }
-    
-    @Override
-    public void upgrade() {
-    }
-
-    @Override
-    public boolean canUpgrade() {
-        return false;
-    }
-
-    @Override
     public void fuse(TrizonCard other) {
         fuseBehavior(this, other);
         fuseBoolean(this, other);
@@ -106,6 +93,38 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         } else {
             fusionData.put(material.cardID, fusionData.getOrDefault(material.cardID, 0) + 1);
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        // 基本不使用这种复制
+        return new TrizonFusedCard();
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        TrizonFusedCard copy = (TrizonFusedCard) super.makeStatEquivalentCopy();
+        copy.behavior = this.behavior.clone();
+        copy.behavior.setThisCard(copy);
+        copy.powerFactorys = new ArrayList<>(this.powerFactorys);
+        copy.trizonBooleans = this.trizonBooleans.clone();
+        copy.img = this.img;
+        copy.fusionData = new HashMap<>(this.fusionData);
+        copy.cardID = this.cardID;
+        return copy;
+    }
+    
+    @Override
+    public void setBehavior() {
+    }
+    
+    @Override
+    public void upgrade() {
+    }
+
+    @Override
+    public boolean canUpgrade() {
+        return false;
     }
 
     // 存档逻辑

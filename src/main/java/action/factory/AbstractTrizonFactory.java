@@ -11,18 +11,19 @@ import card.TrizonCard;
 import fusable.Fusable;
 
 public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFactory> {
-    protected AbstractCreature target;
-    protected TrizonCard cardPlayed;
+    protected TrizonCard this_card = null;  // 触发这个Action的卡牌
+    protected AbstractCreature target = null;
+    protected int times;
     protected int amount;
 
     public abstract AbstractGameAction create();
 
     // 用于在调用接口中接收参数
+    private void receiveThisCard(TrizonCard card) {
+        this.this_card = card;  // 这个目前作为私有接口，在创建卡牌与融合卡牌时分配
+    }
     public void receiveTarget(AbstractCreature target) {
         this.target = target;
-    }
-    public void receiveCardPlayed(TrizonCard card) {
-        this.cardPlayed = card;
     }
     public void receiveDamageInfo(DamageInfo info) {}
     public void receiveCard(AbstractCard card) {}
@@ -60,5 +61,11 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
         }
 
         return fusedFactories;
+    }
+
+    public static void factoriesReceiveThisCard(ArrayList<AbstractTrizonFactory> factories, TrizonCard card) {
+        for (AbstractTrizonFactory factory : factories) {
+            factory.receiveThisCard(card);
+        }
     }
 }

@@ -21,7 +21,7 @@ public class Bird extends TrizonCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.baseDamage = 1;
         this.baseDamageTimes = 6;
-        setBehavior();
+        reInitBehavior();
     }
 
     @Override
@@ -30,13 +30,12 @@ public class Bird extends TrizonCard {
             this.upgradeName();
             this.upgradeDamageTimes(2);
             
-            this.setBehavior();
+            this.reInitBehavior();
         }
     }
 
     @Override
-    public void setBehavior() {
-        this.behavior.clearBehavior();
-        this.behavior.addToUseBehavior(new TrizonAttackRightActionFactory(this, baseDamage, baseDamageTimes));
+    protected void setBehavior() {
+        this.behavior.addToUseBehavior(new TrizonAttackRightActionFactory(baseDamage, baseDamageTimes));
     }
 }

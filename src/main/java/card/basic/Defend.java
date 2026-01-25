@@ -20,7 +20,7 @@ public class Defend extends TrizonCard {
     public Defend() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.baseBlock = 5;
-        setBehavior();
+        reInitBehavior();
     }
 
     @Override
@@ -29,13 +29,12 @@ public class Defend extends TrizonCard {
             this.upgradeName();
             this.upgradeBlock(3);
 
-            setBehavior();
+            reInitBehavior();
         }
     }
 
     @Override
-    public void setBehavior() {
-        this.behavior.clearBehavior();
-        this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(this, baseBlock));
+    protected void setBehavior() {
+        this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(baseBlock));
     }
 }

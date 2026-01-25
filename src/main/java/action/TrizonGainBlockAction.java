@@ -8,12 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
-import card.TrizonCard;
-
-public class TrizonGainBlockAction extends TrizonAction {
-    public TrizonGainBlockAction(TrizonCard cardPlayed, int blockAmount) {
+public class TrizonGainBlockAction extends AbstractTrizonAction {
+    public TrizonGainBlockAction(int blockAmount) {
         this.target = AbstractDungeon.player;
-        this.cardPlayed = cardPlayed;
         this.baseBlock = this.block = blockAmount;
     }
     
@@ -40,7 +37,7 @@ public class TrizonGainBlockAction extends TrizonAction {
 
         Iterator var2;
         AbstractPower p;
-        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlock(tmp, this.cardPlayed)) {
+        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlock(tmp, this.this_card)) {
             p = (AbstractPower)var2.next();
         }
 

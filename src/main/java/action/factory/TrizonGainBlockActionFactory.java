@@ -3,17 +3,15 @@ package action.factory;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
 import action.TrizonGainBlockAction;
-import card.TrizonCard;
 
 public class TrizonGainBlockActionFactory extends AbstractTrizonFactory {
-    public TrizonGainBlockActionFactory(TrizonCard cardPlayed, int blockAmount) {
+    public TrizonGainBlockActionFactory(int blockAmount) {
         this.amount = blockAmount;
-        this.cardPlayed = cardPlayed;
     }
 
     @Override
     public AbstractGameAction create() {
-        return new TrizonGainBlockAction(this.cardPlayed, this.amount);
+        return new TrizonGainBlockAction(this.amount);
     }
     
     @Override

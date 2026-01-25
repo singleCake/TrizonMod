@@ -3,21 +3,18 @@ package action.factory;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
 import action.TrizonAttackRightAction;
-import card.TrizonCard;
 
 public class TrizonAttackRightActionFactory extends AbstractTrizonFactory {
     private int damage;
-    private int times;
 
-    public TrizonAttackRightActionFactory(TrizonCard cardPlayed, int damage, int times) {
-        this.cardPlayed = cardPlayed;
+    public TrizonAttackRightActionFactory(int damage, int times) {
         this.damage = damage;
         this.times = times;
     }
 
     @Override
     public AbstractGameAction create() {
-        return new TrizonAttackRightAction(cardPlayed, damage, times);
+        return new TrizonAttackRightAction(this_card, damage, times);
     }
     
     @Override

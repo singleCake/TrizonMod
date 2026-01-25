@@ -23,7 +23,7 @@
 
     "Trizon:Bird": {
         "NAME": "鸟",
-        "DESCRIPTION": "对最右侧的敌人造成 !RD! 点伤害 !RT! 次。"
+        "DESCRIPTION": "对最右侧的敌人造成 !D! 点伤害 !T! 次。"
     },
 
     "Trizon:Coward": {

@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import card.TrizonCard;
 
-public class TrizonDamageAction extends TrizonAction {
+public class TrizonDamageAction extends AbstractTrizonAction {
     private DamageInfo info;
     private AttackEffect attackEffect;
     
     public TrizonDamageAction(TrizonCard cardPlayed, AbstractCreature target, DamageInfo info, AttackEffect attackEffect) {
-        this.cardPlayed = cardPlayed;
+        this.this_card = cardPlayed;
         this.target = target;
         this.info = info;
         this.attackEffect = attackEffect;
@@ -40,7 +40,7 @@ public class TrizonDamageAction extends TrizonAction {
             }
 
             this.target.damage(this.info);
-            this.cardPlayed.triggerOnAttack(this.target, this.info);
+            this.this_card.triggerOnAttack(this.target, this.info);
             
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
                AbstractDungeon.actionManager.clearPostCombatActions();

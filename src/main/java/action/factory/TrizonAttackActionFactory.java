@@ -5,23 +5,20 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
 import action.TrizonAttackAction;
-import card.TrizonCard;
 
 public class TrizonAttackActionFactory extends AbstractTrizonFactory {
-    public int damage;
-    public int times;
-    public AttackEffect attackEffect;
+    private int damage;
+    private AttackEffect attackEffect;
 
-    public TrizonAttackActionFactory(TrizonCard cardPlayed, int damage, AttackEffect attackEffect) {
-        this(cardPlayed, null, damage, 1, attackEffect);
+    public TrizonAttackActionFactory(int damage, AttackEffect attackEffect) {
+        this(null, damage, 1, attackEffect);
     }
 
-    public TrizonAttackActionFactory(TrizonCard cardPlayed, int damage, int times, AttackEffect attackEffect) {
-        this(cardPlayed, null, damage, times, attackEffect);
+    public TrizonAttackActionFactory(int damage, int times, AttackEffect attackEffect) {
+        this(null, damage, times, attackEffect);
     }
 
-    public TrizonAttackActionFactory(TrizonCard cardPlayed, AbstractCreature target, int damage, int times, AttackEffect attackEffect) {
-        this.cardPlayed = cardPlayed;
+    public TrizonAttackActionFactory(AbstractCreature target, int damage, int times, AttackEffect attackEffect) {
         this.target = target;
         this.damage = damage;
         this.times = times;
@@ -30,7 +27,7 @@ public class TrizonAttackActionFactory extends AbstractTrizonFactory {
     
     @Override
     public AbstractGameAction create() {
-        return new TrizonAttackAction(cardPlayed, target, damage, times, attackEffect);
+        return new TrizonAttackAction(this_card, target, damage, times, attackEffect);
     }
 
     @Override

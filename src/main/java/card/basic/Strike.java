@@ -21,7 +21,7 @@ public class Strike extends TrizonCard {
     public Strike() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.baseDamage = 6;
-        setBehavior();
+        reInitBehavior();
     }
 
     @Override
@@ -30,13 +30,12 @@ public class Strike extends TrizonCard {
             this.upgradeName();
             this.upgradeDamage(3);
             
-            this.setBehavior();
+            this.reInitBehavior();
         }
     }
 
     @Override
-    public void setBehavior() {
-        this.behavior.clearBehavior();
-        this.behavior.addToUseBehavior(new TrizonAttackActionFactory(this, baseDamage, AttackEffect.SLASH_HORIZONTAL));
+    protected void setBehavior() {
+        this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
     }
 }

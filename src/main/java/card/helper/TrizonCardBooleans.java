@@ -5,9 +5,8 @@ import fusable.Fusable;
 public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
     public boolean canUse = true;
     public boolean yandere = false;
-    public boolean blaze = false;
+    public boolean fire = false;
     public boolean ghost = false;
-    public boolean vampire = false;
     public boolean goldfish = false;
     public boolean rain = false;
 
@@ -18,10 +17,20 @@ public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
     public void fuse(TrizonCardBooleans other) {
         this.canUse = this.canUse && other.canUse;
         this.yandere = this.yandere || other.yandere;
-        this.blaze = this.blaze || other.blaze;
+        this.fire = this.fire || other.fire;
         this.ghost = this.ghost || other.ghost;
-        this.vampire = this.vampire || other.vampire;
         this.goldfish = this.goldfish || other.goldfish;
         this.rain = this.rain || other.rain;
+    }
+
+    public TrizonCardBooleans clone() {
+        TrizonCardBooleans copy = new TrizonCardBooleans();
+        copy.canUse = this.canUse;
+        copy.yandere = this.yandere;
+        copy.fire = this.fire;
+        copy.ghost = this.ghost;
+        copy.goldfish = this.goldfish;
+        copy.rain = this.rain;
+        return copy;
     }
 }

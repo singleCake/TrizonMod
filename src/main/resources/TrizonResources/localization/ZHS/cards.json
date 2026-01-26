@@ -63,17 +63,19 @@
 
     "Trizon:RedFox": {
         "NAME": "赤狐",
-        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 伤害。 NL 此牌攻击后，增加一张 *火球 到手牌。"
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 点伤害。 NL 此牌攻击后，将一张已 消耗 的 *火球 加入手牌。"
     },
 
     "Trizon:Retreat": {
         "NAME": "撤退",
-        "DESCRIPTION": "将弃牌堆顶端的牌放入手牌。"
+        "DESCRIPTION": "将弃牌堆顶端的牌放入手牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "将弃牌堆顶端的牌放入手牌。"
     },
 
     "Trizon:Fireball": {
         "NAME": "火球",
-        "DESCRIPTION": " trizon:火焰 。 NL 造成 !M! 点 trizon:法术 伤害。 NL 消耗 。"
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !M! 点 trizon:法术 伤害。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": " trizon:火焰 。 NL 造成 !M! 点 trizon:法术 伤害。"
     },
 
     "Trizon:Snowball": {

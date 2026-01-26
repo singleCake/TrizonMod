@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
 import action.TrizonModifyDamageAction;
 
-public class TrizonSelfAddDamageAction extends AbstractTrizonFactory {
-    public TrizonSelfAddDamageAction(int amount) {
+public class TrizonSelfAddDamageActionFactory extends AbstractTrizonFactory {
+    public TrizonSelfAddDamageActionFactory(int amount) {
         this.amount = amount;
     }
 
@@ -16,7 +16,7 @@ public class TrizonSelfAddDamageAction extends AbstractTrizonFactory {
 
     @Override
     public void fuse(AbstractTrizonFactory other) {
-        if (other instanceof TrizonSelfAddDamageAction) {
+        if (other instanceof TrizonSelfAddDamageActionFactory) {
             this.amount += other.amount;
         }
     }

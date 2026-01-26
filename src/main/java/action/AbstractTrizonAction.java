@@ -37,7 +37,7 @@ public abstract class AbstractTrizonAction extends AbstractGameAction {
     public void actionRepeat() {}
 
     @SuppressWarnings("rawtypes")
-    protected void applyPowersToAttackDamage() {
+    protected void applyPowersToDamage() {
         AbstractPlayer player = AbstractDungeon.player;
         float tmp = (float)this.baseDamage;
 

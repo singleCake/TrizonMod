@@ -17,7 +17,7 @@ public class TrizonAttackRightAction extends AbstractTrizonAction {
 
     @Override
     public void actionBegin() {
-        this.applyPowersToAttackDamage();
+        this.applyPowersToDamage();
     }
 
     @Override

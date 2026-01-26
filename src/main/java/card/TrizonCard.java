@@ -112,6 +112,10 @@ public abstract class TrizonCard extends CustomCard {
     }
 
 
+    public boolean isFire() {
+        return trizonBooleans.fire;
+    }
+    
     public boolean isYandere() {
         return trizonBooleans.yandere;
     }

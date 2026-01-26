@@ -14,6 +14,8 @@ import action.factory.AbstractTrizonFactory;
 import card.TrizonCard;
 import fusable.Fusable;
 
+import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
+
 public class CardBehavior implements Fusable<CardBehavior> {
     TrizonCard this_card = null;
 
@@ -38,9 +40,19 @@ public class CardBehavior implements Fusable<CardBehavior> {
     // 打出时
     private ArrayList<AbstractTrizonFactory> useActionFactorys;
     public void useBehavior(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractTrizonFactory factory : useActionFactorys) {
-            factory.receiveTarget(m);
-            this.addToBot(factory.create());
+        if (this_card.target == CARD_OR_ENEMY) {
+            AbstractCard card = SnowballTargeting.getTargetCard(this_card);
+            AbstractCreature creature = SnowballTargeting.getTargetCreature(this_card);
+            for (AbstractTrizonFactory factory : useActionFactorys) {
+                factory.receiveCard(card);
+                factory.receiveTarget(creature);
+                this.addToBot(factory.create());
+            }
+        } else {
+            for (AbstractTrizonFactory factory : useActionFactorys) {
+                factory.receiveTarget(m);
+                this.addToBot(factory.create());
+            }
         }
     }
     public void addToUseBehavior(AbstractTrizonFactory factory) {

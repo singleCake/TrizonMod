@@ -15,6 +15,7 @@ import card.TrizonCard;
 import fusable.Fusable;
 
 import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
+import static card.helper.CardTargeting.CARD;
 
 public class CardBehavior implements Fusable<CardBehavior> {
     TrizonCard this_card = null;
@@ -40,7 +41,14 @@ public class CardBehavior implements Fusable<CardBehavior> {
     // 打出时
     private ArrayList<AbstractTrizonFactory> useActionFactorys;
     public void useBehavior(AbstractPlayer p, AbstractMonster m) {
-        if (this_card.target == CARD_OR_ENEMY) {
+        if (this_card.target == CARD) {
+            AbstractCard card = CardTargeting.getTarget(this_card);
+            for (AbstractTrizonFactory factory : useActionFactorys) {
+                factory.receiveCard(card);
+                this.addToBot(factory.create());
+            }
+        }
+        else if (this_card.target == CARD_OR_ENEMY) {
             AbstractCard card = SnowballTargeting.getTargetCard(this_card);
             AbstractCreature creature = SnowballTargeting.getTargetCreature(this_card);
             for (AbstractTrizonFactory factory : useActionFactorys) {
@@ -213,7 +221,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     @Override
-    public void fuse(CardBehavior other) {
+    public boolean fuse(CardBehavior other) {
         this.useActionFactorys = AbstractTrizonFactory.fuseFactories(this.useActionFactorys, other.useActionFactorys);
         this.exhaustActionFactorys = AbstractTrizonFactory.fuseFactories(this.exhaustActionFactorys, other.exhaustActionFactorys);
         this.drawnActionFactorys = AbstractTrizonFactory.fuseFactories(this.drawnActionFactorys, other.drawnActionFactorys);
@@ -226,6 +234,8 @@ public class CardBehavior implements Fusable<CardBehavior> {
         this.startOfTurnAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.startOfTurnAfterExhaustedActionFactorys, other.startOfTurnAfterExhaustedActionFactorys);
         this.onOtherCardFrozenAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.onOtherCardFrozenAfterExhaustedActionFactorys, other.onOtherCardFrozenAfterExhaustedActionFactorys);
         this.onEnemyFrozenAfterExhaustedActionFactorys = AbstractTrizonFactory.fuseFactories(this.onEnemyFrozenAfterExhaustedActionFactorys, other.onEnemyFrozenAfterExhaustedActionFactorys);
+    
+        return true;
     }
 
     public void setThisCard(TrizonCard card) {

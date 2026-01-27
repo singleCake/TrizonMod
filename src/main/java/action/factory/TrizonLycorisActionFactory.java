@@ -2,8 +2,10 @@ package action.factory;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 
-import action.TrizonLycorisAction;
+import action.TrizonCheckCardAction;
+import action.TrizonModifyDamageAction;
 
 public class TrizonLycorisActionFactory extends AbstractTrizonFactory {
     private AbstractCard cardExhausted;
@@ -19,13 +21,18 @@ public class TrizonLycorisActionFactory extends AbstractTrizonFactory {
 
     @Override
     public AbstractGameAction create() {
-        return new TrizonLycorisAction(this_card, cardExhausted, amount);
+        return new TrizonCheckCardAction(cardExhausted, 
+            c -> c.type == CardType.ATTACK, 
+            new TrizonModifyDamageAction(this_card, amount));
     }
 
     @Override
-    public void fuse(AbstractTrizonFactory other) {
+    public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonLycorisActionFactory) {
             this.amount += other.amount;
+            return true;
         }
+
+        return false;
     }
 }

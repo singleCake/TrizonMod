@@ -13,9 +13,11 @@ public class TrizonRetreatActionFactory extends AbstractTrizonFactory {
     }
 
     @Override
-    public void fuse(AbstractTrizonFactory other) {
+    public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonRetreatActionFactory) {
             this.times += ((TrizonRetreatActionFactory) other).times;
+            return true;
         }
+        return false;
     }
 }

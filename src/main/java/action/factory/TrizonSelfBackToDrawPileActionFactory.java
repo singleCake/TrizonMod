@@ -13,8 +13,4 @@ public class TrizonSelfBackToDrawPileActionFactory extends AbstractTrizonFactory
     public AbstractGameAction create() {
         return new TrizonHandToDrawPileAction(this_card);
     }
-
-    @Override
-    public void fuse(AbstractTrizonFactory other) {
-    }
 }

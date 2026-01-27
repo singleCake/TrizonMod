@@ -28,10 +28,11 @@ public class DefaultCardBooleans implements Fusable<DefaultCardBooleans> {
     }
 
     @Override
-    public void fuse(DefaultCardBooleans other) {
+    public boolean fuse(DefaultCardBooleans other) {
         this.exhaust = this.exhaust || other.exhaust;
         this.isEthereal = this.isEthereal || other.isEthereal;
         this.isInnate = this.isInnate || other.isInnate;
         this.selfRetain = this.selfRetain || other.selfRetain;
+        return true;
     }
 }

@@ -85,13 +85,12 @@
 
     "Trizon:Sunshine": {
         "NAME": "暖阳",
-        "DESCRIPTION": " trizon:火焰 。 获得 !B! 点格挡。 NL 这张牌被 消耗 时，增加一张 trizon:火焰 牌到你的手牌。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": " trizon:火焰 。 获得 !B! 点格挡。 NL 这张牌被 消耗 时，增加一张升级过的 trizon:火焰 牌到你的手牌。 NL 消耗 。"
+        "DESCRIPTION": " trizon:火焰 。 获得 !B! 点格挡。 NL 这张牌被 消耗 时，增加一张 trizon:火焰 牌到你的手牌。 NL 消耗 。"
     },
 
     "Trizon:Roadblock": {
         "NAME": "路障",
-        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 本回合无法再打出攻击牌 。 NL 消耗 。"
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌左侧的牌本回合无法再打出 。"
     },
 
     "Trizon:Pinata": {
@@ -111,7 +110,7 @@
 
     "Trizon:Igloo": {
         "NAME": "雪屋",
-        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被冻结时，获得 !B! 点 格挡 与1层 trizon:护盾 。"
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被冻结时，获得 !B! 点 格挡 与 !M! 层 trizon:护盾 。"
     },
 
     "Trizon:Letter": {
@@ -139,7 +138,7 @@
 
     "Trizon:Attack": {
         "NAME": "出击",
-        "DESCRIPTION": "打出手牌中一张攻击牌。 NL 消耗 。"
+        "DESCRIPTION": "随机打出手牌中一张攻击牌。 NL 消耗 。"
     },
 
     "Trizon:Orchardist": {

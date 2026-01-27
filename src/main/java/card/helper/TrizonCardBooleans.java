@@ -14,13 +14,15 @@ public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
     }
 
     @Override
-    public void fuse(TrizonCardBooleans other) {
+    public boolean fuse(TrizonCardBooleans other) {
         this.canUse = this.canUse && other.canUse;
         this.yandere = this.yandere || other.yandere;
         this.fire = this.fire || other.fire;
         this.ghost = this.ghost || other.ghost;
         this.goldfish = this.goldfish || other.goldfish;
         this.rain = this.rain || other.rain;
+
+        return true;
     }
 
     public TrizonCardBooleans clone() {

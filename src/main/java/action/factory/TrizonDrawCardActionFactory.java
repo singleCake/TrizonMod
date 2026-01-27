@@ -1,26 +1,24 @@
 package action.factory;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 
-import action.TrizonModifyDamageAction;
-
-public class TrizonSelfAddDamageActionFactory extends AbstractTrizonFactory {
-    public TrizonSelfAddDamageActionFactory(int amount) {
+public class TrizonDrawCardActionFactory extends AbstractTrizonFactory {
+    public TrizonDrawCardActionFactory(int amount) {
         this.amount = amount;
     }
 
     @Override
     public AbstractGameAction create() {
-        return new TrizonModifyDamageAction(this_card, amount);
+        return new DrawCardAction(amount);
     }
 
     @Override
     public boolean fuse(AbstractTrizonFactory other) {
-        if (other instanceof TrizonSelfAddDamageActionFactory) {
+        if (other instanceof TrizonDrawCardActionFactory) {
             this.amount += other.amount;
             return true;
         }
-
         return false;
     }
 }

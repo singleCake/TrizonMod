@@ -12,8 +12,4 @@ public class TrizonSelfFreezeActionFactory extends AbstractTrizonFactory {
     public AbstractGameAction create() {
         return new TrizonFreezeCardAction(this_card);
     }
-
-    @Override
-    public void fuse(AbstractTrizonFactory other) {
-    }
 }

@@ -36,8 +36,13 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
             boolean foundMatch = false;
             for (AbstractTrizonFactory factory2 : factories2) {
                 if (factory1.getClass().equals(factory2.getClass())) {
-                    factory1.fuse(factory2);
-                    fusedFactories.add(factory1);
+                    if (factory1.fuse(factory2)) {
+                        fusedFactories.add(factory1);
+                    }
+                    else {
+                        fusedFactories.add(factory1);
+                        fusedFactories.add(factory2);
+                    }
                     foundMatch = true;
                     break;
                 }
@@ -67,5 +72,10 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
         for (AbstractTrizonFactory factory : factories) {
             factory.receiveThisCard(card);
         }
+    }
+
+    @Override
+    public boolean fuse(AbstractTrizonFactory other) {
+        return true;
     }
 }

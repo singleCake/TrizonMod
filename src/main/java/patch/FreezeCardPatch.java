@@ -26,12 +26,16 @@ public class FreezeCardPatch {
         FrozenField.frozen.set(card, false);
     }
 
+    public static boolean isFrozen(AbstractCard card) {
+        return FrozenField.frozen.get(card);
+    }
+
     // 冻结的牌回合结束时保留
     @SpirePatch(clz = RestoreRetainedCardsAction.class, method = "update")
     public static class RestoreRetainedCardsActionPatch {
         @SpireInsertPatch(rloc = 4, localvars = {"e"})
         public static void Insert(RestoreRetainedCardsAction __instance, @ByRef AbstractCard[] e) {
-            if (FrozenField.frozen.get(e[0]) && !e[0].retain) {
+            if (isFrozen(e[0]) && !e[0].retain) {
                 e[0].retain = true;
             }
         }

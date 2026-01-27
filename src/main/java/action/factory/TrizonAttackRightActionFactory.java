@@ -18,11 +18,14 @@ public class TrizonAttackRightActionFactory extends AbstractTrizonFactory {
     }
     
     @Override
-    public void fuse(AbstractTrizonFactory other) {
+    public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonAttackRightActionFactory) {
             TrizonAttackRightActionFactory o = (TrizonAttackRightActionFactory) other;
             this.damage += o.damage;
             this.times = Math.max(this.times, o.times);
+            return true;
         }
+
+        return false;
     }
 }

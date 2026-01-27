@@ -32,6 +32,7 @@ public class Meat extends TrizonCard {
             this.upgradeMagicNumber(1);
 
             reInitBehavior();
+            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

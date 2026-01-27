@@ -47,13 +47,15 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     @Override
-    public void fuse(TrizonCard other) {
+    public boolean fuse(TrizonCard other) {
         fuseBehavior(this, other);
         fuseBoolean(this, other);
         fuseDamageAndBlock(this, other);
         addToFusionData(other);
         this.rawDescription = CardHelper.getFusedCardRawDescription(this);
         this.initializeDescription();
+
+        return true;
     }
 
     // 融合行为

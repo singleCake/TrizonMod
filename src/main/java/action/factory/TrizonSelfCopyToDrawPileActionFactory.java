@@ -14,9 +14,12 @@ public class TrizonSelfCopyToDrawPileActionFactory extends AbstractTrizonFactory
     }
 
     @Override
-    public void fuse(AbstractTrizonFactory other) {
+    public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonSelfCopyToDrawPileActionFactory) {
             this.amount += other.amount;
+            return true;
         }
+
+        return false;
     }
 }

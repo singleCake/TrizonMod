@@ -30,11 +30,14 @@ public class TrizonSummonCardActionFactory extends AbstractTrizonFactory {
     }
 
     @Override
-    public void fuse(AbstractTrizonFactory other) {
+    public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonSummonCardActionFactory) {
             if (this.freeThisTurn == ((TrizonSummonCardActionFactory)other).freeThisTurn) {
                 this.times += other.times;
+                return true;
             }
         }
+
+        return false;
     }
 }

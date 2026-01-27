@@ -21,8 +21,9 @@ public class Snowball extends TrizonCard {
 
     public Snowball() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        reInitBehavior();
         this.exhaust = true;
+        
+        reInitBehavior();
     }
 
     @Override

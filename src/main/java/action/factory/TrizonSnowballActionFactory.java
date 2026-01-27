@@ -36,8 +36,4 @@ public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
         }
         return null;
     }
-
-    @Override
-    public void fuse(AbstractTrizonFactory other) {
-    }
 }

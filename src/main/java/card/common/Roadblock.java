@@ -20,7 +20,7 @@ public class Roadblock extends TrizonCard {
 
     public Roadblock() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 9;
+        this.block = this.baseBlock = 9;
         
         reInitBehavior();
     }

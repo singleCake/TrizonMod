@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-import patch.FreezeCardPatch;
+import action.TrizonUnFreezeCardAction;
 
 public class TrizonSwimActionFactory extends AbstractTrizonFactory {
     AbstractCard card = null;
@@ -22,21 +22,8 @@ public class TrizonSwimActionFactory extends AbstractTrizonFactory {
 
     @Override
     public AbstractGameAction create() {
-        if (card == null) {
-            for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                if (FreezeCardPatch.isFrozen(c)) {
-                    card = c;
-                    break;
-                }
-            }
-        }
-        if (FreezeCardPatch.isFrozen(card)) {
-            FreezeCardPatch.Unfreeze(card);
-            return new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, 
-                new StrengthPower(AbstractDungeon.player, amount));
-        } else {
-            return null;
-        }
+        return new TrizonUnFreezeCardAction(card, 
+            new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, amount), amount));
     }
 
     @Override

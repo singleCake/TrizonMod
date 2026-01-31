@@ -12,7 +12,7 @@
     "Trizon:Meat": {
         "NAME": "肉",
         "DESCRIPTION": "获得 [E] 。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": "获得 [E][E] 。 NL 消耗 。"
+        "UPGRADE_DESCRIPTION": "获得 [E] [E] 。 NL 消耗 。"
     },
 
     "Trizon:Bear": {
@@ -48,17 +48,17 @@
 
     "Trizon:Alfney": {
         "NAME": "阿尔芙尼",
-        "DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗后，增加一张此牌的复制到抽牌堆。"
+        "DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 这张牌被 消耗 后，增加一张此牌的复制到抽牌堆。"
     },
 
     "Trizon:Lycoris": {
         "NAME": "石蒜",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌在手牌中时，每消耗一张攻击牌，这张牌伤害+ !M! 。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌在手牌中时，每 消耗 一张攻击牌，这张牌伤害+ !M! 。"
     },
 
     "Trizon:Firefly": {
         "NAME": "萤火虫",
-        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗时，抽 !M! 张 trizon:火焰 牌。"
+        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被 消耗 时，抽 !M! 张 trizon:火焰 牌。"
     },
 
     "Trizon:RedFox": {
@@ -110,7 +110,7 @@
 
     "Trizon:Igloo": {
         "NAME": "雪屋",
-        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被冻结时，获得 !B! 点 格挡 与 !M! 层 trizon:护盾 。"
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被 trizon:冻结 时，获得 !B! 点 格挡 与1层 trizon:护盾 。"
     },
 
     "Trizon:Letter": {
@@ -121,8 +121,8 @@
 
     "Trizon:GiftBox": {
         "NAME": "礼盒",
-        "DESCRIPTION": "获得 [E] 。 NL 增加一张非稀有牌到手牌。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 增加一张非稀有牌到手牌，这张牌本回合耗能变为0 NL 消耗 。"
+        "DESCRIPTION": "获得 [E] 。 NL 这张牌被 消耗 时，增加一张非稀有牌到手牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "获得 [E] 。 NL 这张牌被 消耗 时，增加一张非稀有牌到手牌，这张牌本回合耗能变为0 NL 消耗 。"
     },
 
     "Trizon:Summon": {
@@ -138,7 +138,7 @@
 
     "Trizon:Attack": {
         "NAME": "出击",
-        "DESCRIPTION": "随机打出手牌中一张攻击牌。 NL 消耗 。"
+        "DESCRIPTION": "随机打出手牌中一张攻击牌。 NL 消耗 。 NL 这张牌与攻击牌融合时，改为使攻击次数+1。"
     },
 
     "Trizon:Orchardist": {

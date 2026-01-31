@@ -20,7 +20,7 @@ public class Bear extends TrizonCard {
 
     public Bear() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 16;
+        this.damage = this.baseDamage = 16;
         reInitBehavior();
     }
 

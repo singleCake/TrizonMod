@@ -39,7 +39,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 打出时
-    private ArrayList<AbstractTrizonFactory> useActionFactorys;
+    private ArrayList<AbstractTrizonFactory> useActionFactorys = new ArrayList<>();
     public void useBehavior(AbstractPlayer p, AbstractMonster m) {
         if (this_card.target == CARD) {
             AbstractCard card = CardTargeting.getTarget(this_card);
@@ -68,7 +68,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 被消耗时
-    private ArrayList<AbstractTrizonFactory> exhaustActionFactorys;
+    private ArrayList<AbstractTrizonFactory> exhaustActionFactorys = new ArrayList<>();
     public void onExhaustBehavior() {
         for (AbstractTrizonFactory factory : exhaustActionFactorys) {
             this.addToBot(factory.create());
@@ -79,7 +79,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 抽到这张牌时
-    private ArrayList<AbstractTrizonFactory> drawnActionFactorys;
+    private ArrayList<AbstractTrizonFactory> drawnActionFactorys = new ArrayList<>();
     public void onDrawnBehavior() {
         for (AbstractTrizonFactory factory : drawnActionFactorys) {
             this.addToBot(factory.create());
@@ -90,7 +90,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 打出其他手牌时
-    private ArrayList<AbstractTrizonFactory> otherCardPlayedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> otherCardPlayedActionFactorys = new ArrayList<>();
     public void onOtherCardPlayedBehavior(AbstractCard c) {
         for (AbstractTrizonFactory factory : otherCardPlayedActionFactorys) {
             factory.receiveCard(c);
@@ -102,7 +102,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 消耗其他手牌时
-    private ArrayList<AbstractTrizonFactory> otherCardExhaustedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> otherCardExhaustedActionFactorys = new ArrayList<>();
     public void onOtherCardExhaustedBehavior(AbstractCard c) {
         for (AbstractTrizonFactory factory : otherCardExhaustedActionFactorys) {
             factory.receiveCard(c);
@@ -114,7 +114,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 此卡造成伤害时
-    private ArrayList<AbstractTrizonFactory> attackActionFactorys;
+    private ArrayList<AbstractTrizonFactory> attackActionFactorys = new ArrayList<>();
     public void onAttackBehavior(AbstractCreature monster, DamageInfo info) {
         for (int i = attackActionFactorys.size() - 1; i >= 0; i--) {
             AbstractTrizonFactory factory = attackActionFactorys.get(i);
@@ -128,7 +128,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 受到伤害时
-    private ArrayList<AbstractTrizonFactory> attackedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> attackedActionFactorys = new ArrayList<>();
     public void onAttackedBehavior(DamageInfo info, int damageAmount) {
         for (AbstractTrizonFactory factory : attackedActionFactorys) {
             factory.receiveDamageInfo(info);
@@ -140,7 +140,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 被冻结时
-    private ArrayList<AbstractTrizonFactory> frozenActionFactorys;
+    private ArrayList<AbstractTrizonFactory> frozenActionFactorys = new ArrayList<>();
     public void onFrozenBehavior() {
         for (AbstractTrizonFactory factory : frozenActionFactorys) {
             this.addToBot(factory.create());
@@ -151,7 +151,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 在消耗堆中，每回合结束时
-    private ArrayList<AbstractTrizonFactory> endOfTurnAfterExhaustedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> endOfTurnAfterExhaustedActionFactorys = new ArrayList<>();
     public void atEndOfTurnAfterExhaustedBehavior() {
         for (AbstractTrizonFactory factory : endOfTurnAfterExhaustedActionFactorys) {
             this.addToBot(factory.create());
@@ -162,7 +162,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 在消耗堆中，每回合开始时
-    private ArrayList<AbstractTrizonFactory> startOfTurnAfterExhaustedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> startOfTurnAfterExhaustedActionFactorys = new ArrayList<>();
     public void atStartOfTurnAfterExhaustedBehavior() {
         for (AbstractTrizonFactory factory : startOfTurnAfterExhaustedActionFactorys) {
             this.addToBot(factory.create());
@@ -173,7 +173,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 在消耗堆中，其他牌被冻结时
-    private ArrayList<AbstractTrizonFactory> onOtherCardFrozenAfterExhaustedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> onOtherCardFrozenAfterExhaustedActionFactorys = new ArrayList<>();
     public void onOtherCardFrozenAfterExhaustedBehavior() {
         for (AbstractTrizonFactory factory : onOtherCardFrozenAfterExhaustedActionFactorys) {
             this.addToBot(factory.create());
@@ -184,7 +184,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     // 在消耗堆中，敌人被冻结时
-    private ArrayList<AbstractTrizonFactory> onEnemyFrozenAfterExhaustedActionFactorys;
+    private ArrayList<AbstractTrizonFactory> onEnemyFrozenAfterExhaustedActionFactorys = new ArrayList<>();
     public void onEnemyFrozenAfterExhaustedBehavior() {
         for (AbstractTrizonFactory factory : onEnemyFrozenAfterExhaustedActionFactorys) {
             this.addToBot(factory.create());

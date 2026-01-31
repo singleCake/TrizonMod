@@ -22,7 +22,7 @@ public class Coward extends TrizonCard {
 
     public Coward() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 11;
+        this.damage = this.baseDamage = 11;
         reInitBehavior();
     }
 

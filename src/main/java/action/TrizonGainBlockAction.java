@@ -16,7 +16,7 @@ public class TrizonGainBlockAction extends AbstractTrizonAction {
     
     @Override
     public void update() {
-        if (!this.target.isDying && !this.target.isDead && this.duration == 0.25F) {
+        if (!this.target.isDying && !this.target.isDead) {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
             this.applyPowersToBlock();
             this.target.addBlock(this.block);
@@ -28,7 +28,7 @@ public class TrizonGainBlockAction extends AbstractTrizonAction {
             }
         }
 
-        this.tickDuration();
+        this.isDone = true;
     }
 
     @SuppressWarnings("rawtypes")

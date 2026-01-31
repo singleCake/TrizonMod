@@ -21,8 +21,8 @@ public class Firefly extends TrizonCard {
 
     public Firefly() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 8;
-        this.baseMagicNumber = 1;
+        this.damage = this.baseDamage = 8;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.trizonBooleans.fire = true;
         reInitBehavior();
     }

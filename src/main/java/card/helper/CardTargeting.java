@@ -27,7 +27,10 @@ public class CardTargeting extends TargetingHandler<AbstractCard> {
         hovered = null;
 
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.hb.hovered) {
+            if (c == AbstractDungeon.player.hoveredCard) {
+                continue;
+            }
+            if (c.isHoveredInHand(1.0f)) {
                 hovered = c;
                 return;
             }
@@ -47,7 +50,11 @@ public class CardTargeting extends TargetingHandler<AbstractCard> {
     @Override
     public void renderReticle(SpriteBatch sb) {
         if (hovered != null) {
-            
+            AbstractCard preview = hovered.makeSameInstanceOf();
+            preview.drawScale = hovered.drawScale;
+            preview.current_x = hovered.current_x;
+            preview.current_y = hovered.current_y + AbstractCard.IMG_HEIGHT;
+            preview.render(sb);
         }
     }
 

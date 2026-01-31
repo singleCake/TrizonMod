@@ -9,6 +9,7 @@ import card.TrizonFusedCard;
 
 public class CardHelper {
     public static String makeID(Class<? extends TrizonCard> cardClass) {
+        System.out.println("Making ID for class: " + cardClass.getSimpleName());
         return "Trizon:" + cardClass.getSimpleName();
     }
 

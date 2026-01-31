@@ -20,7 +20,7 @@ public class Crab extends TrizonCard {
 
     public Crab() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 5;
+        this.block = this.baseBlock = 5;
         
         reInitBehavior();
     }

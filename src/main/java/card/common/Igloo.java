@@ -20,7 +20,7 @@ public class Igloo extends TrizonCard {
 
     public Igloo() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 6;
+        this.block = this.baseBlock = 6;
         
         reInitBehavior();
     }

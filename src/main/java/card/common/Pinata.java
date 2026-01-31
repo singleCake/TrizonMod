@@ -20,8 +20,8 @@ public class Pinata extends TrizonCard {
 
     public Pinata() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 8;
-        this.baseMagicNumber = 1;
+        this.block = this.baseBlock = 8;
+        this.magicNumber = this.baseMagicNumber = 1;
         
         reInitBehavior();
     }

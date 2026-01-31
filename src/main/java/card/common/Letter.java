@@ -19,7 +19,7 @@ public class Letter extends TrizonCard {
 
     public Letter() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         
         reInitBehavior();
     }

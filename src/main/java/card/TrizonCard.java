@@ -21,13 +21,11 @@ public abstract class TrizonCard extends CustomCard {
     protected CardBehavior behavior = new CardBehavior();
     protected ArrayList<AbstractTrizonPowerFactory> powerFactorys = new ArrayList<>();
 
-    public int baseDamage = 0;
     public int baseDamageTimes = 0;
-    public int baseBlock = 0;
 
     public CardModifier modifier = new CardModifier();
 
-    protected TrizonCardBooleans trizonBooleans = null;
+    protected TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
 
     protected String img = "";
 

@@ -20,7 +20,7 @@ public class Fireball extends TrizonCard {
 
     public Fireball() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseMagicNumber = 5;
+        this.magicNumber = this.baseMagicNumber = 5;
         this.trizonBooleans.fire = true;
         this.exhaust = true;
         reInitBehavior();

@@ -19,7 +19,7 @@ public class Defend extends TrizonCard {
 
     public Defend() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 5;
+        this.block = this.baseBlock = 5;
         reInitBehavior();
     }
 

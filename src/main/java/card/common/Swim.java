@@ -3,9 +3,10 @@ package card.common;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
-import action.factory.TrizonRandomReviveActionFactory;
 import action.factory.TrizonSwimActionFactory;
 import card.TrizonCard;
+
+import static card.helper.CardTargeting.CARD;
 
 public class Swim extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Swim.class);
@@ -16,11 +17,11 @@ public class Swim extends TrizonCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.NONE;
+    private static final CardTarget TARGET = CARD;
 
     public Swim() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 2;
         
         reInitBehavior();
     }

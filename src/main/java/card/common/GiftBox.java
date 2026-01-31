@@ -20,7 +20,7 @@ public class GiftBox extends TrizonCard {
 
     public GiftBox() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;
         
         reInitBehavior();
@@ -40,6 +40,6 @@ public class GiftBox extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonGainEnergyActionFactory(baseMagicNumber));
-        this.behavior.addToUseBehavior(new TrizonSummonCardActionFactory(this.upgraded));
+        this.behavior.addToExhaustBehavior(new TrizonSummonCardActionFactory(this.upgraded));
     }
 }

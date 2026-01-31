@@ -20,7 +20,7 @@ public class Sunshine extends TrizonCard {
 
     public Sunshine() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 8;
+        this.block = this.baseBlock = 8;
         this.trizonBooleans.fire = true;
         this.exhaust = true;
         

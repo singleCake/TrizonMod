@@ -38,7 +38,10 @@ public class SnowballTargeting extends TargetingHandler<card.helper.SnowballTarg
         hoveredCreature = null;
 
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.hb.hovered) {
+            if (c == AbstractDungeon.player.hoveredCard) {
+                continue;
+            }
+            if (c.isHoveredInHand(1.0f)) {
                 hoveredCard = c;
                 return;
             }
@@ -66,7 +69,11 @@ public class SnowballTargeting extends TargetingHandler<card.helper.SnowballTarg
     @Override
     public void renderReticle(SpriteBatch sb) {
         if (hoveredCard != null) {
-            
+            AbstractCard preview = hoveredCard.makeSameInstanceOf();
+            preview.drawScale = hoveredCard.drawScale;
+            preview.current_x = hoveredCard.current_x;
+            preview.current_y = hoveredCard.current_y + AbstractCard.IMG_HEIGHT;
+            preview.render(sb);
         }
 
         if (hoveredCreature != null) {

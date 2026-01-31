@@ -21,7 +21,7 @@ public class Cat extends TrizonCard {
 
     public Cat() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 2;
+        this.damage = this.baseDamage = 2;
         reInitBehavior();
     }
 

@@ -20,7 +20,7 @@ public class Yandere extends TrizonCard {
 
     public Yandere() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 6;
+        this.damage = this.baseDamage = 6;
         this.exhaust = true;
         this.trizonBooleans.yandere = true;
         reInitBehavior();

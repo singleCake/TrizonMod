@@ -20,8 +20,8 @@ public class SeaStar extends TrizonCard {
 
     public SeaStar() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseBlock = 6;
-        this.baseMagicNumber = 1;
+        this.block = this.baseBlock = 6;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;
         
         reInitBehavior();

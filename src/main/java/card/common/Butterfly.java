@@ -21,8 +21,8 @@ public class Butterfly extends TrizonCard {
 
     public Butterfly() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 7;
-        this.baseMagicNumber = 2;
+        this.damage = this.baseDamage = 7;
+        this.magicNumber = this.baseMagicNumber = 2;
         reInitBehavior();
     }
 

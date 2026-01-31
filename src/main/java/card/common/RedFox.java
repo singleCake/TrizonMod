@@ -21,8 +21,8 @@ public class RedFox extends TrizonCard {
 
     public RedFox() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 7;
-        this.baseMagicNumber = 1;
+        this.damage = this.baseDamage = 7;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.trizonBooleans.fire = true;
         this.cardsToPreview = new Fireball();
         reInitBehavior();

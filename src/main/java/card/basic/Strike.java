@@ -20,7 +20,7 @@ public class Strike extends TrizonCard {
 
     public Strike() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 6;
+        this.damage = this.baseDamage = 6;
         reInitBehavior();
     }
 

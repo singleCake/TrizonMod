@@ -18,6 +18,7 @@ public class TrizonDamageAction extends AbstractTrizonAction {
         this.target = target;
         this.info = info;
         this.attackEffect = attackEffect;
+        this.duration = 0.1F;
     }
 
     @Override

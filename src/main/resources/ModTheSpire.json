@@ -1,10 +1,10 @@
 {
-  "modid": "ExampleMod",
-  "name": "事例mod",
+  "modid": "TrizonMod",
+  "name": "卡牌少女不会受伤-Trizon",
   "author_list": ["singleCake"],
-  "description": "一个事例mod。",
+  "description": "卡牌少女不会受伤-Trizon",
   "version": "0.0.1",
   "sts_version": "12-22-2020",
   "mts_version": "3.23.2",
-  "dependencies": ["basemod"]
+  "dependencies": ["basemod", "stslib"]
 }

@@ -21,8 +21,8 @@ public class Lycoris extends TrizonCard {
 
     public Lycoris() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamage = 8;
-        this.baseMagicNumber = 4;
+        this.damage = this.baseDamage = 8;
+        this.magicNumber = this.baseMagicNumber = 4;
         reInitBehavior();
     }
 

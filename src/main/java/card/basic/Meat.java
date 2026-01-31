@@ -20,7 +20,7 @@ public class Meat extends TrizonCard {
     public Meat() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
-        this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 1;
         
         reInitBehavior();
     }

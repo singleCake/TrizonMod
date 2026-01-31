@@ -31,7 +31,6 @@ import basemod.interfaces.PostInitializeSubscriber;
 import card.basic.Meat;
 import card.common.Bird;
 import character.Marry;
-import modcore.TrizonMod.PlayerColorEnum;
 import card.helper.CardTargeting;
 import card.helper.SnowballTargeting;
 import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
@@ -124,7 +123,7 @@ public class TrizonMod implements PostInitializeSubscriber, EditCardsSubscriber,
         String lang = "ZHS";
         BaseMod.loadCustomStringsFile(CardStrings.class, "TrizonResources/localization/" + lang + "/cards.json"); 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "TrizonResources/localization/" + lang + "/characters.json");
-        // BaseMod.loadCustomStringsFile(PowerStrings.class, "TrizonResources/localization/" + lang + "/powers.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class, "TrizonResources/localization/" + lang + "/powers.json");
         // BaseMod.loadCustomStringsFile(RelicStrings.class, "TrizonResources/localization/" + lang + "/relics.json");
         // BaseMod.loadCustomStringsFile(UIStrings.class, "TrizonResources/localization/" + lang + "/ui.json");
     }

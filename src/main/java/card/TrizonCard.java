@@ -47,6 +47,11 @@ public abstract class TrizonCard extends CustomCard {
         this.baseDamageTimes += amount;
     }
 
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return trizonBooleans.canUse && super.canUse(p, m);
+    }
+
     // 原版接口
 
     @Override
@@ -55,11 +60,6 @@ public abstract class TrizonCard extends CustomCard {
             this.addToBot(new ApplyPowerAction(p, p, powerFactory.create()));
         }
         behavior.useBehavior(p, m);
-    }
-
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return trizonBooleans.canUse;
     }
 
     @Override

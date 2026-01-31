@@ -1,0 +1,26 @@
+{
+    "Trizon:FrozenPower": {
+        "NAME": "冻结",
+        "DESCRIPTIONS": [
+            "若该敌人本回合意图为 #y攻击 ，其将跳过本回合行动。"
+        ]
+    },
+    "Trizon:PinataPower": {
+        "NAME": "彩带马",
+        "DESCRIPTIONS": [
+            "本回合每受到一次攻击，增加 #b%d 张随机非稀有牌到你的手牌。"
+        ]
+    },
+    "Trizon:SeaStarPower": {
+        "NAME": "海星",
+        "DESCRIPTIONS": [
+            "本回合每受到一次攻击，增加 #b%d 张 #y海星 到你的手牌。"
+        ]
+    },
+    "Trizon:ShieldPower": {
+        "NAME": "护盾",
+        "DESCRIPTIONS": [
+            "防止你下次受到的伤害。"
+        ]
+    }
+}

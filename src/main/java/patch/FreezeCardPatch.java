@@ -6,11 +6,13 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.unique.RestoreRetainedCardsAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.TrizonUnFreezeAllCardAtStartOfTurnAction;
+import card.TrizonCard;
 
 public class FreezeCardPatch {
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
@@ -19,6 +21,14 @@ public class FreezeCardPatch {
     }
 
     public static void Freeze(AbstractCard card) {
+        if (card instanceof TrizonCard) {
+            ((TrizonCard) card).triggerOnFrozen();
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof TrizonCard) {
+                ((TrizonCard) c).triggerOnOtherCardFrozenAfterExhausted();
+            }
+        }
         FrozenField.frozen.set(card, true);
     }
 
@@ -31,10 +41,10 @@ public class FreezeCardPatch {
     }
 
     // 冻结的牌回合结束时保留
-    @SpirePatch(clz = RestoreRetainedCardsAction.class, method = "update")
-    public static class RestoreRetainedCardsActionPatch {
-        @SpireInsertPatch(rloc = 4, localvars = {"e"})
-        public static void Insert(RestoreRetainedCardsAction __instance, @ByRef AbstractCard[] e) {
+    @SpirePatch(clz = DiscardAtEndOfTurnAction.class, method = "update")
+    public static class DiscardAtEndOfTurnActionPatch {
+        @SpireInsertPatch(rloc = 5, localvars = {"e"})
+        public static void Insert(DiscardAtEndOfTurnAction __instance, @ByRef AbstractCard[] e) {
             if (isFrozen(e[0]) && !e[0].retain) {
                 e[0].retain = true;
             }
@@ -54,11 +64,11 @@ public class FreezeCardPatch {
     }
 
     // 回合开始时所有牌解冻
-    @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
+    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfTurnCards")
     public static class GameActionManagerGetNextActionPatch {
-        @SpireInsertPatch(rloc = 236)
-        public static void Insert(GameActionManager __instance) {
-            __instance.addToBottom(new TrizonUnFreezeAllCardAtStartOfTurnAction());
+        @SpirePrefixPatch
+        public static void Prefix(AbstractPlayer __instance) {
+            AbstractDungeon.actionManager.addToBottom(new TrizonUnFreezeAllCardAtStartOfTurnAction());
         }
     }
 }

@@ -8,6 +8,7 @@ import patch.FreezeCardPatch;
 public class TrizonFreezeCardAction extends AbstractTrizonAction {
     AbstractCard card;
     public TrizonFreezeCardAction(AbstractCard card) {
+        System.out.println("TrizonFreezeCardAction Freezing card " + card.name);
         this.card = card;
     }
 

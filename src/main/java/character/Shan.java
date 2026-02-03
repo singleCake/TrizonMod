@@ -27,36 +27,36 @@ import java.util.ArrayList;
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
 import static modcore.TrizonMod.PlayerColorEnum.Trizon;
 
-public class Marry extends CustomPlayer  {
-    private static final String MY_CHARACTER_SHOULDER_1 = "TrizonResources/img/char/Marry/shoulder1.png";
-    private static final String MY_CHARACTER_SHOULDER_2 = "TrizonResources/img/char/Marry/shoulder2.png";
-    private static final String CORPSE_IMAGE = "TrizonResources/img/char/Marry/corpse.png";
+public class Shan extends CustomPlayer  {
+    private static final String MY_CHARACTER_SHOULDER_1 = "TrizonResources/img/char/shoulder1.png";
+    private static final String MY_CHARACTER_SHOULDER_2 = "TrizonResources/img/char/shoulder2.png";
+    private static final String CORPSE_IMAGE = "TrizonResources/img/char/corpse.png";
     private static final String[] ORB_TEXTURES = new String[]{
-            "TrizonResources/img/UI/orb/layer5.png",
-            "TrizonResources/img/UI/orb/layer4.png",
-            "TrizonResources/img/UI/orb/layer3.png",
-            "TrizonResources/img/UI/orb/layer2.png",
-            "TrizonResources/img/UI/orb/layer1.png",
-            "TrizonResources/img/UI/orb/layer6.png",
-            "TrizonResources/img/UI/orb/layer5d.png",
-            "TrizonResources/img/UI/orb/layer4d.png",
-            "TrizonResources/img/UI/orb/layer3d.png",
-            "TrizonResources/img/UI/orb/layer2d.png",
-            "TrizonResources/img/UI/orb/layer1d.png"
+            "TrizonResources/img/ui/orb/layer5.png",
+            "TrizonResources/img/ui/orb/layer4.png",
+            "TrizonResources/img/ui/orb/layer3.png",
+            "TrizonResources/img/ui/orb/layer2.png",
+            "TrizonResources/img/ui/orb/layer1.png",
+            "TrizonResources/img/ui/orb/layer6.png",
+            "TrizonResources/img/ui/orb/layer5d.png",
+            "TrizonResources/img/ui/orb/layer4d.png",
+            "TrizonResources/img/ui/orb/layer3d.png",
+            "TrizonResources/img/ui/orb/layer2d.png",
+            "TrizonResources/img/ui/orb/layer1d.png"
     };
 
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
-    private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("KGPRmod:Marry");
+    private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("Trizon:Shan");
 
-    public Marry(String name)  {
-        super(name, Trizon, ORB_TEXTURES,"TrizonResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
+    public Shan(String name)  {
+        super(name, Trizon, ORB_TEXTURES,"TrizonResources/img/ui/orb/vfx.png", LAYER_SPEED, null, null);
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
 
         this.initializeClass(
-                "TrizonResources/img/char/Marry/character.png",
+                "TrizonResources/img/char/character.png",
                 MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
                 CORPSE_IMAGE,
                 this.getLoadout(),
@@ -82,6 +82,7 @@ public class Marry extends CustomPlayer  {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add("Trizon:FuseRelic");
         return retVal;
     }
 
@@ -157,7 +158,7 @@ public class Marry extends CustomPlayer  {
 
     @Override
     public AbstractPlayer newInstance() {
-        return new Marry(this.name);
+        return new Shan(this.name);
     }
 
     @Override

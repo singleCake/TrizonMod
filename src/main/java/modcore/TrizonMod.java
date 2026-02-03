@@ -26,18 +26,25 @@ import basemod.BaseMod;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
+import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import card.basic.Meat;
 import card.common.Bird;
-import character.Marry;
+import character.Shan;
 import card.helper.CardTargeting;
 import card.helper.SnowballTargeting;
 import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
 import static card.helper.CardTargeting.CARD;
 
 @SpireInitializer
-public class TrizonMod implements PostInitializeSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditStringsSubscriber, EditCharactersSubscriber {
+public class TrizonMod implements 
+    PostInitializeSubscriber, 
+    EditCardsSubscriber, 
+    EditRelicsSubscriber,
+    EditKeywordsSubscriber, 
+    EditStringsSubscriber, 
+    EditCharactersSubscriber {
     public static class PlayerColorEnum {
         @SpireEnum
         public static PlayerClass Trizon;
@@ -85,9 +92,9 @@ public class TrizonMod implements PostInitializeSubscriber, EditCardsSubscriber,
 
     @Override
     public void receiveEditCharacters() {
-        BaseMod.addCharacter(new Marry(CardCrawlGame.playerName), 
-        "TrizonResources/img/char/Marry/Character_Button.png", 
-        "TrizonResources/img/char/Marry/Character_Portrait.png",
+        BaseMod.addCharacter(new Shan(CardCrawlGame.playerName), 
+        "TrizonResources/img/char/Character_Button.png", 
+        "TrizonResources/img/char/Character_Portrait.png",
         Trizon);
     }
 
@@ -101,6 +108,11 @@ public class TrizonMod implements PostInitializeSubscriber, EditCardsSubscriber,
         .packageFilter(Bird.class) 
         .setDefaultSeen(true) 
         .cards();
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        BaseMod.addRelicToCustomPool(new relics.FuseRelic(), PlayerColorEnum.Trizon_COLOR);
     }
 
     @Override
@@ -124,7 +136,7 @@ public class TrizonMod implements PostInitializeSubscriber, EditCardsSubscriber,
         BaseMod.loadCustomStringsFile(CardStrings.class, "TrizonResources/localization/" + lang + "/cards.json"); 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "TrizonResources/localization/" + lang + "/characters.json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, "TrizonResources/localization/" + lang + "/powers.json");
-        // BaseMod.loadCustomStringsFile(RelicStrings.class, "TrizonResources/localization/" + lang + "/relics.json");
-        // BaseMod.loadCustomStringsFile(UIStrings.class, "TrizonResources/localization/" + lang + "/ui.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, "TrizonResources/localization/" + lang + "/relics.json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, "TrizonResources/localization/" + lang + "/ui.json");
     }
 }

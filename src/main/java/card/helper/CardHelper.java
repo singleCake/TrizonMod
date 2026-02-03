@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import card.TrizonCard;
 import card.TrizonFusedCard;
 
+import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
+import static card.helper.CardTargeting.CARD;
+
 public class CardHelper {
     public static String makeID(Class<? extends TrizonCard> cardClass) {
         System.out.println("Making ID for class: " + cardClass.getSimpleName());
@@ -47,10 +50,15 @@ public class CardHelper {
     }
 
     public static CardTarget getFusedCardTarget(TrizonCard card1, TrizonCard card2) {
-        if (card1.target == CardTarget.SELF_AND_ENEMY || card2.target == CardTarget.SELF_AND_ENEMY || card1.target == CardTarget.ENEMY || card2.target == CardTarget.ENEMY) {
-            return CardTarget.ENEMY; // must aim a target
+        if (card1.target == CardTarget.SELF_AND_ENEMY || card2.target == CardTarget.SELF_AND_ENEMY || 
+            card1.target == CardTarget.ENEMY || card2.target == CardTarget.ENEMY) {
+            return CardTarget.ENEMY; // 必须指定一个敌人
+        } else if (card1.target == CARD_OR_ENEMY || card2.target == CARD_OR_ENEMY) {
+            return CARD_OR_ENEMY; // 需要指定卡牌或敌人
+        } else if (card1.target == CARD || card2.target == CARD) {
+            return CARD; // 需要指定一个卡牌
         } else {
-            return CardTarget.NONE; // no target needed
+            return CardTarget.NONE; // 不需要指定目标
         }
     }
 }

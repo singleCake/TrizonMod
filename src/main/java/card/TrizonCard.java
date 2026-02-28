@@ -27,11 +27,9 @@ public abstract class TrizonCard extends CustomCard {
 
     protected TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
 
-    protected String img = "";
-
     public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);
-        this.img = img;
+        this.textureImg = img;
         this.behavior.setThisCard(this);
     }
 
@@ -50,6 +48,10 @@ public abstract class TrizonCard extends CustomCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         return trizonBooleans.canUse && super.canUse(p, m);
+    }
+
+    public boolean canFuse() {
+        return true;
     }
 
     // 原版接口

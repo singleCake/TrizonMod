@@ -25,7 +25,7 @@ public class CampfireFusePatch {
         @SpireInsertPatch(rloc = 63)
         public static void Insert(CancelButton __instance) {
             if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() instanceof RestRoom) {
-                    FuseCampfireUI.switchMode(false);
+                FuseCampfireUI.switchMode(false);
             }
         }
     }

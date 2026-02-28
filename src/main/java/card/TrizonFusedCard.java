@@ -3,7 +3,11 @@ package card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import basemod.abstracts.CustomSavable;
 import card.helper.CardBehavior;
@@ -21,7 +25,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     public static int ID_COUNTER = 0;
 
     public TrizonFusedCard() {
-        super(BASE_ID + ID_COUNTER++, "融合卡牌", "",
+        super(BASE_ID + ID_COUNTER++, "融合卡牌", null,
                 -2,
                 "这是一张空的融合卡牌...",
                 AbstractCard.CardType.STATUS,
@@ -30,7 +34,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     public TrizonFusedCard(TrizonCard card1, TrizonCard card2) {
-        super(BASE_ID + ID_COUNTER++, "融合卡牌", card1.img,
+        super(BASE_ID + ID_COUNTER++, "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
                 card1.cost + card2.cost,
                 "融合卡牌",
                 CardHelper.getFusedCardType(card1, card2),
@@ -110,9 +114,19 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         copy.behavior.setThisCard(copy);
         copy.powerFactorys = new ArrayList<>(this.powerFactorys);
         copy.trizonBooleans = this.trizonBooleans.clone();
-        copy.img = this.img;
+        copy.textureImg = this.textureImg;
+        copy.loadCardImage(copy.textureImg);
         copy.fusionData = new HashMap<>(this.fusionData);
         copy.cardID = this.cardID;
+        copy.type = this.type;
+        copy.rarity = this.rarity;
+        copy.target = this.target;
+        copy.cost = this.cost;
+        copy.damage = copy.baseDamage = this.baseDamage;
+        copy.block = copy.baseBlock = this.baseBlock;
+        copy.baseDamageTimes = this.baseDamageTimes;
+        copy.rawDescription = this.rawDescription;
+        copy.initializeDescription();
         return copy;
     }
     
@@ -138,7 +152,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     @Override
     public void onLoad(CardData data) {
         if (data != null) {
-            this.img = data.img;
+            this.textureImg = data.img;
             this.type = data.type;
             this.rarity = data.rarity;
             this.target = data.target;
@@ -176,7 +190,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         public CardBehavior behavior;
 
         public CardData(TrizonFusedCard card) {
-            this.img = card.img;
+            this.img = card.textureImg;
             this.type = card.type;
             this.rarity = card.rarity;
             this.target = card.target;
@@ -190,6 +204,17 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             this.booleans = new DefaultCardBooleans(card);
             this.trizonBooleans = card.trizonBooleans;
             this.behavior = card.behavior;
+        }
+    }
+
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "allowUpgradePreview")
+    public static class PreventUpgradePreview {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(SingleCardViewPopup __instance, AbstractCard ___card) {
+            if (___card instanceof TrizonFusedCard) {
+                return SpireReturn.Return(false);
+            }
+            return SpireReturn.Continue();
         }
     }
 }

@@ -3,6 +3,7 @@ package card.helper;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import card.TrizonCard;
 import card.TrizonFusedCard;
@@ -21,12 +22,19 @@ public class CardHelper {
         for (String name : fusedCard.fusionData.keySet()) {
             int count = fusedCard.fusionData.get(name);
             if (count == 1) {
-                rawDescription += name;
+                rawDescription += CardLibrary.getCard(name).name;
             } else {
-                rawDescription += name + '(' + count + ')';
+                rawDescription += CardLibrary.getCard(name).name + '(' + count + ')';
             }
         }
         return rawDescription;
+    }
+
+    public static String getFusedCardImg(TrizonCard card1, TrizonCard card2) {
+        if (card2.type == CardType.ATTACK && card1.type == CardType.SKILL) {
+            return card2.textureImg;
+        }
+        return card1.textureImg;
     }
 
     public static CardType getFusedCardType(TrizonCard card1, TrizonCard card2) {

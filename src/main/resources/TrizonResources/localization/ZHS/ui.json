@@ -4,5 +4,11 @@
             "融合",
             "选择两张牌融合"
         ]
+    },
+
+    "Trizon:CampfireSelectCardEffect": {
+        "TEXT": [
+            "选择一张牌进行融合"
+        ]
     }
 }

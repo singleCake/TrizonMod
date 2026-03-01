@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 
 import card.TrizonCard;
 import fusable.Fusable;
+import localization.TrizonFactoryStrings;
 
 public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFactory> {
     protected TrizonCard this_card = null;  // 触发这个Action的卡牌
@@ -17,6 +18,19 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
     protected int amount;
 
     public abstract AbstractGameAction create();
+
+    public abstract String rawDescription();
+
+    public abstract AbstractTrizonFactory clone();
+
+    protected static String getDescription(Class<?> factoryClass) {
+        return TrizonFactoryStrings.getDescription(factoryClass);
+    }
+
+    protected static String[] getExtendedDescription(Class<?> factoryClass) {
+        return TrizonFactoryStrings.getExtendedDescription(factoryClass);
+    }
+
 
     // 用于在调用接口中接收参数
     private void receiveThisCard(TrizonCard card) {
@@ -31,24 +45,19 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
     // 融合工厂列表，用于融合行为
     public static ArrayList<AbstractTrizonFactory> fuseFactories(ArrayList<AbstractTrizonFactory> factories1, ArrayList<AbstractTrizonFactory> factories2) {
         ArrayList<AbstractTrizonFactory> fusedFactories = new ArrayList<>();
-        // 相同的工厂进行融合，不同的工厂直接加入
         for (AbstractTrizonFactory factory1 : factories1) {
-            boolean foundMatch = false;
+            fusedFactories.add(factory1.clone());
+        }
+
+        // 相同的工厂进行融合，不同的工厂直接加入
+        for (AbstractTrizonFactory factory1 : fusedFactories) {
             for (AbstractTrizonFactory factory2 : factories2) {
                 if (factory1.getClass().equals(factory2.getClass())) {
-                    if (factory1.fuse(factory2)) {
-                        fusedFactories.add(factory1);
+                    if (!factory1.fuse(factory2)) {
+                        fusedFactories.add(factory2.clone());
                     }
-                    else {
-                        fusedFactories.add(factory1);
-                        fusedFactories.add(factory2);
-                    }
-                    foundMatch = true;
                     break;
                 }
-            }
-            if (!foundMatch) {
-                fusedFactories.add(factory1);
             }
         }
 
@@ -61,7 +70,7 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
                 }
             }
             if (!foundMatch) {
-                fusedFactories.add(factory2);
+                fusedFactories.add(factory2.clone());
             }
         }
 

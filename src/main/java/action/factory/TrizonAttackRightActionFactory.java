@@ -6,6 +6,7 @@ import action.TrizonAttackRightAction;
 
 public class TrizonAttackRightActionFactory extends AbstractTrizonFactory {
     private int damage;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonAttackRightActionFactory.class);
 
     public TrizonAttackRightActionFactory(int damage, int times) {
         this.damage = damage;
@@ -15,6 +16,16 @@ public class TrizonAttackRightActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         return new TrizonAttackRightAction(this_card, damage, times);
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, damage, times);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonAttackRightActionFactory(damage, times);
     }
     
     @Override

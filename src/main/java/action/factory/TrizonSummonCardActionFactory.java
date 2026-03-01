@@ -6,6 +6,8 @@ import action.TrizonSummonCardAction;
 
 public class TrizonSummonCardActionFactory extends AbstractTrizonFactory {
     private boolean freeThisTurn;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSummonCardAction.class);
+    private static final String[] EXTENDED_DESCRIPTION = AbstractTrizonFactory.getExtendedDescription(TrizonSummonCardAction.class);
 
     public TrizonSummonCardActionFactory(int times, boolean freeThisTurn) {
         this.times = times;
@@ -27,6 +29,20 @@ public class TrizonSummonCardActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         return new TrizonSummonCardAction(this.times, this.freeThisTurn);
+    }
+
+    @Override
+    public String rawDescription() {
+        String text = String.format(DESCRIPTION, times);
+        if (freeThisTurn) {
+            text += EXTENDED_DESCRIPTION[0];
+        }
+        return text;
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonSummonCardActionFactory(times, freeThisTurn);
     }
 
     @Override

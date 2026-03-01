@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class TrizonTempCardInHandActionFactory extends AbstractTrizonFactory {
     AbstractCard card;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(MakeTempCardInHandAction.class);
 
     public TrizonTempCardInHandActionFactory(AbstractCard card) {
         this(card, 1);
@@ -19,6 +20,16 @@ public class TrizonTempCardInHandActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         return new MakeTempCardInHandAction(card, amount);
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, amount, card.name);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonTempCardInHandActionFactory(card, amount);
     }
 
     @Override

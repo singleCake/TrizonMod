@@ -1,0 +1,99 @@
+{
+    "TrizonAttackActionFactory": {
+        "DESCRIPTION": "造成 %d 点伤害 %d 次。"
+    },
+
+    "TrizonAttackRightActionFactory": {
+        "DESCRIPTION": "对最右侧的敌人造成 %d 点伤害 %d 次。"
+    },
+
+    "TrizonButterflyActionFactory": {
+        "DESCRIPTION": "每打出一张非攻击牌，伤害 +%d 。"
+    },
+
+    "TrizonDrawCardActionFactory": {
+        "DESCRIPTION": "抽 %d 张牌。"
+    },
+
+    "TrizonDrawFireActionFactory": {
+        "DESCRIPTION": "抽 %d 张 火焰牌 。"
+    },
+
+    "TrizonGainBlockActionFactory": {
+        "DESCRIPTION": "获得 %d 点格挡。"
+    },
+
+    "TrizonGainEnergyActionFactory": {
+        "DESCRIPTION": "获得 %d [E] 。"
+    },
+
+    "TrizonGainShieldActionFactory": {
+        "DESCRIPTION": "获得一层 护盾 。"
+    },
+
+    "TrizonLycorisActionFactory": {
+        "DESCRIPTION": "每消耗一张 攻击牌 ，这张牌伤害 +%d 。"
+    },
+
+    "TrizonRandomPlayAttackActionFactory": {
+        "DESCRIPTION": "随机打出手牌中 %d 张 攻击牌 。"
+    },
+
+    "TrizonRandomReviveActionFactory": {
+        "DESCRIPTION": "随机将 %d 张已消耗的牌加入手牌。"
+    },
+
+    "TrizonRedFoxActionFactory": {
+        "DESCRIPTION": "将 %d 张已消耗的 火球 加入手牌。"
+    },
+
+    "TrizonRetreatActionFactory": {
+        "DESCRIPTION": "将弃牌堆顶端的牌放入手牌， %d 次。"
+    },
+
+    "TrizonRoadblockActionFactory": {
+        "DESCRIPTION": "这张牌左侧的牌本回合无法再打出。"
+    },
+
+    "TrizonSelfBackToDrawPileActionFactory": {
+        "DESCRIPTION": "这张牌从手牌返回抽牌堆。"
+    },
+
+    "TrizonSelfCopyToDrawPileActionFactory": {
+        "DESCRIPTION": "将这张牌的复制加入抽牌堆， %d 次。"
+    },
+
+    "TrizonSelfFreezeActionFactory": {
+        "DESCRIPTION": "冻结这张牌。"
+    },
+
+    "TrizonSnowballActionFactory": {
+        "DESCRIPTION": "冻结一张手牌或一名敌人。"
+    },
+
+    "TrizonSpellActionFactory": {
+        "DESCRIPTION": "造成 %d 点 法术 伤害 %d 次。"
+    },
+
+    "TrizonSummonCardActionFactory": {
+        "DESCRIPTION": "增加 %d 张随机 #非稀有牌 到手牌。",
+        "EXTENDED_DESCRIPTION": [
+            "这些牌本回合耗能变为0。"
+        ]
+    },
+
+    "TrizonSummonFireActionFactory": {
+        "DESCRIPTION": "增加 %d 张随机 火焰牌 到手牌。",
+        "EXTENDED_DESCRIPTION": [
+            "这些牌本回合耗能变为0。"
+        ]
+    },
+
+    "TrizonSwimActionFactory": {
+        "DESCRIPTION": "使一张已 冻结 的手牌解冻，然后你获得 %d 点 力量 。"
+    },
+
+    "TrizonTempCardInHandActionFactory": {
+        "DESCRIPTION": "增加一张 %s 到手牌， %d 次。"
+    }
+}

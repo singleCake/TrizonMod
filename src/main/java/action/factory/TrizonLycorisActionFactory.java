@@ -9,6 +9,7 @@ import action.TrizonModifyDamageAction;
 
 public class TrizonLycorisActionFactory extends AbstractTrizonFactory {
     private AbstractCard cardExhausted;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonLycorisActionFactory.class);
 
     public TrizonLycorisActionFactory(int amount) {
         this.amount = amount;
@@ -24,6 +25,16 @@ public class TrizonLycorisActionFactory extends AbstractTrizonFactory {
         return new TrizonCheckCardAction(cardExhausted, 
             c -> c.type == CardType.ATTACK, 
             new TrizonModifyDamageAction(this_card, amount));
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, this.amount);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonLycorisActionFactory(amount);
     }
 
     @Override

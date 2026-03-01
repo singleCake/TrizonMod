@@ -10,6 +10,7 @@ import action.TrizonFreezeEnemyAction;
 public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
     AbstractCard targetCard;
     AbstractCreature targetCreature;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonFreezeEnemyAction.class);
 
     public TrizonSnowballActionFactory() {
     }
@@ -33,5 +34,15 @@ public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
             return new TrizonFreezeCardAction(targetCard);
         }
         return null;
+    }
+
+    @Override
+    public String rawDescription() {
+        return DESCRIPTION;
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonSnowballActionFactory();
     }
 }

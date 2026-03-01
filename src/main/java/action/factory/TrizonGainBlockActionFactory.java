@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import action.TrizonGainBlockAction;
 
 public class TrizonGainBlockActionFactory extends AbstractTrizonFactory {
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonGainBlockActionFactory.class);
+
     public TrizonGainBlockActionFactory(int blockAmount) {
         this.amount = blockAmount;
     }
@@ -12,6 +14,16 @@ public class TrizonGainBlockActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         return new TrizonGainBlockAction(this.amount);
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, this.amount);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonGainBlockActionFactory(amount);
     }
     
     @Override

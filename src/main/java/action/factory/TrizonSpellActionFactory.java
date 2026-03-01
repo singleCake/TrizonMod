@@ -9,6 +9,7 @@ import action.TrizonSpellAction;
 public class TrizonSpellActionFactory extends AbstractTrizonFactory {
     private int damage;
     private AttackEffect attackEffect;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSpellAction.class);
 
     public TrizonSpellActionFactory(int damage, AttackEffect attackEffect) {
         this(null, damage, 1, attackEffect);
@@ -28,6 +29,16 @@ public class TrizonSpellActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         return new TrizonSpellAction(this_card, target, damage, times, attackEffect);
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, damage, times);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonSpellActionFactory(target, damage, times, attackEffect);
     }
 
     @Override

@@ -46,7 +46,8 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         fuseDamageAndBlock(card1, card2);
         addToFusionData(card1);
         addToFusionData(card2);
-        this.rawDescription = CardHelper.getFusedCardRawDescription(this);
+        this.name = CardHelper.getFusedCardName(this);
+        this.rawDescription = behavior.generateRawDescription();
         this.initializeDescription();
     }
 
@@ -64,8 +65,13 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
     // 融合行为
     private void fuseBehavior(TrizonCard card1, TrizonCard card2) {
-        this.behavior = card1.behavior;
-        this.behavior.fuse(card2.behavior);
+        if (card1.equals(this)) {
+            this.behavior.fuse(card2.behavior);
+        } else {
+            this.behavior = card1.behavior.clone();
+            this.behavior.fuse(card2.behavior);
+            this.behavior.setThisCard(this);
+        }
     }
 
     // 融合词条
@@ -80,6 +86,13 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             booleans.fuse(new DefaultCardBooleans(card2));
         }
         DefaultCardBooleans.applyBooleansToCard(booleans, this);
+
+        if (card1.equals(this)) {
+            this.trizonBooleans.fuse(card2.trizonBooleans);
+        } else {
+            this.trizonBooleans = card1.trizonBooleans.clone();
+            this.trizonBooleans.fuse(card2.trizonBooleans);
+        }
     }
 
     // 融合伤害与格挡值（用于生成描述）
@@ -125,6 +138,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         copy.damage = copy.baseDamage = this.baseDamage;
         copy.block = copy.baseBlock = this.baseBlock;
         copy.baseDamageTimes = this.baseDamageTimes;
+        copy.name = this.name;
         copy.rawDescription = this.rawDescription;
         copy.initializeDescription();
         return copy;

@@ -17,6 +17,19 @@ public class CardHelper {
         return "Trizon:" + cardClass.getSimpleName();
     }
 
+    public static String getFusedCardName(TrizonFusedCard fusedCard) {
+        String cardName = "";
+        for (String name : fusedCard.fusionData.keySet()) {
+            int count = fusedCard.fusionData.get(name);
+            if (count == 1) {
+                cardName += CardLibrary.getCard(name).name;
+            } else {
+                cardName += CardLibrary.getCard(name).name + '(' + count + ')';
+            }
+        }
+        return cardName;
+    }
+
     public static String getFusedCardRawDescription(TrizonFusedCard fusedCard) {
         String rawDescription = "";
         for (String name : fusedCard.fusionData.keySet()) {

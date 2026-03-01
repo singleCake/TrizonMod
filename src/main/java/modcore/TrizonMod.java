@@ -3,6 +3,11 @@ package modcore;
 import static modcore.TrizonMod.PlayerColorEnum.Trizon;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -32,6 +37,7 @@ import basemod.interfaces.PostInitializeSubscriber;
 import card.basic.Meat;
 import card.common.Bird;
 import character.Shan;
+import localization.TrizonFactoryStrings;
 import card.helper.CardTargeting;
 import card.helper.SnowballTargeting;
 import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
@@ -58,6 +64,8 @@ public class TrizonMod implements
         public static CardLibrary.LibraryType Trizon_COLOR;
     }
 
+    public static final Logger logger = LogManager.getLogger(TrizonMod.class.getSimpleName());
+
     private static final String BG_ATTACK_512 = "TrizonResources/img/512/bg_attack_512.png";
     private static final String BG_POWER_512 = "TrizonResources/img/512/bg_power_512.png";
     private static final String BG_SKILL_512 = "TrizonResources/img/512/bg_skill_512.png";
@@ -69,6 +77,8 @@ public class TrizonMod implements
     private static final String energy_orb = "TrizonResources/img/char/cost_orb.png";
 
     public static final Color TrizonColor = new Color(0.46f, 0.39f, 0.38f, 1.0f); // 766462
+
+    public static Map<String, TrizonFactoryStrings> factoryStringsMap;
 
     public TrizonMod() {
         BaseMod.subscribe(this);
@@ -138,5 +148,14 @@ public class TrizonMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, "TrizonResources/localization/" + lang + "/powers.json");
         BaseMod.loadCustomStringsFile(RelicStrings.class, "TrizonResources/localization/" + lang + "/relics.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, "TrizonResources/localization/" + lang + "/ui.json");
+        
+        logger.info("loadJsonStrings: " + TrizonFactoryStrings.class.getSimpleName());
+        @SuppressWarnings("unchecked")
+        Map<String, TrizonFactoryStrings> tempMap = (Map<String, TrizonFactoryStrings>) BaseMod.gson.fromJson(
+            Gdx.files.internal("TrizonResources/localization/" + lang + "/factorys.json")
+                .readString(String.valueOf(StandardCharsets.UTF_8)),
+            new com.google.gson.reflect.TypeToken<Map<String, TrizonFactoryStrings>>(){}.getType()
+        );
+        factoryStringsMap = new HashMap<String, TrizonFactoryStrings>(tempMap);
     }
 }

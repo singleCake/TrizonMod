@@ -9,6 +9,7 @@ import action.TrizonModifyDamageAction;
 
 public class TrizonButterflyActionFactory extends AbstractTrizonFactory {
     private AbstractCard cardPlayed;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonButterflyActionFactory.class);
 
     public TrizonButterflyActionFactory(int amount) {
         this.amount = amount;
@@ -24,6 +25,16 @@ public class TrizonButterflyActionFactory extends AbstractTrizonFactory {
         return new TrizonCheckCardAction(cardPlayed, 
             c -> c.type != CardType.ATTACK, 
             new TrizonModifyDamageAction(this_card, amount));
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonButterflyActionFactory(amount);
     }
 
     @Override

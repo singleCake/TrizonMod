@@ -10,6 +10,7 @@ import action.TrizonUnFreezeCardAction;
 
 public class TrizonSwimActionFactory extends AbstractTrizonFactory {
     AbstractCard card = null;
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonUnFreezeCardAction.class);
 
     public TrizonSwimActionFactory(int amount) {
         this.amount = amount;
@@ -24,6 +25,16 @@ public class TrizonSwimActionFactory extends AbstractTrizonFactory {
     public AbstractGameAction create() {
         return new TrizonUnFreezeCardAction(card, 
             new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, amount), amount));
+    }
+
+    @Override
+    public String rawDescription() {
+        return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonSwimActionFactory(amount);
     }
 
     @Override

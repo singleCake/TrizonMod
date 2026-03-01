@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import power.TrizonShieldPower;
 
 public class TrizonGainShieldActionFactory extends AbstractTrizonFactory {
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonGainShieldActionFactory.class);
+
     public TrizonGainShieldActionFactory() {
     }
 
@@ -16,5 +18,15 @@ public class TrizonGainShieldActionFactory extends AbstractTrizonFactory {
             AbstractDungeon.player, AbstractDungeon.player,
             new TrizonShieldPower(AbstractDungeon.player)
         );
+    }
+
+    @Override
+    public String rawDescription() {
+        return DESCRIPTION;
+    }
+
+    @Override
+    public AbstractTrizonFactory clone() {
+        return new TrizonGainShieldActionFactory();
     }
 }

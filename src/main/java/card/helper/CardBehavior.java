@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import action.factory.AbstractTrizonFactory;
@@ -192,6 +194,85 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
     public void addToOnEnemyFrozenAfterExhaustedBehavior(AbstractTrizonFactory factory) {
         onEnemyFrozenAfterExhaustedActionFactorys.add(factory);
+    }
+
+    // 生成卡牌描述
+    private static final String[] FUSED_CARD_TIMING = CardCrawlGame.languagePack.getUIString("Trizon:FuseCardTiming").TEXT;
+    private static final int USE = 0, EXHAUST = 1, DRAWN = 2, IN_HAND = 3, ATTACK = 4, FROZEN = 5, IN_EXHAUST = 6; 
+
+    public String generateRawDescription() {
+        String rawDescription = "";
+        for (AbstractTrizonFactory factory : useActionFactorys) {
+            rawDescription += factory.rawDescription() + " NL ";
+        }
+
+        String exhaustDescription = "";
+        for (AbstractTrizonFactory factory : exhaustActionFactorys)
+            exhaustDescription += factory.rawDescription() + " NL ";
+        if (!exhaustDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[EXHAUST] + " NL " + exhaustDescription;
+
+        String drawnDescription = "";
+        for (AbstractTrizonFactory factory : drawnActionFactorys)
+            drawnDescription += factory.rawDescription() + " NL ";
+        if (!drawnDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[DRAWN] + " NL " + drawnDescription;
+
+        String otherCardPlayedDescription = "";
+        for (AbstractTrizonFactory factory : otherCardPlayedActionFactorys)
+            otherCardPlayedDescription += factory.rawDescription() + " NL ";
+        if (!otherCardPlayedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_HAND] + " NL " + otherCardPlayedDescription;
+
+        String otherCardExhaustedDescription = "";
+        for (AbstractTrizonFactory factory : otherCardExhaustedActionFactorys)
+            otherCardExhaustedDescription += factory.rawDescription() + " NL ";
+        if (!otherCardExhaustedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_HAND] + " NL " + otherCardExhaustedDescription;
+
+        String attackDescription = "";
+        for (AbstractTrizonFactory factory : attackActionFactorys)
+            attackDescription += factory.rawDescription() + " NL ";
+        if (!attackDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[ATTACK] + " NL " + attackDescription;
+
+        String attackedDescription = "";
+        for (AbstractTrizonFactory factory : attackedActionFactorys)
+            attackedDescription += factory.rawDescription() + " NL ";
+        if (!attackedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_HAND] + " NL " + attackedDescription;
+
+        String frozenDescription = "";
+        for (AbstractTrizonFactory factory : frozenActionFactorys)
+            frozenDescription += factory.rawDescription() + " NL ";
+        if (!frozenDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[FROZEN] + " NL " + frozenDescription;
+
+        String endOfTurnAfterExhaustedDescription = "";
+        for (AbstractTrizonFactory factory : endOfTurnAfterExhaustedActionFactorys)
+            endOfTurnAfterExhaustedDescription += factory.rawDescription() + " NL ";
+        if (!endOfTurnAfterExhaustedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + endOfTurnAfterExhaustedDescription;
+
+        String startOfTurnAfterExhaustedDescription = "";
+        for (AbstractTrizonFactory factory : startOfTurnAfterExhaustedActionFactorys)
+            startOfTurnAfterExhaustedDescription += factory.rawDescription() + " NL ";
+        if (!startOfTurnAfterExhaustedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + startOfTurnAfterExhaustedDescription;
+
+        String onOtherCardFrozenAfterExhaustedDescription = "";
+        for (AbstractTrizonFactory factory : onOtherCardFrozenAfterExhaustedActionFactorys)
+            onOtherCardFrozenAfterExhaustedDescription += factory.rawDescription() + " NL ";
+        if (!onOtherCardFrozenAfterExhaustedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + onOtherCardFrozenAfterExhaustedDescription;
+
+        String onEnemyFrozenAfterExhaustedDescription = "";
+        for (AbstractTrizonFactory factory : onEnemyFrozenAfterExhaustedActionFactorys)
+            onEnemyFrozenAfterExhaustedDescription += factory.rawDescription() + " NL ";
+        if (!onEnemyFrozenAfterExhaustedDescription.isEmpty())
+            rawDescription += FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + onEnemyFrozenAfterExhaustedDescription;
+
+        return rawDescription;
     }
 
     private void addToBot(AbstractGameAction action) {

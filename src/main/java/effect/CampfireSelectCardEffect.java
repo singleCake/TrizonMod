@@ -58,6 +58,7 @@ public class CampfireSelectCardEffect extends AbstractGameEffect {
         if (this.duration < 1.0F && !this.openedScreen) {
             this.openedScreen = true;
             AbstractDungeon.gridSelectScreen.open(this.cardGroup, 1, TEXT[0], false, false, true, false);
+            AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]); 
         }
         if (this.duration < 0.0F) {
             this.isDone = true;

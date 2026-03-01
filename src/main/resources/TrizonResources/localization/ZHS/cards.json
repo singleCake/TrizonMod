@@ -387,5 +387,16 @@
     "Trizon:Traveler": {
         "NAME": "旅人",
         "DESCRIPTION": "将牌组中所有已 消耗 的牌放入抽牌堆。"
+    },
+
+
+    "Trizon:Empty": {
+        "NAME": "空",
+        "DESCRIPTION": "单击以选择一张卡牌。"
+    },
+
+    "Trizon:EmptyFuseCard": {
+        "NAME": "无法融合",
+        "DESCRIPTION": "尚未选择卡牌或选择的卡牌无法融合。"
     }
 }

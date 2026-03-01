@@ -25,7 +25,12 @@ public class CampfireFusePatch {
         @SpireInsertPatch(rloc = 63)
         public static void Insert(CancelButton __instance) {
             if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() instanceof RestRoom) {
-                FuseCampfireUI.switchMode(false);
+                if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID) {
+                    FuseCampfireUI.getFuseUI(((RestRoom) AbstractDungeon.getCurrRoom())
+                    .campfireUI).selectingCard = false;
+                } else {
+                    FuseCampfireUI.switchMode(false);
+                }
             }
         }
     }

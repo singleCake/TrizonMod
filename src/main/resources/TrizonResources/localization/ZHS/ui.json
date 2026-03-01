@@ -8,7 +8,8 @@
 
     "Trizon:CampfireSelectCardEffect": {
         "TEXT": [
-            "选择一张牌进行融合"
+            "选择一张牌进行融合",
+            "取消"
         ]
     },
 

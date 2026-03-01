@@ -2,7 +2,10 @@ package ui.campfire;
 
 import java.util.Iterator;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -11,16 +14,22 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
+import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import card.TrizonCard;
 import card.TrizonFusedCard;
-import card.basic.Meat;
+import card.special.Empty;
+import card.special.EmptyFuseCard;
+import effect.CampfireFuseEffect;
 import effect.CampfireSelectCardEffect;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,6 +37,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 
 public class FuseCampfireUI {
     public CancelButton cancelButton = new CancelButton();
+
+    public GridSelectConfirmButton confirmButton = new GridSelectConfirmButton("确认");
 
     public AbstractCard card1 = null;
 
@@ -56,7 +67,30 @@ public class FuseCampfireUI {
         updateCardsMode();
         updateClicking();
 
+        if (fuseCard.cardID != EmptyFuseCard.ID) {
+            confirmButton.show();
+            confirmButton.isDisabled = false;
+            if (confirmButton.hb.hovered) {
+                if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed()) {
+                    // AbstractDungeon.effectList.add(new CampfireSelectCardEffect(2, fuseCard));
+                    // selectingCard = true;
+                    AbstractDungeon.topLevelEffects
+                            .add(new PurgeCardEffect(card1, Settings.WIDTH / 3.0F, Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card1.uuid));
+                    AbstractDungeon.topLevelEffects
+                            .add(new PurgeCardEffect(card2, Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card2.uuid));
+                    AbstractDungeon.effectList.add(new CampfireFuseEffect(card1, card2, fuseCard));
+                    ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected = true;
+                }
+            }
+        } else {
+            confirmButton.hide();
+            confirmButton.isDisabled = true;
+        }
+
         this.cancelButton.update();
+        this.confirmButton.update();
     }
 
     private void updateCardsMode() {
@@ -106,7 +140,8 @@ public class FuseCampfireUI {
                     || CInputActionSet.select
                             .isJustPressed())) {
                 InputHelper.justReleasedClickRight = false;
-                CardCrawlGame.cardPopup.open(this.hoveredCard);
+                if (this.hoveredCard.cardID != Empty.ID && this.hoveredCard.cardID != EmptyFuseCard.ID)
+                    CardCrawlGame.cardPopup.open(this.hoveredCard);
                 this.clickStartedCard = null;
             }
         } else {
@@ -167,9 +202,9 @@ public class FuseCampfireUI {
     }
 
     public void initDisplayCards() {
-        card1 = new Meat();
-        card2 = new Meat();
-        fuseCard = new TrizonFusedCard((TrizonCard) card1, (TrizonCard) card2);
+        card1 = new Empty();
+        card2 = new Empty();
+        fuseCard = new EmptyFuseCard();
     }
 
     public void setDisplayCards(int index, AbstractCard card) {
@@ -178,8 +213,14 @@ public class FuseCampfireUI {
         } else if (index == 1) {
             card2 = card;
         }
-        if (card1 != null && card2 != null) {
-            fuseCard = new TrizonFusedCard((TrizonCard) card1, (TrizonCard) card2);
+        if (card1.cardID != Empty.ID && card2.cardID != Empty.ID) {
+            if (TrizonFusedCard.canFuse((TrizonCard) card1, (TrizonCard) card2)) {
+                fuseCard = new TrizonFusedCard((TrizonCard) card1, (TrizonCard) card2);
+            } else {
+                fuseCard = new EmptyFuseCard();
+            }
+        } else {
+            fuseCard = new EmptyFuseCard();
         }
     }
 
@@ -220,12 +261,37 @@ public class FuseCampfireUI {
         public static SpireReturn<Void> Insert(CampfireUI __instance, SpriteBatch sb) {
             if (isInFuseMode(__instance)) {
                 FuseCampfireUI fuseUI = getFuseUI(__instance);
+                fuseUI.renderArrows(sb);
                 fuseUI.renderCards(sb);
                 fuseUI.cancelButton.render(sb);
+                fuseUI.confirmButton.render(sb);
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();
         }
+    }
+
+    private float arrowScale1 = 1.0F, arrowScale2 = 1.0F, arrowScale3 = 1.0F, arrowTimer = 0.0F;
+
+    private void renderArrows(SpriteBatch sb) {
+        float x = Settings.WIDTH / 2.0F - 128.0F * Settings.scale - 32.0F;
+        sb.setColor(Color.WHITE);
+        sb.draw(ImageMaster.UPGRADE_ARROW, x, Settings.HEIGHT / 2.0F - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F,
+                this.arrowScale1 * Settings.scale, this.arrowScale1 * Settings.scale, 90.0F, 0, 0, 64, 64, false,
+                false);
+        x += 128.0F * Settings.scale;
+        sb.setColor(Color.WHITE);
+        sb.draw(ImageMaster.UPGRADE_ARROW, x, Settings.HEIGHT / 2.0F - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F,
+                this.arrowScale2 * Settings.scale, this.arrowScale2 * Settings.scale, 90.0F, 0, 0, 64, 64, false,
+                false);
+        x += 128.0F * Settings.scale;
+        sb.draw(ImageMaster.UPGRADE_ARROW, x, Settings.HEIGHT / 2.0F - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F,
+                this.arrowScale3 * Settings.scale, this.arrowScale3 * Settings.scale, 90.0F, 0, 0, 64, 64, false,
+                false);
+        this.arrowTimer += Gdx.graphics.getDeltaTime() * 2.0F;
+        this.arrowScale1 = 0.8F + (MathUtils.cos(this.arrowTimer) + 1.0F) / 8.0F;
+        this.arrowScale2 = 0.8F + (MathUtils.cos(this.arrowTimer - 0.8F) + 1.0F) / 8.0F;
+        this.arrowScale3 = 0.8F + (MathUtils.cos(this.arrowTimer - 1.6F) + 1.0F) / 8.0F;
     }
 
     // @SpirePatch(clz = CampfireUI.class, method = "renderCampfireButtons")

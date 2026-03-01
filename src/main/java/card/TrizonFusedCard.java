@@ -114,6 +114,15 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         }
     }
 
+    // 判断两种卡牌类型是否支持融合
+    public static boolean canFuse(TrizonCard card1, TrizonCard card2) {
+        if ((card1.type == CardType.ATTACK && card2.type == CardType.SKILL) ||
+            (card1.type == CardType.SKILL && card2.type == CardType.ATTACK)) {
+            return true;
+        }
+        return card1.type == card2.type;
+    }
+
     @Override
     public AbstractCard makeCopy() {
         // 基本不使用这种复制

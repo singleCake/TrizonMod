@@ -3,7 +3,7 @@ package action.factory;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
 public class TrizonRetreatActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(action.TrizonRetreatAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRetreatActionFactory.class);
 
     public TrizonRetreatActionFactory() {
         this.times = 1;

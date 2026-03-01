@@ -6,8 +6,8 @@ import action.TrizonSummonCardAction;
 
 public class TrizonSummonCardActionFactory extends AbstractTrizonFactory {
     private boolean freeThisTurn;
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSummonCardAction.class);
-    private static final String[] EXTENDED_DESCRIPTION = AbstractTrizonFactory.getExtendedDescription(TrizonSummonCardAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSummonCardActionFactory.class);
+    private static final String[] EXTENDED_DESCRIPTION = AbstractTrizonFactory.getExtendedDescription(TrizonSummonCardActionFactory.class);
 
     public TrizonSummonCardActionFactory(int times, boolean freeThisTurn) {
         this.times = times;

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class TrizonRoadblockActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(action.TrizonRoadblockAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRoadblockActionFactory.class);
     public TrizonRoadblockActionFactory() {
     }
 

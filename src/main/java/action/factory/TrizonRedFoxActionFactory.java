@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import action.TrizonRedFoxAction;
 
 public class TrizonRedFoxActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRedFoxAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRedFoxActionFactory.class);
 
     public TrizonRedFoxActionFactory() {
         this.amount = 1;

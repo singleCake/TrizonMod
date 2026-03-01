@@ -23,17 +23,17 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
 
     public abstract AbstractTrizonFactory clone();
 
-    protected static String getDescription(Class<?> factoryClass) {
+    protected static String getDescription(Class<? extends AbstractTrizonFactory> factoryClass) {
         return TrizonFactoryStrings.getDescription(factoryClass);
     }
 
-    protected static String[] getExtendedDescription(Class<?> factoryClass) {
+    protected static String[] getExtendedDescription(Class<? extends AbstractTrizonFactory> factoryClass) {
         return TrizonFactoryStrings.getExtendedDescription(factoryClass);
     }
 
 
     // 用于在调用接口中接收参数
-    private void receiveThisCard(TrizonCard card) {
+    public void receiveThisCard(TrizonCard card) {
         this.this_card = card;  // 这个目前作为私有接口，在创建卡牌与融合卡牌时分配
     }
     public void receiveTarget(AbstractCreature target) {
@@ -41,47 +41,6 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
     }
     public void receiveDamageInfo(DamageInfo info) {}
     public void receiveCard(AbstractCard card) {}
-
-    // 融合工厂列表，用于融合行为
-    public static ArrayList<AbstractTrizonFactory> fuseFactories(ArrayList<AbstractTrizonFactory> factories1, ArrayList<AbstractTrizonFactory> factories2) {
-        ArrayList<AbstractTrizonFactory> fusedFactories = new ArrayList<>();
-        for (AbstractTrizonFactory factory1 : factories1) {
-            fusedFactories.add(factory1.clone());
-        }
-
-        // 相同的工厂进行融合，不同的工厂直接加入
-        for (AbstractTrizonFactory factory1 : fusedFactories) {
-            for (AbstractTrizonFactory factory2 : factories2) {
-                if (factory1.getClass().equals(factory2.getClass())) {
-                    if (!factory1.fuse(factory2)) {
-                        fusedFactories.add(factory2.clone());
-                    }
-                    break;
-                }
-            }
-        }
-
-        for (AbstractTrizonFactory factory2 : factories2) {
-            boolean foundMatch = false;
-            for (AbstractTrizonFactory factory1 : factories1) {
-                if (factory2.getClass().equals(factory1.getClass())) {
-                    foundMatch = true;
-                    break;
-                }
-            }
-            if (!foundMatch) {
-                fusedFactories.add(factory2.clone());
-            }
-        }
-
-        return fusedFactories;
-    }
-
-    public static void factoriesReceiveThisCard(ArrayList<AbstractTrizonFactory> factories, TrizonCard card) {
-        for (AbstractTrizonFactory factory : factories) {
-            factory.receiveThisCard(card);
-        }
-    }
 
     @Override
     public boolean fuse(AbstractTrizonFactory other) {

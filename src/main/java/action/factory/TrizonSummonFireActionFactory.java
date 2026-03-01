@@ -6,7 +6,7 @@ import action.TrizonSummonCardAction;
 
 public class TrizonSummonFireActionFactory extends AbstractTrizonFactory {
     private boolean freeThisTurn;
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSummonCardAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSummonFireActionFactory.class);
     private static final String[] EXTENDED_DESCRIPTION = AbstractTrizonFactory.getExtendedDescription(TrizonSummonFireActionFactory.class);
 
     public TrizonSummonFireActionFactory(int times, boolean freeThisTurn) {

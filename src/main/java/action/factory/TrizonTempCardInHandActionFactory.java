@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public class TrizonTempCardInHandActionFactory extends AbstractTrizonFactory {
     AbstractCard card;
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(MakeTempCardInHandAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonTempCardInHandActionFactory.class);
 
     public TrizonTempCardInHandActionFactory(AbstractCard card) {
         this(card, 1);

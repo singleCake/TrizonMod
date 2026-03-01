@@ -1,8 +1,5 @@
 package card;
 
-import java.util.ArrayList;
-
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,13 +10,11 @@ import basemod.abstracts.CustomCard;
 import card.helper.CardBehavior;
 import card.helper.TrizonCardBooleans;
 import card.helper.CardModifier;
-import power.factory.AbstractTrizonPowerFactory;
 
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
 
 public abstract class TrizonCard extends CustomCard {
     protected CardBehavior behavior = new CardBehavior();
-    protected ArrayList<AbstractTrizonPowerFactory> powerFactorys = new ArrayList<>();
 
     public int baseDamageTimes = 0;
 
@@ -36,7 +31,6 @@ public abstract class TrizonCard extends CustomCard {
     protected abstract void setBehavior();
     protected void reInitBehavior() {
         this.behavior.clearBehavior();
-        this.powerFactorys.clear();
         setBehavior();
         this.behavior.setThisCard(this);
     }
@@ -58,9 +52,6 @@ public abstract class TrizonCard extends CustomCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractTrizonPowerFactory powerFactory : powerFactorys) {
-            this.addToBot(new ApplyPowerAction(p, p, powerFactory.create()));
-        }
         behavior.useBehavior(p, m);
     }
 

@@ -9,7 +9,7 @@ import action.TrizonSpellAction;
 public class TrizonSpellActionFactory extends AbstractTrizonFactory {
     private int damage;
     private AttackEffect attackEffect;
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSpellAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSpellActionFactory.class);
 
     public TrizonSpellActionFactory(int damage, AttackEffect attackEffect) {
         this(null, damage, 1, attackEffect);

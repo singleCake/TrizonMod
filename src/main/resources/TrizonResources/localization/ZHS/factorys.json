@@ -95,5 +95,14 @@
 
     "TrizonTempCardInHandActionFactory": {
         "DESCRIPTION": "增加一张 %s 到手牌， %d 次。"
+    },
+
+
+    "TrizonOrchardistPowerFactory": {
+        "DESCRIPTION": "接下来 %d 回合开始时，抽一张牌。"
+    },
+
+    "TrizonScavengerPowerFactory": {
+        "DESCRIPTION": "接下来 %d 回合开始时，增加一张随机 #非稀有牌 到手牌。"
     }
 }

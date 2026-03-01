@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 
 public class TrizonSelfCopyToDrawPileActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(MakeTempCardInDrawPileAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSelfCopyToDrawPileActionFactory.class);
 
     public TrizonSelfCopyToDrawPileActionFactory() {
         this.amount = 1;

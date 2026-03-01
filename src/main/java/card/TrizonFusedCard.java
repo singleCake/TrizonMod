@@ -134,7 +134,6 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         TrizonFusedCard copy = (TrizonFusedCard) super.makeStatEquivalentCopy();
         copy.behavior = this.behavior.clone();
         copy.behavior.setThisCard(copy);
-        copy.powerFactorys = new ArrayList<>(this.powerFactorys);
         copy.trizonBooleans = this.trizonBooleans.clone();
         copy.textureImg = this.textureImg;
         copy.loadCardImage(copy.textureImg);
@@ -185,7 +184,6 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             this.baseBlock = data.baseBlock;
 
             this.fusionData = data.fusionData;
-            this.powerFactorys = data.powerFactorys;
             DefaultCardBooleans.applyBooleansToCard(data.booleans, this);
             this.trizonBooleans = data.trizonBooleans;
             this.behavior = data.behavior;
@@ -223,7 +221,6 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             this.baseBlock = card.baseBlock;
 
             this.fusionData = card.fusionData;
-            this.powerFactorys = card.powerFactorys;
             this.booleans = new DefaultCardBooleans(card);
             this.trizonBooleans = card.trizonBooleans;
             this.behavior = card.behavior;

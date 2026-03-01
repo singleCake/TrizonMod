@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import action.TrizonHandToDrawPileAction;
 
 public class TrizonSelfBackToDrawPileActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonHandToDrawPileAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSelfBackToDrawPileActionFactory.class);
     
     public TrizonSelfBackToDrawPileActionFactory() {
     }

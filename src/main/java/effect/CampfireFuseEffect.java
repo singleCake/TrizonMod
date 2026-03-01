@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 public class CampfireFuseEffect extends AbstractGameEffect {
@@ -21,13 +20,11 @@ public class CampfireFuseEffect extends AbstractGameEffect {
 
   private Color screenColor = AbstractDungeon.fadeColor.cpy();
 
-  private AbstractCard card1, card2, result;
+  private AbstractCard result;
 
-  public CampfireFuseEffect(AbstractCard card1, AbstractCard card2, AbstractCard result) {
+  public CampfireFuseEffect(AbstractCard result) {
     this.duration = 2.0F;
     this.screenColor.a = 0.0F;
-    this.card1 = card1;
-    this.card2 = card2;
     this.result = result;
     ((RestRoom) AbstractDungeon.getCurrRoom()).cutFireSound();
   }

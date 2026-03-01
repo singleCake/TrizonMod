@@ -10,7 +10,7 @@ import action.TrizonUnFreezeCardAction;
 
 public class TrizonSwimActionFactory extends AbstractTrizonFactory {
     AbstractCard card = null;
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonUnFreezeCardAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSwimActionFactory.class);
 
     public TrizonSwimActionFactory(int amount) {
         this.amount = amount;

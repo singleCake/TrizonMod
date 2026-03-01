@@ -1,18 +1,17 @@
 package power.factory;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class TrizonPinataPowerFactory extends AbstractTrizonPowerFactory {
-    private static final String DESCRIPTION = AbstractTrizonPowerFactory.getDescription(TrizonPinataPowerFactory.class);
+public class TrizonScavengerPowerFactory extends AbstractTrizonPowerFactory {
+    private static final String DESCRIPTION = AbstractTrizonPowerFactory.getDescription(TrizonScavengerPowerFactory.class); 
 
-    public TrizonPinataPowerFactory(int amount) {
+    public TrizonScavengerPowerFactory(int amount) {
         this.amount = amount;
     }
 
     @Override
     public AbstractPower create() {
-        return new power.TrizonPinataPower(AbstractDungeon.player, this.amount);
+        return new power.TrizonScavengerPower(this.amount);
     }
 
     @Override
@@ -22,15 +21,16 @@ public class TrizonPinataPowerFactory extends AbstractTrizonPowerFactory {
 
     @Override
     public AbstractTrizonPowerFactory clone() {
-        return new TrizonPinataPowerFactory(amount);
+        return new TrizonScavengerPowerFactory(amount);
     }
 
     @Override
     public boolean fuse(AbstractTrizonPowerFactory other) {
-        if (other instanceof TrizonPinataPowerFactory) {
+        if (other instanceof TrizonScavengerPowerFactory) {
             this.amount += other.amount;
             return true;
         }
         return false;
     }
+    
 }

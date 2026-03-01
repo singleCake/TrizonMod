@@ -39,6 +39,6 @@ public class Pinata extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(baseBlock));
-        this.powerFactorys.add(new TrizonPinataPowerFactory(baseMagicNumber));
+        this.behavior.addToPowerFactorys(new TrizonPinataPowerFactory(baseMagicNumber));
     }
 }

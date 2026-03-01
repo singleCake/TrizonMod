@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import action.TrizonRandomReviveAction;
 
 public class TrizonRandomReviveActionFactory extends AbstractTrizonFactory {
-    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRandomReviveAction.class);
+    private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRandomReviveActionFactory.class);
 
     public TrizonRandomReviveActionFactory() {
         this.amount = 1;

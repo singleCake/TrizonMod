@@ -3,7 +3,6 @@ package card.common;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
-import action.factory.TrizonGainBlockActionFactory;
 import card.TrizonCard;
 import power.factory.TrizonOrchardistPowerFactory;
 
@@ -14,7 +13,7 @@ public class Orchardist extends TrizonCard {
     private static final String IMG_PATH = "TrizonResources/img/cards/Orchardist.png";
     private static final int COST = 1;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final CardType TYPE = CardType.SKILL;
+    private static final CardType TYPE = CardType.POWER;
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 

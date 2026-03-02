@@ -97,6 +97,14 @@
         "DESCRIPTION": "增加一张 %s 到手牌， %d 次。"
     },
 
+    "TrizonHunterActionFactory": {
+        "DESCRIPTION": "若击杀敌人，这张牌返回手牌且本回合耗能变为0。"
+    },
+
+    "TrizonExhaustRightCardActionFactory": {
+        "DESCRIPTION": "消耗最右侧的手牌， %d 次。"
+    },
+
 
     "TrizonOrchardistPowerFactory": {
         "DESCRIPTION": "接下来 %d 回合开始时，抽一张牌。"

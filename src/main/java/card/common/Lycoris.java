@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonAttackActionFactory;
-import action.factory.TrizonLycorisActionFactory;
 import card.TrizonCard;
+import card.helper.Modifier.TrizonLycorisModifier;
 
 public class Lycoris extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Lycoris.class);
@@ -39,6 +39,6 @@ public class Lycoris extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
-        this.behavior.addToOtherCardExhaustedBehavior(new TrizonLycorisActionFactory(baseMagicNumber));
+        this.modifier.addModifier(new TrizonLycorisModifier(baseMagicNumber));
     }
 }

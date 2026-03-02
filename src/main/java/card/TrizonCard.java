@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import basemod.abstracts.CustomCard;
 import card.helper.CardBehavior;
 import card.helper.TrizonCardBooleans;
-import card.helper.CardModifier;
+import card.helper.Modifier.CardModifierList;
 
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
 
@@ -18,7 +18,7 @@ public abstract class TrizonCard extends CustomCard {
 
     public int baseDamageTimes = 0;
 
-    public CardModifier modifier = new CardModifier();
+    public CardModifierList modifier = new CardModifierList();
 
     protected TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
 
@@ -31,6 +31,7 @@ public abstract class TrizonCard extends CustomCard {
     protected abstract void setBehavior();
     protected void reInitBehavior() {
         this.behavior.clearBehavior();
+        this.modifier.clear();
         setBehavior();
         this.behavior.setThisCard(this);
     }
@@ -68,6 +69,7 @@ public abstract class TrizonCard extends CustomCard {
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c) {
         behavior.onOtherCardPlayedBehavior(c);
+        modifier.triggerOnOtherCardPlayed(c);
     }
 
     // 新的接口
@@ -83,6 +85,7 @@ public abstract class TrizonCard extends CustomCard {
 
     public void triggerOnOtherCardExhausted(AbstractCard c) {
         behavior.onOtherCardExhaustedBehavior(c);
+        modifier.triggerOnOtherCardExhausted(c);
     }
     
     public void triggerOnFrozen() {

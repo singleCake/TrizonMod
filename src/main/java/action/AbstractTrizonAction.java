@@ -39,9 +39,8 @@ public abstract class AbstractTrizonAction extends AbstractGameAction {
     @SuppressWarnings("rawtypes")
     protected void applyPowersToDamage() {
         AbstractPlayer player = AbstractDungeon.player;
-        float tmp = (float)this.baseDamage;
 
-        tmp += this_card.modifier.damage;
+        float tmp = (float)this_card.modifier.modifyDamage(this.baseDamage);
 
         Iterator var3 = player.relics.iterator();
         while(var3.hasNext()) {

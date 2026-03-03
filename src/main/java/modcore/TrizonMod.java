@@ -40,6 +40,8 @@ import character.Shan;
 import localization.TrizonFactoryStrings;
 import card.helper.CardTargeting;
 import card.helper.SnowballTargeting;
+import card.uncommon.Fodder;
+
 import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
 import static card.helper.CardTargeting.CARD;
 
@@ -118,11 +120,15 @@ public class TrizonMod implements
         .packageFilter(Bird.class) 
         .setDefaultSeen(true) 
         .cards();
+        new AutoAdd("TrizonMod")
+        .packageFilter(Fodder.class) 
+        .setDefaultSeen(true) 
+        .cards();
     }
 
     @Override
     public void receiveEditRelics() {
-        BaseMod.addRelicToCustomPool(new relics.FuseRelic(), PlayerColorEnum.Trizon_COLOR);
+        BaseMod.addRelicToCustomPool(new relics.TrizonFuseRelic(), PlayerColorEnum.Trizon_COLOR);
     }
 
     @Override

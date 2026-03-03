@@ -159,7 +159,7 @@
 
     "Trizon:Hunter": {
         "NAME": "猎手",
-        "DESCRIPTION": "造成 !D! 点伤害。 此牌击杀敌人后，返回手牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 此牌击杀敌人后，返回手牌。"
     },
 
     "Trizon:Demon": {
@@ -184,12 +184,12 @@
 
     "Trizon:Maid": {
         "NAME": "女仆",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合每打出一张非攻击牌，增加一张 *肉 到手牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合每打出一张攻击牌，增加一张 *肉 到手牌。"
     },
 
     "Trizon:Bamboo": {
         "NAME": "竹林",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 增加多张 *竹林 到你的手牌直至达到上限，且这些 *竹林 本回合耗能变为0。 NL 消耗 。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 抽到这张牌时，增加 !M! 张 *竹林 到你的手牌，这些 *竹林 本回合耗能变为0且打出后 消耗 。"
     },
 
     "Trizon:Chimera": {

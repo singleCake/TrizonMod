@@ -5,23 +5,26 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonAttackActionFactory;
-import action.factory.TrizonHunterActionFactory;
+import action.factory.TrizonTempCardInHandActionFactory;
 import card.TrizonCard;
+import card.common.Snowball;
 
-public class Hunter extends TrizonCard {
-    public static final String ID = card.helper.CardHelper.makeID(Hunter.class);
+public class Snowman extends TrizonCard {
+    public static final String ID = card.helper.CardHelper.makeID(Snowman.class);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
-    private static final String IMG_PATH = "TrizonResources/img/cards/Hunter.png";
-    private static final int COST = 2;
+    private static final String IMG_PATH = "TrizonResources/img/cards/Snowman.png";
+    private static final int COST = 1;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
-    public Hunter() {
+    public Snowman() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 13;
+        this.damage = this.baseDamage = 5;
+        this.magicNumber = this.baseMagicNumber = 1;
+        this.cardsToPreview = new Snowball();
         
         reInitBehavior();
     }
@@ -30,15 +33,15 @@ public class Hunter extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
+            this.upgradeDamage(2);
 
             this.reInitBehavior();
         }
     }
 
     @Override
-    protected void setBehavior() {
+    public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
-        this.behavior.addToAttackBehavior(new TrizonHunterActionFactory());
+        this.behavior.addToUseBehavior(new TrizonTempCardInHandActionFactory(cardsToPreview, baseMagicNumber));
     }
 }

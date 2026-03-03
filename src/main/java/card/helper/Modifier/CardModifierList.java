@@ -32,6 +32,20 @@ public class CardModifierList implements Fusable<CardModifierList> {
         return modifiedDamage;
     }
 
+    public void updateCost(TrizonCard this_card) {
+        if (this_card.cost < 0) {
+            return ;
+        }
+        int modifiedCost = 0;
+        for (AbstractCardModifier modifier : modifiers) {
+            modifiedCost += modifier.modifyCost();
+        }
+        if (modifiedCost != 0) {
+            this_card.costForTurn = Math.max(0, this_card.cost + modifiedCost);
+            this_card.isCostModifiedForTurn = true;
+        }
+    }
+
     public void triggerOnOtherCardPlayed(AbstractCard c) {
         for (AbstractCardModifier modifier : modifiers) {
             modifier.triggerOnOtherCardPlayed(c);

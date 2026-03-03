@@ -105,12 +105,41 @@
         "DESCRIPTION": "消耗最右侧的手牌， %d 次。"
     },
 
+    "TrizonBambooActionFactory": {
+        "DESCRIPTION": "增加 %d 张竹林到手牌，这些竹林本回合耗能变为0且打出后消耗。"
+    },
+
+
+    "TrizonPinataPowerFactory": {
+        "DESCRIPTION": "本回合每受到一次伤害，增加 %d 张随机非稀有牌到你的手牌。"
+    },
+
+    "TrizonSeaStarPowerFactory": {
+        "DESCRIPTION": "本回合每受到一次伤害，增加 %d 张 海星 到你的手牌。"
+    },
+
+    "TrizonMaidPowerFactory": {
+        "DESCRIPTION": "本回合每打出一张攻击牌，增加 %d 张 肉 到手牌。"
+    },
 
     "TrizonOrchardistPowerFactory": {
         "DESCRIPTION": "接下来 %d 回合开始时，抽一张牌。"
     },
 
     "TrizonScavengerPowerFactory": {
-        "DESCRIPTION": "接下来 %d 回合开始时，增加一张随机 #非稀有牌 到手牌。"
+        "DESCRIPTION": "接下来 %d 回合开始时，增加一张随机 非稀有牌 到手牌。"
+    },
+
+
+    "TrizonButterflyModifier": {
+        "DESCRIPTION": "这张牌在手牌中时，每打出一张非攻击牌，伤害+ %d 。"
+    },
+
+    "TrizonLycorisModifier": {
+        "DESCRIPTION": "这张牌在手牌中时，每消耗一张攻击牌，伤害+ %d 。"
+    },
+
+    "TrizonPenguinModifier": {
+        "DESCRIPTION": "本场战斗中每冻结一张手牌或一名敌人，伤害+ %d 。"
     }
 }

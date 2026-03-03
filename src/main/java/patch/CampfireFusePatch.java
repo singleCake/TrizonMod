@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 
-import relics.FuseRelic;
+import relics.TrizonFuseRelic;
 import ui.campfire.FuseCampfireUI;
 
 public class CampfireFusePatch {
@@ -14,7 +14,7 @@ public class CampfireFusePatch {
     @SpirePatch(clz = RestRoom.class, method = "onPlayerEntry")
     public static class RestRoomOnPlayerEntryPatch {
         public static void Postfix(RestRoom __instance) {
-            if (AbstractDungeon.player.hasRelic(FuseRelic.ID)) {
+            if (AbstractDungeon.player.hasRelic(TrizonFuseRelic.ID)) {
                 FuseCampfireUI.initFuseUI(__instance.campfireUI);
             }
         }

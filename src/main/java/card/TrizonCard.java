@@ -49,6 +49,12 @@ public abstract class TrizonCard extends CustomCard {
         return true;
     }
 
+    @Override
+    public void update() {
+        modifier.updateCost(this);
+        super.update();
+    }
+
     // 原版接口
 
     @Override

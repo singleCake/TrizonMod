@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import card.TrizonCard;
+import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 import power.TrizonFrozenPower;
 
 public class TrizonFreezeEnemyAction extends AbstractTrizonAction {
@@ -20,6 +21,7 @@ public class TrizonFreezeEnemyAction extends AbstractTrizonAction {
                 ((TrizonCard) c).triggerOnEnemyFrozenAfterExhausted();
             }
         }
+        FrozenNumFieldPatch.addFrozenNum();
         this.addToTop(new ApplyPowerAction(target, AbstractDungeon.player, new TrizonFrozenPower(target)));
     }
 }

@@ -10,10 +10,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import action.TrizonSummonCardAction;
-import power.helper.PowerHelper;
 
 public class TrizonPinataPower extends AbstractPower {
-    public static final String POWER_ID = PowerHelper.makeID(TrizonPinataPower.class);
+    public static final String POWER_ID = TrizonPinataPower.class.getSimpleName();
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;

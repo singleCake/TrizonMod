@@ -14,10 +14,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import power.helper.PowerHelper;
-
 public class TrizonShieldPower extends AbstractPower {
-    public static final String POWER_ID = PowerHelper.makeID(TrizonShieldPower.class);
+    public static final String POWER_ID = TrizonShieldPower.class.getSimpleName();
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;

@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import power.helper.PowerHelper;
-
 public class TrizonFrozenPower extends AbstractPower {
-    public static final String POWER_ID = PowerHelper.makeID(TrizonFrozenPower.class);
+    public static final String POWER_ID = TrizonFrozenPower.class.getSimpleName();
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;

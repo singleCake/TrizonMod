@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.TrizonUnFreezeAllCardAtStartOfTurnAction;
 import card.TrizonCard;
+import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 
 public class FreezeCardPatch {
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
@@ -29,6 +30,7 @@ public class FreezeCardPatch {
                 ((TrizonCard) c).triggerOnOtherCardFrozenAfterExhausted();
             }
         }
+        FrozenNumFieldPatch.addFrozenNum();
         FrozenField.frozen.set(card, true);
     }
 

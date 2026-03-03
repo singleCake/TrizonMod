@@ -26,7 +26,7 @@ public class TrizonLycorisModifier extends AbstractCardModifier {
 
     @Override
     public String rawDescription() {
-        return DESCRIPTION;
+        return String.format(DESCRIPTION, amount);
     }
 
     @Override

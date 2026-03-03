@@ -15,6 +15,10 @@ public abstract class AbstractCardModifier implements Fusable<AbstractCardModifi
         return damage;
     }
 
+    public int modifyCost() {
+        return 0;
+    }
+
     public void triggerOnOtherCardPlayed(AbstractCard c) {
         
     }

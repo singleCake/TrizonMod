@@ -98,6 +98,10 @@ public abstract class TrizonCard extends CustomCard {
         behavior.onFrozenBehavior();
     }
 
+    public void triggerAtEndOfTurn() {
+        behavior.atEndOfTurnBehavior();
+    }
+
     // 消耗后接口
 
     public void triggerAtEndOfTurnAfterExhausted() {

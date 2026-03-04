@@ -22,5 +22,6 @@ public class TrizonExhaustRightCardAction extends AbstractTrizonAction {
                 this.addToTop(new ExhaustSpecificCardAction(hand.getTopCard(), hand));
             }
         }
+        this.isDone = true;
     }
 }

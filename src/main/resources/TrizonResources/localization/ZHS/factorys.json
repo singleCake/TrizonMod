@@ -97,8 +97,24 @@
         "DESCRIPTION": "增加一张 %s 到手牌， %d 次。"
     },
 
+    "TrizonTempCardInDrawPileActionFactory": {
+        "DESCRIPTION": "将 %d 张 %s 加入抽牌堆。"
+    },
+
     "TrizonHunterActionFactory": {
         "DESCRIPTION": "若击杀敌人，这张牌返回手牌且本回合耗能变为0。"
+    },
+
+    "TrizonVampireActionFactory": {
+        "DESCRIPTION": "若为未被格挡的法术伤害，回复等同于伤害值的生命。"
+    },
+
+    "TrizonHarvestDrawnActionFactory": {
+        "DESCRIPTION": "若为未被格挡的法术伤害，抽 %d 张牌。"
+    },
+
+    "TrizonHarvestActionFactory": {
+        "DESCRIPTION": "对你与所有敌人造成 %d 点法术伤害。"
     },
 
     "TrizonExhaustRightCardActionFactory": {
@@ -107,6 +123,18 @@
 
     "TrizonBambooActionFactory": {
         "DESCRIPTION": "增加 %d 张竹林到手牌，这些竹林本回合耗能变为0且打出后消耗。"
+    },
+
+    "TrizonPhoenixFactory": {
+        "DESCRIPTION": "下个回合开始时，增加 %d 张此牌的复制到你的手牌。"
+    },
+
+    "TrizonWorkaholicFactory": {
+        "DESCRIPTION": "从消耗牌堆中打出这张牌。"
+    },
+
+    "TrizonMushroomFactory": {
+        "DESCRIPTION": "增加 %d 张蘑菇到手牌。"
     },
 
 

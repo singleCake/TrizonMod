@@ -40,5 +40,11 @@
         "DESCRIPTIONS": [
             "接下来 #b%d 回合开始时，增加一张随机 非稀有牌 到手牌。"
         ]
+    },
+    "TrizonPhoenixPower": {
+        "NAME": "不死鸟",
+        "DESCRIPTIONS": [
+            "下个回合开始时，增加 #b%d 张 #y%s 到你的手牌。"
+        ]
     }
 }

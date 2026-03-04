@@ -16,6 +16,7 @@ import card.helper.FactoryList.AbstractFactoryList;
 import card.helper.FactoryList.AttackActionFactoryList;
 import card.helper.FactoryList.AttackedActionFactoryList;
 import card.helper.FactoryList.DrawnActionFactoryList;
+import card.helper.FactoryList.EndOfTurnActionFactoryList;
 import card.helper.FactoryList.EndOfTurnAfterExhaustedActionFactoryList;
 import card.helper.FactoryList.EnemyFrozenAfterExhaustedActionFactoryList;
 import card.helper.FactoryList.ExhaustActionFactoryList;
@@ -46,6 +47,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
         allFactoryLists.add(attackActionFactorys);
         allFactoryLists.add(attackedActionFactorys);
         allFactoryLists.add(frozenActionFactorys);
+        allFactoryLists.add(endOfTurnActionFactorys);
         allFactoryLists.add(endOfTurnAfterExhaustedActionFactorys);
         allFactoryLists.add(startOfTurnAfterExhaustedActionFactorys);
         allFactoryLists.add(onOtherCardFrozenAfterExhaustedActionFactorys);
@@ -151,6 +153,17 @@ public class CardBehavior implements Fusable<CardBehavior> {
 
     public void addToFrozenBehavior(AbstractTrizonFactory factory) {
         frozenActionFactorys.addFactory(factory);
+    }
+
+    // 回合结束时，若这张牌在手牌中
+    private EndOfTurnActionFactoryList endOfTurnActionFactorys = new EndOfTurnActionFactoryList();
+
+    public void atEndOfTurnBehavior() {
+        endOfTurnActionFactorys.behave();
+    }
+
+    public void addToEndOfTurnBehavior(AbstractTrizonFactory factory) {
+        endOfTurnActionFactorys.addFactory(factory);
     }
 
     // 在消耗堆中，每回合结束时

@@ -26,7 +26,7 @@ public class TrizonRandomPlayAttackAction extends AbstractTrizonAction {
             int randomIndex = AbstractDungeon.cardRandomRng.random(attackCards.size() - 1);
             AbstractCard randomAttackCard = attackCards.get(randomIndex);
             attackCards.remove(randomIndex);
-            this.addToTop(new TrizonPlayHandCardAction(randomAttackCard));
+            this.addToTop(new TrizonPlayCardAction(randomAttackCard, AbstractDungeon.player.hand));
         }
         this.isDone = true;
     }

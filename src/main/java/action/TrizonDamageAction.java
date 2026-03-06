@@ -16,6 +16,9 @@ public class TrizonDamageAction extends AbstractTrizonAction {
     public TrizonDamageAction(TrizonCard cardPlayed, AbstractCreature target, DamageInfo info, AttackEffect attackEffect) {
         this.this_card = cardPlayed;
         this.target = target;
+        if (target == null) {
+            this.target = AbstractDungeon.getRandomMonster();
+        }
         this.info = info;
         this.attackEffect = attackEffect;
         this.duration = 0.1F;

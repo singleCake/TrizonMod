@@ -1,4 +1,4 @@
-package card.helper;
+package card.helper.Targeting;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.cards.targeting.TargetingHandler;

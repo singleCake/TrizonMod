@@ -26,7 +26,7 @@ public class TrizonSummonCardAction extends AbstractTrizonAction {
     public TrizonSummonCardAction(int times, boolean freeThisTurn, Predicate<TrizonCard> cardFilter) {
         this.times = times;
         this.freeThisTurn = freeThisTurn;
-        this.cardFilter = cardFilter == null ? c -> true : cardFilter;
+        this.cardFilter = cardFilter == null ? c -> c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON : cardFilter;
     }
 
     @Override
@@ -41,8 +41,7 @@ public class TrizonSummonCardAction extends AbstractTrizonAction {
     private TrizonCard getRandomTrizonCard() {
         CardGroup trizonCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (Map.Entry<String, AbstractCard> c : CardLibrary.cards.entrySet()) {
-            if (c.getValue() instanceof TrizonCard 
-            && (c.getValue().rarity == CardRarity.COMMON || c.getValue().rarity == CardRarity.UNCOMMON)) {
+            if (c.getValue() instanceof TrizonCard) {
                 if (this.cardFilter.test((TrizonCard) c.getValue())) {
                     trizonCards.addToBottom(c.getValue());
                 }

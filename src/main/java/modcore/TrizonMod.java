@@ -38,12 +38,12 @@ import card.basic.Meat;
 import card.common.Bird;
 import character.Shan;
 import localization.TrizonFactoryStrings;
-import card.helper.CardTargeting;
-import card.helper.SnowballTargeting;
+import card.helper.Targeting.CardTargeting;
+import card.helper.Targeting.SnowballTargeting;
 import card.uncommon.Fodder;
 
-import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
-import static card.helper.CardTargeting.CARD;
+import static card.helper.Targeting.CardTargeting.CARD;
+import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
 
 @SpireInitializer
 public class TrizonMod implements 

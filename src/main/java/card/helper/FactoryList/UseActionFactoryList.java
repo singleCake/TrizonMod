@@ -6,11 +6,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import action.factory.AbstractTrizonFactory;
-import card.helper.CardTargeting;
-import card.helper.SnowballTargeting;
+import card.helper.Targeting.CardTargeting;
+import card.helper.Targeting.SnowballTargeting;
+import com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting;
 
-import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
-import static card.helper.CardTargeting.CARD;
+import static card.helper.Targeting.CardTargeting.CARD;
+import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
+import static com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting.SELF_OR_ENEMY;
+
 
 public class UseActionFactoryList extends AbstractFactoryList {
     public UseActionFactoryList() {
@@ -31,6 +34,13 @@ public class UseActionFactoryList extends AbstractFactoryList {
             for (AbstractTrizonFactory factory : factorys) {
                 factory.receiveCard(card);
                 factory.receiveTarget(creature);
+                this.addToBot(factory.create());
+            }
+        }
+        else if (this_card.target == SELF_OR_ENEMY) {
+            AbstractCreature target = SelfOrEnemyTargeting.getTarget(this_card);
+            for (AbstractTrizonFactory factory : factorys) {
+                factory.receiveTarget(target);
                 this.addToBot(factory.create());
             }
         } else {

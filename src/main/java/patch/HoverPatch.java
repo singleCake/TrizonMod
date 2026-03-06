@@ -1,7 +1,7 @@
 package patch;
 
-import static card.helper.CardTargeting.CARD;
-import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
+import static card.helper.Targeting.CardTargeting.CARD;
+import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
 
 import com.evacipated.cardcrawl.mod.stslib.cards.targeting.TargetingHandler;
 import com.evacipated.cardcrawl.mod.stslib.patches.CustomTargeting;

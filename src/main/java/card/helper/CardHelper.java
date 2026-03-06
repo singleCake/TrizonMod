@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import card.TrizonCard;
 import card.TrizonFusedCard;
 
-import static card.helper.SnowballTargeting.CARD_OR_ENEMY;
-import static card.helper.CardTargeting.CARD;
+import static card.helper.Targeting.CardTargeting.CARD;
+import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
 
 public class CardHelper {
     public static String makeID(Class<? extends TrizonCard> cardClass) {

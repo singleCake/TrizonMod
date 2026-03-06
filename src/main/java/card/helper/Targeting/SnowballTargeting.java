@@ -1,4 +1,4 @@
-package card.helper;
+package card.helper.Targeting;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.cards.targeting.TargetingHandler;
@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class SnowballTargeting extends TargetingHandler<card.helper.SnowballTargeting.SnowballTarget> {
+public class SnowballTargeting extends TargetingHandler<card.helper.Targeting.SnowballTargeting.SnowballTarget> {
     @SpireEnum
     public static AbstractCard.CardTarget CARD_OR_ENEMY;
 

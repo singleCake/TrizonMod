@@ -137,6 +137,34 @@
         "DESCRIPTION": "增加 %d 张蘑菇到手牌。"
     },
 
+    "TrizonGoldFishSummonCardActionFactory": {
+        "DESCRIPTION": "增加 %d 张随机0费牌到你的手牌。"
+    },
+
+    "TrizonNewYearActionFactory": {
+        "DESCRIPTION": "本回合结束后执行一个额外回合。结束你的回合。"
+    },
+
+    "TrizonTruceActionFactory": {
+        "DESCRIPTION": "冻结所有敌人与所有手牌。"
+    },
+
+    "TrizonHealActionFactory": {
+        "DESCRIPTION": "回复 %d 点生命。"
+    },
+
+    "TrizonRemoveCardFromDeckActionFactory": {
+        "DESCRIPTION": "从牌组中移除这张牌。"
+    },
+
+    "TrizonIceCreamActionFactory": {
+        "DESCRIPTION": "每有一张被 冻结 的手牌，抽一张牌， %d 次。"
+    },
+
+    "TrizonWiseActionFactory": {
+        "DESCRIPTION": "抽取每种费用的牌各一张， %d 次。"
+    },
+
 
     "TrizonPinataPowerFactory": {
         "DESCRIPTION": "本回合每受到一次伤害，增加 %d 张随机非稀有牌到你的手牌。"
@@ -156,6 +184,10 @@
 
     "TrizonScavengerPowerFactory": {
         "DESCRIPTION": "接下来 %d 回合开始时，增加一张随机 非稀有牌 到手牌。"
+    },
+
+    "TrizonCremationPowerFactory": {
+        "DESCRIPTION": "本回合每 消耗 一张非 火焰 牌，增加一张 火球 到手牌。"
     },
 
 

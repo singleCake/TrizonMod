@@ -128,4 +128,12 @@ public abstract class TrizonCard extends CustomCard {
     public boolean isYandere() {
         return trizonBooleans.yandere;
     }
+
+    public boolean isGoldFish() {
+        return trizonBooleans.goldfish;
+    }
+
+    public boolean isScapegoat() {
+        return trizonBooleans.scapegoat;
+    }
 }

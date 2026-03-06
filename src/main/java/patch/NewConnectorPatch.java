@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.cards.CardGroup;
 
@@ -22,7 +21,7 @@ public class NewConnectorPatch {
         public static void Insert(AbstractPlayer __instance, DamageInfo info, @ByRef int[] damageAmount) {
             for (AbstractCard c : __instance.hand.group) {
                 if (c instanceof TrizonCard) {
-                    ((TrizonCard) c).triggerOnAttacked(info, damageAmount[0]);
+                    damageAmount[0] = ((TrizonCard) c).triggerOnAttacked(info, damageAmount[0]);
                 }
             }
         }

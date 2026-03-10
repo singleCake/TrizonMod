@@ -13,6 +13,12 @@
         ]
     },
 
+    "Trizon:FreezeCardMessage": {
+        "TEXT": [
+            "这张牌被冻结了"
+        ]
+    },
+
     "Trizon:FuseCardTiming": {
         "TEXT": [
             "打出时",

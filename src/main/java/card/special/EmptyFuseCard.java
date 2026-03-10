@@ -1,14 +1,17 @@
 package card.special;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import card.TrizonCard;
+import basemod.abstracts.CustomCard;
 
-public class EmptyFuseCard extends TrizonCard {
+public class EmptyFuseCard extends CustomCard {
     public static final String ID = card.helper.CardHelper.makeID(EmptyFuseCard.class);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
+    private static final String IMG_PATH = "TrizonResources/img/cards/card.png";
     private static final int COST = -2;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.STATUS;
@@ -16,7 +19,7 @@ public class EmptyFuseCard extends TrizonCard {
     private static final CardTarget TARGET = CardTarget.NONE;
 
     public EmptyFuseCard() {
-        super(ID, NAME, null, COST, DESCRIPTION, TYPE, RARITY, TARGET);
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
     }
 
     @Override
@@ -24,6 +27,6 @@ public class EmptyFuseCard extends TrizonCard {
     }
 
     @Override
-    protected void setBehavior() {
+    public void use(AbstractPlayer p, AbstractMonster m) {
     }
 }

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
+import basemod.abstracts.CustomCard;
 import card.TrizonCard;
 import card.TrizonFusedCard;
 
@@ -12,7 +13,7 @@ import static card.helper.Targeting.CardTargeting.CARD;
 import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
 
 public class CardHelper {
-    public static String makeID(Class<? extends TrizonCard> cardClass) {
+    public static String makeID(Class<? extends CustomCard> cardClass) {
         System.out.println("Making ID for class: " + cardClass.getSimpleName());
         return "Trizon:" + cardClass.getSimpleName();
     }

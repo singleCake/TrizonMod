@@ -20,7 +20,7 @@ public class Bird extends TrizonCard {
     public Bird() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.damage = this.baseDamage = 1;
-        this.baseDamageTimes = 6;
+        this.damageTimes = this.baseDamageTimes = 6;
         reInitBehavior();
     }
 

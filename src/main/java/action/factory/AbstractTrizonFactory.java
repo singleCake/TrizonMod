@@ -10,8 +10,8 @@ import fusable.Fusable;
 import localization.TrizonFactoryStrings;
 
 public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFactory> {
-    protected TrizonCard this_card = null;  // 触发这个Action的卡牌
-    protected AbstractCreature target = null;
+    protected transient TrizonCard this_card = null;  // 触发这个Action的卡牌
+    protected transient AbstractCreature target = null;
     protected int times;
     protected int amount;
 

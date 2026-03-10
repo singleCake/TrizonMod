@@ -165,6 +165,14 @@
         "DESCRIPTION": "抽取每种费用的牌各一张， %d 次。"
     },
 
+    "TrizonSpellBuffFactory": {
+        "DESCRIPTION": "所有 法术 伤害增加 %d 。"
+    },
+
+    "TrizonThunderFactory": {
+        "DESCRIPTION": "若为攻击伤害，额外随机造成 %d 点 法术 伤害。"
+    },
+
 
     "TrizonPinataPowerFactory": {
         "DESCRIPTION": "本回合每受到一次伤害，增加 %d 张随机非稀有牌到你的手牌。"

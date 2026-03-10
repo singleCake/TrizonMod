@@ -42,6 +42,19 @@ public abstract class AbstractTrizonPowerFactory implements Fusable<AbstractTriz
             }
         }
 
+        for (AbstractTrizonPowerFactory factory2 : factories2) {
+            boolean found = false;
+            for (AbstractTrizonPowerFactory factory1 : fusedFactories) {
+                if (factory1.getClass().equals(factory2.getClass())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                fusedFactories.add(factory2.clone());
+            }
+        }
+
         return fusedFactories;
     }
 }

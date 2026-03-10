@@ -30,17 +30,11 @@ public class CardHelper {
         return cardName;
     }
 
-    public static String getFusedCardRawDescription(TrizonFusedCard fusedCard) {
-        String rawDescription = "";
-        for (String name : fusedCard.fusionData.keySet()) {
-            int count = fusedCard.fusionData.get(name);
-            if (count == 1) {
-                rawDescription += CardLibrary.getCard(name).name;
-            } else {
-                rawDescription += CardLibrary.getCard(name).name + '(' + count + ')';
-            }
-        }
-        return rawDescription;
+    public static int getFusedCardCost(TrizonCard card1, TrizonCard card2) {
+        // 暂时不考虑X费牌
+        int cost1 = card1.cost >= 0 ? card1.cost : 0;
+        int cost2 = card2.cost >= 0 ? card2.cost : 0;
+        return cost1 + cost2;
     }
 
     public static String getFusedCardImg(TrizonCard card1, TrizonCard card2) {

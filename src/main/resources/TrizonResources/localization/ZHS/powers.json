@@ -46,5 +46,17 @@
         "DESCRIPTIONS": [
             "下个回合开始时，增加 #b%d 张 #y%s 到你的手牌。"
         ]
+    },
+    "TrizonCremationPower": {
+        "NAME": "火葬",
+        "DESCRIPTIONS": [
+            "本回合每 消耗 一张 #y非火焰 牌，增加 #b%d 张 #y火球 到手牌。"
+        ]
+    },
+    "TrizonSpellBuffPower": {
+        "NAME": "法术增幅",
+        "DESCRIPTIONS": [
+            "所有 #y法术 伤害增加 #b%d 。"
+        ]
     }
 }

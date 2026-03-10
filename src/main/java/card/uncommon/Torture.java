@@ -22,7 +22,8 @@ public class Torture extends TrizonCard {
 
     public Torture() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.baseDamageTimes = 4;
+        this.spellNumber = this.baseSpellNumber = 1;
+        this.damageTimes = this.baseDamageTimes = 4;
         
         reInitBehavior();
     }
@@ -39,6 +40,6 @@ public class Torture extends TrizonCard {
 
     @Override
     public void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(1, baseDamageTimes, AttackEffect.POISON));
+        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, baseDamageTimes, AttackEffect.POISON));
     }
 }

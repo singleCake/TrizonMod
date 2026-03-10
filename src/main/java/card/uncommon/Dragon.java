@@ -21,7 +21,7 @@ public class Dragon extends TrizonCard {
     public Dragon() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.damage = this.baseDamage = 11;
-        this.baseDamageTimes = 2;
+        this.damageTimes = this.baseDamageTimes = 2;
         
         reInitBehavior();
     }
@@ -30,7 +30,7 @@ public class Dragon extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.baseDamageTimes += 1;
+            this.upgradeDamageTimes(1);
 
             this.reInitBehavior();
         }

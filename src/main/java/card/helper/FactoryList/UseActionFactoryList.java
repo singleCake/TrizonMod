@@ -20,6 +20,10 @@ public class UseActionFactoryList extends AbstractFactoryList {
     }
 
     public void behave(AbstractPlayer p, AbstractMonster m) {
+        if (this_card == null) {
+            System.out.println("Error: this_card is null in UseActionFactoryList");
+            return;
+        }
         // 根据卡牌目标结算行为
         if (this_card.target == CARD) {
             AbstractCard card = CardTargeting.getTarget(this_card);
@@ -45,7 +49,9 @@ public class UseActionFactoryList extends AbstractFactoryList {
             }
         } else {
             for (AbstractTrizonFactory factory : factorys) {
-                factory.receiveTarget(m);
+                if (m != null) {
+                    factory.receiveTarget(m);
+                }
                 this.addToBot(factory.create());
             }
         }

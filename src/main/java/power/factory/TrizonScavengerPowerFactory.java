@@ -1,5 +1,6 @@
 package power.factory;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class TrizonScavengerPowerFactory extends AbstractTrizonPowerFactory {
@@ -11,7 +12,7 @@ public class TrizonScavengerPowerFactory extends AbstractTrizonPowerFactory {
 
     @Override
     public AbstractPower create() {
-        return new power.TrizonScavengerPower(this.amount);
+        return new power.TrizonScavengerPower(AbstractDungeon.player, this.amount);
     }
 
     @Override

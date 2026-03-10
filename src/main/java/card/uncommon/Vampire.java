@@ -21,7 +21,7 @@ public class Vampire extends TrizonCard {
 
     public Vampire() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.spellNumber = this.baseSpellNumber = 3;
         
         reInitBehavior();
     }
@@ -30,7 +30,7 @@ public class Vampire extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeSpellNumber(1);
 
             this.reInitBehavior();
         }
@@ -38,7 +38,7 @@ public class Vampire extends TrizonCard {
 
     @Override
     public void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseMagicNumber, AttackEffect.LIGHTNING));
+        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.LIGHTNING));
         this.behavior.addToAttackBehavior(new TrizonVampireActionFactory());
     }
 }

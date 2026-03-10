@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import card.TrizonCard;
 import fusable.Fusable;
@@ -112,5 +113,15 @@ public class CardModifierList implements Fusable<CardModifierList> {
                 tmp[0] = ((TrizonCard) __instance).modifier.modifyDamage((int)tmp[0]);
             }
         }   
+    }
+
+    @SpirePatch(clz = AbstractCard.class, method = "calculateCardDamage")
+    public static class CalculateCardDamagePatch {
+        @SpireInsertPatch(rloc = 9, localvars = {"tmp"})
+        public static void Insert(AbstractCard __instance, AbstractMonster mo, @ByRef float[] tmp) {
+            if (__instance instanceof TrizonCard) {
+                tmp[0] = ((TrizonCard) __instance).modifier.modifyDamage((int)tmp[0]);
+            }
+        }
     }
 }

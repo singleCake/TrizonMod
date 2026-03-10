@@ -22,6 +22,7 @@ public class Healing extends TrizonCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 10;
         this.isInnate = true;
+        this.exhaust = true;
         
         reInitBehavior();
     }

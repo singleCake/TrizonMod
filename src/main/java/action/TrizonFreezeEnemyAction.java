@@ -23,5 +23,6 @@ public class TrizonFreezeEnemyAction extends AbstractTrizonAction {
         }
         FrozenNumFieldPatch.addFrozenNum();
         this.addToTop(new ApplyPowerAction(target, AbstractDungeon.player, new TrizonFrozenPower(target)));
+        this.isDone = true;
     }
 }

@@ -20,7 +20,7 @@ public class Fireball extends TrizonCard {
 
     public Fireball() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 5;
+        this.spellNumber = this.baseSpellNumber = 5;
         this.trizonBooleans.fire = true;
         this.exhaust = true;
         reInitBehavior();
@@ -40,6 +40,6 @@ public class Fireball extends TrizonCard {
 
     @Override
     protected void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseMagicNumber, AttackEffect.FIRE));
+        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.FIRE));
     }
 }

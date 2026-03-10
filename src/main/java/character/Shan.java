@@ -6,6 +6,7 @@ import card.basic.Defend;
 import card.basic.Meat;
 import card.basic.Strike;
 import modcore.TrizonMod;
+import relics.TrizonFuseRelic;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -82,7 +83,7 @@ public class Shan extends CustomPlayer  {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Trizon:FuseRelic");
+        retVal.add(TrizonFuseRelic.ID);
         return retVal;
     }
 

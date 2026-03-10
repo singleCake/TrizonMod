@@ -15,6 +15,8 @@ public class TrizonFreezeAllEnemyAction extends AbstractTrizonAction {
                 this.addToTop(new TrizonFreezeEnemyAction((AbstractDungeon.getCurrRoom()).monsters.monsters.get(i)));
             }
         }
+
+        this.isDone = true;
     }
     
 }

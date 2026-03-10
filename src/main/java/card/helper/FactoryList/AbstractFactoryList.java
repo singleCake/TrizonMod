@@ -11,7 +11,7 @@ import card.TrizonCard;
 import fusable.Fusable;
 
 public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList> {
-    TrizonCard this_card;
+    transient TrizonCard this_card;
     protected ArrayList<AbstractTrizonFactory> factorys = new ArrayList<>();
 
     public void clear() {
@@ -52,12 +52,13 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
 
     @Override
     public boolean fuse(AbstractFactoryList other) {
+        ArrayList<AbstractTrizonFactory> fusedFactorys = new ArrayList<>(factorys);
         // 相同的工厂进行融合，不同的工厂直接加入
         for (AbstractTrizonFactory factory1 : factorys) {
             for (AbstractTrizonFactory factory2 : other.factorys) {
                 if (factory1.getClass().equals(factory2.getClass())) {
                     if (!factory1.fuse(factory2)) {
-                        factorys.add(factory2.clone());
+                        fusedFactorys.add(factory2.clone());
                     }
                     break;
                 }
@@ -73,10 +74,17 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
                 }
             }
             if (!foundMatch) {
-                factorys.add(factory2.clone());
+                fusedFactorys.add(factory2.clone());
             }
         }
 
+        this.factorys = fusedFactorys;
+
+        if (this.this_card != null) {
+            for (AbstractTrizonFactory factory : this.factorys) {
+                factory.receiveThisCard(this.this_card);
+            }
+        }
         return true;
     }
 

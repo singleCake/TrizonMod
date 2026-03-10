@@ -30,7 +30,7 @@ import fusable.Fusable;
 import power.factory.AbstractTrizonPowerFactory;
 
 public class CardBehavior implements Fusable<CardBehavior> {
-    TrizonCard this_card = null;
+    transient TrizonCard this_card = null;
     private ArrayList<AbstractTrizonPowerFactory> powerFactorys = new ArrayList<>();
     private ArrayList<AbstractFactoryList> allFactoryLists = new ArrayList<>();
 
@@ -39,6 +39,11 @@ public class CardBehavior implements Fusable<CardBehavior> {
     }
 
     public CardBehavior() {
+        rebuildAllFactoryLists();
+    }
+
+    private void rebuildAllFactoryLists() {
+        allFactoryLists = new ArrayList<>();
         allFactoryLists.add(useActionFactorys);
         allFactoryLists.add(exhaustActionFactorys);
         allFactoryLists.add(drawnActionFactorys);
@@ -232,9 +237,20 @@ public class CardBehavior implements Fusable<CardBehavior> {
             copy.addToPowerFactorys(factory.clone());
         }
 
-        for (int i = 0; i < allFactoryLists.size(); i++) {
-            allFactoryLists.set(i, allFactoryLists.get(i).clone());
-        }
+        copy.useActionFactorys = (UseActionFactoryList) this.useActionFactorys.clone();
+        copy.exhaustActionFactorys = (ExhaustActionFactoryList) this.exhaustActionFactorys.clone();
+        copy.drawnActionFactorys = (DrawnActionFactoryList) this.drawnActionFactorys.clone();
+        copy.otherCardPlayedActionFactorys = (OtherCardPlayedActionFactoryList) this.otherCardPlayedActionFactorys.clone();
+        copy.otherCardExhaustedActionFactorys = (OtherCardExhaustedActionFactoryList) this.otherCardExhaustedActionFactorys.clone();
+        copy.attackActionFactorys = (AttackActionFactoryList) this.attackActionFactorys.clone();
+        copy.attackedActionFactorys = (AttackedActionFactoryList) this.attackedActionFactorys.clone();
+        copy.frozenActionFactorys = (FrozenActionFactoryList) this.frozenActionFactorys.clone();
+        copy.endOfTurnActionFactorys = (EndOfTurnActionFactoryList) this.endOfTurnActionFactorys.clone();
+        copy.endOfTurnAfterExhaustedActionFactorys = (EndOfTurnAfterExhaustedActionFactoryList) this.endOfTurnAfterExhaustedActionFactorys.clone();
+        copy.startOfTurnAfterExhaustedActionFactorys = (StartOfTurnAfterExhaustedActionFactoryList) this.startOfTurnAfterExhaustedActionFactorys.clone();
+        copy.onOtherCardFrozenAfterExhaustedActionFactorys = (OtherCardFrozenAfterExhaustedActionFactoryList) this.onOtherCardFrozenAfterExhaustedActionFactorys.clone();
+        copy.onEnemyFrozenAfterExhaustedActionFactorys = (EnemyFrozenAfterExhaustedActionFactoryList) this.onEnemyFrozenAfterExhaustedActionFactorys.clone();
+        copy.rebuildAllFactoryLists();
 
         copy.this_card = null;
         return copy;

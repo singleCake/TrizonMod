@@ -20,7 +20,7 @@ public class Typhoid extends TrizonCard {
 
     public Typhoid() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 8;
+        this.spellNumber = this.baseSpellNumber = 8;
         this.exhaust = true;
         
         reInitBehavior();
@@ -30,15 +30,15 @@ public class Typhoid extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(4);
+            this.upgradeSpellNumber(4);
 
             this.reInitBehavior();
-        }
+        }  
     }
 
     @Override
     public void setBehavior() {
-        this.behavior.addToOnEnemyFrozenAfterExhaustedBehavior(new TrizonSpellActionFactory(baseMagicNumber, AttackEffect.SLASH_HORIZONTAL));
-        this.behavior.addToOnOtherCardFrozenAfterExhaustedBehavior(new TrizonSpellActionFactory(baseMagicNumber, AttackEffect.SLASH_HORIZONTAL));
+        this.behavior.addToOnEnemyFrozenAfterExhaustedBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.SLASH_HORIZONTAL));
+        this.behavior.addToOnOtherCardFrozenAfterExhaustedBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.SLASH_HORIZONTAL));
     }
 }

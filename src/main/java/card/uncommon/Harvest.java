@@ -20,7 +20,7 @@ public class Harvest extends TrizonCard {
 
     public Harvest() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 3;
+        this.spellNumber = this.baseSpellNumber = 3;
         
         reInitBehavior();
     }
@@ -29,7 +29,7 @@ public class Harvest extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(2);
+            this.upgradeSpellNumber(2);
 
             this.reInitBehavior();
         }
@@ -37,7 +37,7 @@ public class Harvest extends TrizonCard {
 
     @Override
     public void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonHarvestActionFactory(baseMagicNumber));
+        this.behavior.addToUseBehavior(new TrizonHarvestActionFactory(baseSpellNumber));
         this.behavior.addToAttackBehavior(new TrizonHarvestDrawnActionFactory(1));
     }
 }

@@ -22,6 +22,7 @@ public class Alfney extends TrizonCard {
     public Alfney() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.damage = this.baseDamage = 7;
+        this.isEthereal = true;
         reInitBehavior();
     }
 

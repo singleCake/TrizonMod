@@ -34,12 +34,16 @@ import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import card.TrizonFusedCard;
+import card.DynamicVariable.DamageTimes;
+import card.DynamicVariable.SpellNumber;
 import card.basic.Meat;
 import card.common.Bird;
 import character.Shan;
 import localization.TrizonFactoryStrings;
 import card.helper.Targeting.CardTargeting;
 import card.helper.Targeting.SnowballTargeting;
+import card.rare.PizzaGuy;
 import card.uncommon.Fodder;
 
 import static card.helper.Targeting.CardTargeting.CARD;
@@ -112,6 +116,9 @@ public class TrizonMod implements
 
     @Override
     public void receiveEditCards() {
+        BaseMod.addDynamicVariable(new DamageTimes());
+        BaseMod.addDynamicVariable(new SpellNumber());
+        BaseMod.addCard(new TrizonFusedCard());
         new AutoAdd("TrizonMod")
         .packageFilter(Meat.class) 
         .setDefaultSeen(true) 
@@ -123,6 +130,10 @@ public class TrizonMod implements
         new AutoAdd("TrizonMod")
         .packageFilter(Fodder.class) 
         .setDefaultSeen(true) 
+        .cards();
+        new AutoAdd("TrizonMod")
+        .packageFilter(PizzaGuy.class)
+        .setDefaultSeen(true)
         .cards();
     }
 

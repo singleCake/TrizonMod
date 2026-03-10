@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import card.basic.Meat;
+
 public class TrizonMaidPower extends AbstractPower {
     public static final String POWER_ID = TrizonMaidPower.class.getSimpleName();
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -40,7 +42,7 @@ public class TrizonMaidPower extends AbstractPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.ATTACK) {
             flash();
-            this.addToBot(new MakeTempCardInHandAction(card));
+            this.addToBot(new MakeTempCardInHandAction(new Meat(), this.amount));
         }
     }
 

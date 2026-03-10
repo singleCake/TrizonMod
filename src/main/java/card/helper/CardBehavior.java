@@ -1,7 +1,10 @@
 package card.helper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.google.gson.Gson;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -273,5 +276,103 @@ public class CardBehavior implements Fusable<CardBehavior> {
         for (AbstractFactoryList factoryList : allFactoryLists) {
             factoryList.receiveThisCard(card);
         }
+    }
+
+    public BehaviorData exportData() {
+        Gson gson = new Gson();
+        BehaviorData data = new BehaviorData();
+
+        data.powerFactories = new ArrayList<>();
+        for (AbstractTrizonPowerFactory powerFactory : this.powerFactorys) {
+            FactoryData factoryData = new FactoryData();
+            factoryData.className = powerFactory.getClass().getName();
+            factoryData.payload = gson.toJson(powerFactory, powerFactory.getClass());
+            data.powerFactories.add(factoryData);
+        }
+
+        data.factoryLists = new ArrayList<>();
+        for (AbstractFactoryList list : this.allFactoryLists) {
+            FactoryListData listData = new FactoryListData();
+            listData.listClassName = list.getClass().getName();
+            listData.factories = new ArrayList<>();
+            for (AbstractTrizonFactory factory : list.getFactoriesSnapshot()) {
+                FactoryData factoryData = new FactoryData();
+                factoryData.className = factory.getClass().getName();
+                factoryData.payload = gson.toJson(factory, factory.getClass());
+                listData.factories.add(factoryData);
+            }
+            data.factoryLists.add(listData);
+        }
+
+        return data;
+    }
+
+    public static CardBehavior fromData(BehaviorData data) {
+        CardBehavior behavior = new CardBehavior();
+        behavior.clearBehavior();
+        if (data == null) {
+            return behavior;
+        }
+
+        Gson gson = new Gson();
+
+        if (data.powerFactories != null) {
+            for (FactoryData factoryData : data.powerFactories) {
+                try {
+                    Class<?> clazz = Class.forName(factoryData.className);
+                    Object obj = gson.fromJson(factoryData.payload, clazz);
+                    if (obj instanceof AbstractTrizonPowerFactory) {
+                        behavior.addToPowerFactorys((AbstractTrizonPowerFactory) obj);
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+        Map<String, AbstractFactoryList> listMap = new HashMap<>();
+        for (AbstractFactoryList list : behavior.allFactoryLists) {
+            listMap.put(list.getClass().getName(), list);
+        }
+
+        if (data.factoryLists != null) {
+            for (FactoryListData listData : data.factoryLists) {
+                AbstractFactoryList targetList = listMap.get(listData.listClassName);
+                if (targetList == null) {
+                    continue;
+                }
+
+                ArrayList<AbstractTrizonFactory> restoredFactories = new ArrayList<>();
+                if (listData.factories != null) {
+                    for (FactoryData factoryData : listData.factories) {
+                        try {
+                            Class<?> clazz = Class.forName(factoryData.className);
+                            Object obj = gson.fromJson(factoryData.payload, clazz);
+                            if (obj instanceof AbstractTrizonFactory) {
+                                restoredFactories.add((AbstractTrizonFactory) obj);
+                            }
+                        } catch (Exception ignored) {
+                        }
+                    }
+                }
+                targetList.setFactories(restoredFactories);
+            }
+        }
+
+        return behavior;
+    }
+
+    public static class BehaviorData {
+        public ArrayList<FactoryData> powerFactories;
+        public ArrayList<FactoryListData> factoryLists;
+    }
+
+    public static class FactoryListData {
+        public String listClassName;
+        public ArrayList<FactoryData> factories;
+    }
+
+    public static class FactoryData {
+        public String className;
+        public String payload;
     }
 }

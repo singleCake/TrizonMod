@@ -1,18 +1,17 @@
 package card;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import basemod.abstracts.CustomSavable;
+import card.helper.CardBehavior;
 import card.helper.DefaultCardBooleans;
+import card.helper.TrizonCardBooleans;
 import card.helper.CardHelper;
 import fusable.Fusable;
 
@@ -20,11 +19,10 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
     public HashMap<String, Integer> fusionData = new HashMap<>();
 
-    public static final String BASE_ID = "TrizonMod:FusedCard";
-    public static int ID_COUNTER = 0;
+    public static final String ID = "TrizonMod:FusedCard";
 
     public TrizonFusedCard() {
-        super(BASE_ID, "融合卡牌", null,
+        super(ID, "融合卡牌", null,
                 -2,
                 "这是一张空的融合卡牌...",
                 AbstractCard.CardType.STATUS,
@@ -33,7 +31,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     public TrizonFusedCard(TrizonCard card1, TrizonCard card2) {
-        super(BASE_ID, "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
+        super(ID, "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
                 CardHelper.getFusedCardCost(card1, card2),
                 "融合卡牌",
                 CardHelper.getFusedCardType(card1, card2),
@@ -113,7 +111,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         this.baseDamageTimes = Math.max(card1.baseDamageTimes, card2.baseDamageTimes);
     }
 
-    // 记录融合材料（用于生成描述）
+    // 记录融合材料
     private void addToFusionData(TrizonCard material) {
         if (material instanceof TrizonFusedCard) {
             TrizonFusedCard fusedMaterial = (TrizonFusedCard) material;
@@ -189,71 +187,69 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     public void onLoad(CardData data) {
         if (data != null) {
             this.fusionData = data.fusionData != null ? new HashMap<>(data.fusionData) : new HashMap<>();
-            rebuildFromFusionData();
-        }
-    }
 
-    private void rebuildFromFusionData() {
-        ArrayList<TrizonCard> materials = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : fusionData.entrySet()) {
-            AbstractCard baseCard = CardLibrary.getCard(entry.getKey());
-            if (!(baseCard instanceof TrizonCard)) {
-                continue;
+            this.type = data.type;
+            this.rarity = data.rarity;
+            this.target = data.target;
+            this.cost = data.cost;
+            this.costForTurn = data.cost;
+            this.baseDamage = this.damage = data.baseDamage;
+            this.baseBlock = this.block = data.baseBlock;
+            this.baseDamageTimes = this.damageTimes = data.baseDamageTimes;
+            this.baseSpellNumber = this.spellNumber = data.baseSpellNumber;
+            this.anti_num = data.antiNum;
+
+            if (data.booleans != null) {
+                DefaultCardBooleans.applyBooleansToCard(data.booleans, this);
+            }
+            this.trizonBooleans = data.trizonBooleans != null ? data.trizonBooleans : new TrizonCardBooleans();
+
+            if (data.behaviorData != null) {
+                this.behavior = CardBehavior.fromData(data.behaviorData);
+                this.behavior.setThisCard(this);
             }
 
-            int count = Math.max(0, entry.getValue());
-            for (int i = 0; i < count; i++) {
-                AbstractCard copied = baseCard.makeStatEquivalentCopy();
-                if (copied instanceof TrizonCard) {
-                    materials.add((TrizonCard) copied);
-                }
+            if (data.img != null) {
+                this.textureImg = data.img;
+                this.loadCardImage(this.textureImg);
             }
-        }
 
-        TrizonFusedCard rebuilt;
-        if (materials.size() >= 2) {
-            rebuilt = new TrizonFusedCard(materials.get(0), materials.get(1));
-            for (int i = 2; i < materials.size(); i++) {
-                rebuilt.fuse(materials.get(i));
-            }
-        } else if (materials.size() == 1) {
-            // Degenerate case: keep a valid fused-card state based on the only material.
-            rebuilt = new TrizonFusedCard(materials.get(0), materials.get(0));
-        } else {
-            rebuilt = new TrizonFusedCard();
+            this.name = CardHelper.getFusedCardName(this);
+            this.rawDescription = behavior.generateRawDescription();
+            this.initializeDescription();
         }
-
-        copyFromRebuilt(rebuilt);
-    }
-
-    private void copyFromRebuilt(TrizonFusedCard rebuilt) {
-        this.textureImg = rebuilt.textureImg;
-        if (this.textureImg != null) {
-            this.loadCardImage(this.textureImg);
-        }
-        this.type = rebuilt.type;
-        this.rarity = rebuilt.rarity;
-        this.target = rebuilt.target;
-        this.cost = rebuilt.cost;
-        this.costForTurn = rebuilt.costForTurn;
-        this.damage = this.baseDamage = rebuilt.baseDamage;
-        this.block = this.baseBlock = rebuilt.baseBlock;
-        this.damageTimes = this.baseDamageTimes = rebuilt.baseDamageTimes;
-        this.spellNumber = this.baseSpellNumber = rebuilt.baseSpellNumber;
-        this.anti_num = rebuilt.anti_num;
-        this.behavior = rebuilt.behavior.clone();
-        this.behavior.setThisCard(this);
-        this.trizonBooleans = rebuilt.trizonBooleans.clone();
-        this.fusionData = new HashMap<>(rebuilt.fusionData);
-        this.name = rebuilt.name;
-        this.rawDescription = rebuilt.rawDescription;
-        this.initializeDescription();
     }
 
     public class CardData {
+        public String img;
+        public AbstractCard.CardType type;
+        public AbstractCard.CardRarity rarity;
+        public AbstractCard.CardTarget target;
+        public int cost;
+        public int baseDamage;
+        public int baseBlock;
+        public int baseDamageTimes;
+        public int baseSpellNumber;
+        public int antiNum;
+        public DefaultCardBooleans booleans;
+        public TrizonCardBooleans trizonBooleans;
+        public CardBehavior.BehaviorData behaviorData;
         public HashMap<String, Integer> fusionData = null;
 
         public CardData(TrizonFusedCard card) {
+            this.img = card.textureImg;
+            this.type = card.type;
+            this.rarity = card.rarity;
+            this.target = card.target;
+            this.cost = card.cost;
+            this.baseDamage = card.baseDamage;
+            this.baseBlock = card.baseBlock;
+            this.baseDamageTimes = card.baseDamageTimes;
+            this.baseSpellNumber = card.baseSpellNumber;
+            this.antiNum = card.anti_num;
+            this.booleans = new DefaultCardBooleans(card);
+            this.trizonBooleans = card.trizonBooleans.clone();
+            this.behaviorData = card.behavior.exportData();
             this.fusionData = new HashMap<>(card.fusionData);
         }
     }

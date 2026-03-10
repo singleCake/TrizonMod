@@ -22,6 +22,19 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
         factorys.add(factory);
     }
 
+    public ArrayList<AbstractTrizonFactory> getFactoriesSnapshot() {
+        return new ArrayList<>(factorys);
+    }
+
+    public void setFactories(ArrayList<AbstractTrizonFactory> factories) {
+        this.factorys = factories;
+        if (this.this_card != null) {
+            for (AbstractTrizonFactory factory : this.factorys) {
+                factory.receiveThisCard(this.this_card);
+            }
+        }
+    }
+
     // 默认行为：直接结算工厂生成的行为
     public void behave() {
         for (AbstractTrizonFactory factory : factorys) {

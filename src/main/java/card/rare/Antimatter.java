@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import card.TrizonCard;
-import card.TrizonFusedCard;
 
 public class Antimatter extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Antimatter.class);

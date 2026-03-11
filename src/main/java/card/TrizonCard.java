@@ -126,6 +126,10 @@ public abstract class TrizonCard extends CustomCard {
         behavior.atEndOfTurnBehavior();
     }
 
+    public void triggerAtStartOfCombatPreDraw() {
+        behavior.atStartOfCombatBehavior();
+    }
+
     // 消耗后接口
 
     public void triggerAtEndOfTurnAfterExhausted() {

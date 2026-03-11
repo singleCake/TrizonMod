@@ -78,14 +78,15 @@
     "TrizonSummonCardActionFactory": {
         "DESCRIPTION": "增加 %d 张随机 #非稀有牌 到手牌。",
         "EXTENDED_DESCRIPTION": [
-            "这些牌本回合耗能变为0。"
+            "且这些牌本回合耗能变为0。",
+            "且这些牌获得 虚无 。"
         ]
     },
 
     "TrizonSummonFireActionFactory": {
         "DESCRIPTION": "增加 %d 张随机 火焰牌 到手牌。",
         "EXTENDED_DESCRIPTION": [
-            "这些牌本回合耗能变为0。"
+            "且这些牌本回合耗能变为0。"
         ]
     },
 
@@ -171,6 +172,14 @@
 
     "TrizonThunderFactory": {
         "DESCRIPTION": "若为攻击伤害，额外随机造成 %d 点 法术 伤害。"
+    },
+
+    "TrizonExhaustThisCardActionFactory": {
+        "DESCRIPTION": "消耗这张牌。"
+    },
+
+    "TrizonCroissantActionFactory": {
+        "DESCRIPTION": " 消耗 所有手牌，抽等量的牌， %d 次。"
     },
 
 

@@ -7,6 +7,14 @@ public class ExhaustActionFactoryList extends AbstractFactoryList {
     }
 
     @Override
+    public void behave() {
+        for (int i = factorys.size() - 1; i >= 0; i--) {
+            AbstractTrizonFactory factory = factorys.get(i);
+            this.addToTop(factory.create());
+        }
+    }
+
+    @Override
     public String generateRawDescription() {
         if (factorys.isEmpty())
             return "";

@@ -22,10 +22,10 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     public static final String ID = "TrizonMod:FusedCard";
 
     public TrizonFusedCard() {
-        super(ID, "融合卡牌", null,
+        super(ID, "融合卡牌", "TrizonResources/img/cards/card.png",
                 -2,
                 "这是一张空的融合卡牌...",
-                AbstractCard.CardType.STATUS,
+                AbstractCard.CardType.SKILL,
                 AbstractCard.CardRarity.SPECIAL,
                 AbstractCard.CardTarget.NONE);
     }

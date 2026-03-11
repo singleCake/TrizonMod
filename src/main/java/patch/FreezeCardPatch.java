@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 import action.TrizonUnFreezeAllCardAtStartOfTurnAction;
 import card.TrizonCard;
@@ -22,6 +23,15 @@ import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 
 public class FreezeCardPatch {
     private static final String FREEZE_CARD_MESSAGE = CardCrawlGame.languagePack.getUIString("Trizon:FreezeCardMessage").TEXT[0];
+    private static final String FREEZE_TEXTURE_PATH = "TrizonResources/img/512/frost.png";
+    private static Texture freezeTexture;
+
+    private static Texture getFreezeTexture() {
+        if (freezeTexture == null) {
+            freezeTexture = ImageMaster.loadImage(FREEZE_TEXTURE_PATH);
+        }
+        return freezeTexture;
+    }
 
     @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
     public static class FrozenField {
@@ -55,7 +65,7 @@ public class FreezeCardPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, SpriteBatch sb) {
             if (isFrozen(__instance)) {
-                Texture freezeTexture = new Texture("TrizonResources/img/512/frost.png");
+                Texture freezeTexture = getFreezeTexture();
                 float drawX = __instance.current_x;
                 float drawY = __instance.current_y;
                 sb.draw(freezeTexture, drawX - 256.0F, drawY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, __instance.drawScale * Settings.scale, __instance.drawScale * Settings.scale, __instance.angle, 0, 0, 512, 512, false, false);

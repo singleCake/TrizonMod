@@ -43,6 +43,7 @@ public class NewConnectorPatch {
     public static class StartOfTurnPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractPlayer __instance) {
+            System.out.println("start of turn, powers: " + AbstractDungeon.player.powers.size());
             for (AbstractCard c : __instance.exhaustPile.group) {
                 if (c instanceof TrizonCard) {
                     ((TrizonCard) c).triggerAtStartOfTurnAfterExhausted();
@@ -63,6 +64,18 @@ public class NewConnectorPatch {
             for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
                 if (c instanceof TrizonCard) {
                     ((TrizonCard) c).triggerAtEndOfTurnAfterExhausted();
+                }
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfCombatPreDrawLogic")
+    public static class StartOfCombatPatch {
+        @SpirePrefixPatch
+        public static void Prefix(AbstractPlayer __instance) {
+            for (AbstractCard c : __instance.drawPile.group) {
+                if (c instanceof TrizonCard) {
+                    ((TrizonCard) c).triggerAtStartOfCombatPreDraw();
                 }
             }
         }

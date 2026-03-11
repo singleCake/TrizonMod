@@ -14,7 +14,6 @@ import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
 
 public class CardHelper {
     public static String makeID(Class<? extends CustomCard> cardClass) {
-        System.out.println("Making ID for class: " + cardClass.getSimpleName());
         return "Trizon:" + cardClass.getSimpleName();
     }
 

@@ -50,6 +50,7 @@ public class TrizonBambooActionFactory extends AbstractTrizonFactory {
         @SpireInsertPatch(rloc = 6, localvars = {"card"})
         public static void Insert(AbstractCard __instance, @ByRef AbstractCard[] card) {
             card[0].exhaust = __instance.exhaust;
+            card[0].isEthereal = __instance.isEthereal;
         }
     }
 }

@@ -355,8 +355,8 @@
 
     "Trizon:Stillbirth": {
         "NAME": "死胎",
-        "DESCRIPTION": "每场战斗的第一回合开始时， 消耗 这张牌。",
-        "UPGRADE_DESCRIPTION": "每场战斗的第一回合开始时， 消耗 这张牌，获得 [E] 。"
+        "DESCRIPTION": "每场战斗开始时， 消耗 这张牌。",
+        "UPGRADE_DESCRIPTION": "每场战斗开始时， 消耗 这张牌，获得 [E] 。"
     },
 
     "Trizon:Recycle": {
@@ -367,8 +367,7 @@
     
     "Trizon:Abyss": {
         "NAME": "深渊",
-        "DESCRIPTION": "这张牌被 消耗 后，每回合开始时增加一张非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": "这张牌被 消耗 后，每回合开始时增加一张升级过的非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。"
+        "DESCRIPTION": "这张牌在消耗牌堆中时，每回合开始时增加 !M! 张非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。"
     },
 
     "Trizon:Rain": {
@@ -378,7 +377,8 @@
 
     "Trizon:Croissant": {
         "NAME": "可颂",
-        "DESCRIPTION": " 消耗 所有手牌，抽等量的牌。 NL 消耗 。"
+        "DESCRIPTION": " 消耗 所有手牌，抽等量的牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": " 消耗 所有手牌，抽等量的牌。"
     },
 
     "Trizon:Noodle": {

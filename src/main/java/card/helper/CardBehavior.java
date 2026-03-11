@@ -27,6 +27,7 @@ import card.helper.FactoryList.FrozenActionFactoryList;
 import card.helper.FactoryList.OtherCardExhaustedActionFactoryList;
 import card.helper.FactoryList.OtherCardFrozenAfterExhaustedActionFactoryList;
 import card.helper.FactoryList.OtherCardPlayedActionFactoryList;
+import card.helper.FactoryList.StartOfCombatFactoryList;
 import card.helper.FactoryList.StartOfTurnAfterExhaustedActionFactoryList;
 import card.helper.FactoryList.UseActionFactoryList;
 import fusable.Fusable;
@@ -60,6 +61,8 @@ public class CardBehavior implements Fusable<CardBehavior> {
         allFactoryLists.add(startOfTurnAfterExhaustedActionFactorys);
         allFactoryLists.add(onOtherCardFrozenAfterExhaustedActionFactorys);
         allFactoryLists.add(onEnemyFrozenAfterExhaustedActionFactorys);
+        allFactoryLists.add(startOfCombatFactorys);
+        
     }
 
     public void clearBehavior() {
@@ -218,6 +221,17 @@ public class CardBehavior implements Fusable<CardBehavior> {
         onEnemyFrozenAfterExhaustedActionFactorys.addFactory(factory);
     }
 
+    // 每场战斗开始时
+    private StartOfCombatFactoryList startOfCombatFactorys = new StartOfCombatFactoryList();
+
+    public void atStartOfCombatBehavior() {
+        startOfCombatFactorys.behave();
+    }
+
+    public void addToStartOfCombatBehavior(AbstractTrizonFactory factory) {
+        startOfCombatFactorys.addFactory(factory);
+    }
+
     // 生成卡牌描述
     public String generateRawDescription() {
         String rawDescription = "";
@@ -253,6 +267,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
         copy.startOfTurnAfterExhaustedActionFactorys = (StartOfTurnAfterExhaustedActionFactoryList) this.startOfTurnAfterExhaustedActionFactorys.clone();
         copy.onOtherCardFrozenAfterExhaustedActionFactorys = (OtherCardFrozenAfterExhaustedActionFactoryList) this.onOtherCardFrozenAfterExhaustedActionFactorys.clone();
         copy.onEnemyFrozenAfterExhaustedActionFactorys = (EnemyFrozenAfterExhaustedActionFactoryList) this.onEnemyFrozenAfterExhaustedActionFactorys.clone();
+        copy.startOfCombatFactorys = (StartOfCombatFactoryList) this.startOfCombatFactorys.clone();
         copy.rebuildAllFactoryLists();
 
         copy.this_card = null;

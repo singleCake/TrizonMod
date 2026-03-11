@@ -13,19 +13,29 @@ import card.TrizonCard;
 
 public class TrizonSummonCardAction extends AbstractTrizonAction {
     private boolean freeThisTurn;
+    private boolean isEthereal;
     private final Predicate<TrizonCard> cardFilter;
 
     public TrizonSummonCardAction(int times) {
-        this(times, false, null);
+        this(times, false, false, null);
     }
     
     public TrizonSummonCardAction(int times, boolean freeThisTurn) {
-        this(times, freeThisTurn, null);
+        this(times, freeThisTurn, false, null);
+    }
+
+    public TrizonSummonCardAction(int times, boolean freeThisTurn, boolean isEthereal) {
+        this(times, freeThisTurn, isEthereal, null);
     }
 
     public TrizonSummonCardAction(int times, boolean freeThisTurn, Predicate<TrizonCard> cardFilter) {
+        this(times, freeThisTurn, false, cardFilter);
+    }
+
+    public TrizonSummonCardAction(int times, boolean freeThisTurn, boolean isEthereal, Predicate<TrizonCard> cardFilter) {
         this.times = times;
         this.freeThisTurn = freeThisTurn;
+        this.isEthereal = isEthereal;
         this.cardFilter = cardFilter == null ? c -> c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON : cardFilter;
     }
 
@@ -34,6 +44,9 @@ public class TrizonSummonCardAction extends AbstractTrizonAction {
         TrizonCard c = getRandomTrizonCard();
         if (this.freeThisTurn) {
             c.setCostForTurn(0);
+        }
+        if (this.isEthereal) {
+            c.isEthereal = true;
         }
         this.addToTop(new MakeTempCardInHandAction(c));
     }

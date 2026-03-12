@@ -75,12 +75,18 @@
     "Trizon:Fireball": {
         "NAME": "火球",
         "DESCRIPTION": " trizon:火焰 。 NL 造成 !S! 点 trizon:法术 伤害。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": " trizon:火焰 。 NL 造成 !S! 点 trizon:法术 伤害。"
+        "UPGRADE_DESCRIPTION": " trizon:火焰 。 NL 造成 !S! 点 trizon:法术 伤害。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，增加一张火球到手牌。"
+        ]
     },
 
     "Trizon:Snowball": {
         "NAME": "雪球",
-        "DESCRIPTION": " trizon:冻结 一张手牌或一名敌人。 NL 消耗 。"
+        "DESCRIPTION": " trizon:冻结 一张手牌或一名敌人。 NL 消耗 。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，增加一张雪球到手牌。"
+        ]
     },
 
     "Trizon:Sunshine": {

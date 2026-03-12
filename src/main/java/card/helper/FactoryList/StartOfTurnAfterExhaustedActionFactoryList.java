@@ -1,6 +1,6 @@
 package card.helper.FactoryList;
 
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class StartOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryList {
     public StartOfTurnAfterExhaustedActionFactoryList() {
@@ -12,7 +12,7 @@ public class StartOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryL
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + description;
+        return FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + description + " NL ";
     }
 
     @Override

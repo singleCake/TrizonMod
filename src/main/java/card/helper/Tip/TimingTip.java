@@ -1,4 +1,4 @@
-package card.helper;
+package card.helper.Tip;
 
 public class TimingTip {
     public String title;

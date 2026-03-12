@@ -11,6 +11,7 @@ import basemod.abstracts.CustomCard;
 import card.helper.CardBehavior;
 import card.helper.TrizonCardBooleans;
 import card.helper.Modifier.CardModifierList;
+import card.helper.Tip.FuseInfoTip;
 import power.TrizonSpellBuffPower;
 
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
@@ -63,6 +64,11 @@ public abstract class TrizonCard extends CustomCard {
     // 部分卡牌在融合时改变效果，重写这个方法
     public CardBehavior getShiftBehavior() {
         return this.behavior.clone();
+    }
+
+    // 如果卡牌在融合时改变效果，重写这个方法来描述效果
+    public FuseInfoTip getFuseInfoTip() {
+        return null;
     }
 
     @Override

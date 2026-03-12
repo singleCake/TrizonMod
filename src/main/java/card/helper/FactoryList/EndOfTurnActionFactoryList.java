@@ -1,6 +1,6 @@
 package card.helper.FactoryList;
 
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class EndOfTurnActionFactoryList extends AbstractFactoryList {
     public EndOfTurnActionFactoryList() {
@@ -12,7 +12,7 @@ public class EndOfTurnActionFactoryList extends AbstractFactoryList {
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[END] + " NL " + description;
+        return FUSED_CARD_TIMING[END] + " NL " + description + " NL ";
     }
 
     @Override

@@ -12,8 +12,9 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import basemod.abstracts.CustomSavable;
 import card.helper.CardBehavior;
 import card.helper.DefaultCardBooleans;
-import card.helper.TimingTip;
 import card.helper.TrizonCardBooleans;
+import card.helper.Modifier.CardModifierList;
+import card.helper.Tip.TimingTip;
 import card.helper.CardHelper;
 import fusable.Fusable;
 
@@ -42,12 +43,13 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         
         antiModifyCost(card1, card2);
         fuseBehavior(card1, card2);
+        fuseModifier(card1, card2);
         fuseBoolean(card1, card2);
         fuseDamageAndBlock(card1, card2);
         addToFusionData(card1);
         addToFusionData(card2);
         this.name = CardHelper.getFusedCardName(this);
-        this.rawDescription = behavior.generateRawDescription();
+        this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
         this.initializeDescription();
     }
 
@@ -55,11 +57,12 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     public boolean fuse(TrizonCard other) {
         antiModifyCost(this, other);
         fuseBehavior(this, other);
+        fuseModifier(this, other);
         fuseBoolean(this, other);
         fuseDamageAndBlock(this, other);
         addToFusionData(other);
         this.name = CardHelper.getFusedCardName(this);
-        this.rawDescription = behavior.generateRawDescription();
+        this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
         this.initializeDescription();
 
         return true;
@@ -83,6 +86,14 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         behavior1.fuse(behavior2);
         this.behavior = behavior1;
         this.behavior.setThisCard(this);
+    }
+
+    // 融合修改器
+    private void fuseModifier(TrizonCard card1, TrizonCard card2) {
+        CardModifierList modifiers1 = card1.modifier.clone();
+        CardModifierList modifiers2 = card2.modifier.clone();
+        modifiers1.fuse(modifiers2);
+        this.modifier = modifiers1;
     }
 
     // 融合词条
@@ -135,7 +146,10 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     public ArrayList<TimingTip> getTimingTips() {
-        return this.behavior.generateTimingTips();
+        ArrayList<TimingTip> tips = new ArrayList<>();
+        tips.addAll(this.behavior.generateTimingTips());
+        tips.addAll(this.modifier.getTips());
+        return tips;
     }
 
     @Override
@@ -150,6 +164,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         copy.anti_num = this.anti_num;
         copy.behavior = this.behavior.clone();
         copy.behavior.setThisCard(copy);
+        copy.modifier = this.modifier.clone();
         copy.trizonBooleans = this.trizonBooleans.clone();
         copy.textureImg = this.textureImg;
         copy.loadCardImage(copy.textureImg);
@@ -215,13 +230,15 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
                 this.behavior.setThisCard(this);
             }
 
+            this.modifier = CardModifierList.fromData(data.modifierData);
+
             if (data.img != null) {
                 this.textureImg = data.img;
                 this.loadCardImage(this.textureImg);
             }
 
             this.name = CardHelper.getFusedCardName(this);
-            this.rawDescription = behavior.generateRawDescription();
+            this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
             this.initializeDescription();
         }
     }
@@ -240,6 +257,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         public DefaultCardBooleans booleans;
         public TrizonCardBooleans trizonBooleans;
         public CardBehavior.BehaviorData behaviorData;
+        public CardModifierList.ModifierListData modifierData;
         public HashMap<String, Integer> fusionData = null;
 
         public CardData(TrizonFusedCard card) {
@@ -256,6 +274,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             this.booleans = new DefaultCardBooleans(card);
             this.trizonBooleans = card.trizonBooleans.clone();
             this.behaviorData = card.behavior.exportData();
+            this.modifierData = card.modifier.exportData();
             this.fusionData = new HashMap<>(card.fusionData);
         }
     }

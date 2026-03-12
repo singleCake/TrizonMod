@@ -3,6 +3,8 @@ package card.helper.Modifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 
+import card.helper.Tip.TimingTip;
+
 public class TrizonLycorisModifier extends AbstractCardModifier {
     private static final String DESCRIPTION = AbstractCardModifier.getDescription(TrizonLycorisModifier.class);
 
@@ -27,6 +29,11 @@ public class TrizonLycorisModifier extends AbstractCardModifier {
     @Override
     public String rawDescription() {
         return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public TimingTip getTimingTip() {
+        return new TimingTip("石蒜", rawDescription());
     }
 
     @Override

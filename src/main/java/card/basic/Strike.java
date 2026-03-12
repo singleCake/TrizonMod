@@ -1,6 +1,7 @@
 package card.basic;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
@@ -21,6 +22,8 @@ public class Strike extends TrizonCard {
     public Strike() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.damage = this.baseDamage = 6;
+        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(AbstractCard.CardTags.STARTER_STRIKE);
         reInitBehavior();
     }
 

@@ -9,6 +9,7 @@ import action.factory.TrizonSnowballActionFactory;
 import action.factory.TrizonTempCardInHandActionFactory;
 import card.TrizonCard;
 import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class Snowball extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Snowball.class);
@@ -49,5 +50,10 @@ public class Snowball extends TrizonCard {
         ShiftBehavior.addToUseBehavior(new TrizonTempCardInHandActionFactory(new Snowball()));
         
         return ShiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(CARD_STRINGS.EXTENDED_DESCRIPTION[0]);
     }
 }

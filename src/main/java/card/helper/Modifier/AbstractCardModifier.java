@@ -2,6 +2,7 @@ package card.helper.Modifier;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 import localization.TrizonFactoryStrings;
 
@@ -28,6 +29,8 @@ public abstract class AbstractCardModifier implements Fusable<AbstractCardModifi
     }
 
     public abstract String rawDescription();
+
+    public abstract TimingTip getTimingTip();
 
     public abstract AbstractCardModifier clone();
 

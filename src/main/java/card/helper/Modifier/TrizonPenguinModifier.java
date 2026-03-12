@@ -5,6 +5,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.StaticSpireField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 
+import card.helper.Tip.TimingTip;
+
 public class TrizonPenguinModifier extends AbstractCardModifier {
     private static final String DESCRIPTION = AbstractCardModifier.getDescription(TrizonPenguinModifier.class);
 
@@ -20,6 +22,11 @@ public class TrizonPenguinModifier extends AbstractCardModifier {
     @Override
     public String rawDescription() {
         return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public TimingTip getTimingTip() {
+        return new TimingTip("企鹅", rawDescription());
     }
 
     @Override

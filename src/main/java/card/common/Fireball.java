@@ -8,6 +8,7 @@ import action.factory.TrizonSpellActionFactory;
 import action.factory.TrizonTempCardInHandActionFactory;
 import card.TrizonCard;
 import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class Fireball extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Fireball.class);
@@ -51,5 +52,10 @@ public class Fireball extends TrizonCard {
         shiftBehavior.addToUseBehavior(new TrizonTempCardInHandActionFactory(new Fireball()));
 
         return shiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(CARD_STRINGS.EXTENDED_DESCRIPTION[0]);
     }
 }

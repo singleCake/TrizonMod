@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -30,6 +31,7 @@ import card.helper.FactoryList.OtherCardPlayedActionFactoryList;
 import card.helper.FactoryList.StartOfCombatFactoryList;
 import card.helper.FactoryList.StartOfTurnAfterExhaustedActionFactoryList;
 import card.helper.FactoryList.UseActionFactoryList;
+import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 import power.factory.AbstractTrizonPowerFactory;
 
@@ -250,9 +252,25 @@ public class CardBehavior implements Fusable<CardBehavior> {
         return rawDescription;
     }
 
+    private static final String POWER_FACTORY_TITLE = CardCrawlGame.languagePack.getUIString("Trizon:PowerFactoryTitle").TEXT[0];
+
     // 生成timing tip
     public ArrayList<TimingTip> generateTimingTips() {
         ArrayList<TimingTip> tips = new ArrayList<>();
+
+        StringBuilder powerFactoryDescription = new StringBuilder();
+        for (AbstractTrizonPowerFactory factory : powerFactorys) {
+            String raw = factory.rawDescription();
+            if (raw == null || raw.equals(""))                
+                continue;
+            if (powerFactoryDescription.length() > 0)
+                powerFactoryDescription.append(" NL ");
+            powerFactoryDescription.append(raw);
+        }
+
+        if (powerFactoryDescription.length() > 0) {
+            tips.add(new TimingTip(POWER_FACTORY_TITLE, powerFactoryDescription.toString()));
+        }
 
         for (AbstractFactoryList factoryList : allFactoryLists) {
             TimingTip tip = factoryList.generateTimingTip();

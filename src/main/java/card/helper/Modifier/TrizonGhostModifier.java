@@ -6,6 +6,8 @@ import com.evacipated.cardcrawl.modthespire.lib.StaticSpireField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.CardGroup;
 
+import card.helper.Tip.TimingTip;
+
 public class TrizonGhostModifier extends AbstractCardModifier {
     private static final String DESCRIPTION = AbstractCardModifier.getDescription(TrizonGhostModifier.class);
 
@@ -21,6 +23,11 @@ public class TrizonGhostModifier extends AbstractCardModifier {
     @Override
     public String rawDescription() {
         return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public TimingTip getTimingTip() {
+        return new TimingTip("幽灵", rawDescription());
     }
 
     @Override

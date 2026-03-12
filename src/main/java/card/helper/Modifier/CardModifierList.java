@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import card.TrizonCard;
+import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 
 public class CardModifierList implements Fusable<CardModifierList> {
@@ -42,7 +43,8 @@ public class CardModifierList implements Fusable<CardModifierList> {
             modifiedCost += modifier.modifyCost();
         }
         if (modifiedCost != 0) {
-            this_card.costForTurn = Math.max(0, this_card.cost + modifiedCost);
+            int newCost = Math.max(0, this_card.cost + modifiedCost);
+            this_card.costForTurn = Math.min(this_card.costForTurn, newCost);
             this_card.isCostModifiedForTurn = true;
         }
     }
@@ -66,6 +68,14 @@ public class CardModifierList implements Fusable<CardModifierList> {
         }
 
         return modifierDescription;
+    }
+
+    public ArrayList<TimingTip> getTips() {
+        ArrayList<TimingTip> tips = new ArrayList<>();
+        for (AbstractCardModifier modifier : modifiers) {
+            tips.add(modifier.getTimingTip());
+        }
+        return tips;
     }
 
     public CardModifierList clone() {
@@ -103,6 +113,58 @@ public class CardModifierList implements Fusable<CardModifierList> {
         }
 
         return true;
+    }
+
+    public ModifierListData exportData() {
+        ModifierListData data = new ModifierListData();
+        for (AbstractCardModifier modifier : modifiers) {
+            ModifierData modifierData = new ModifierData();
+            modifierData.className = modifier.getClass().getName();
+            modifierData.amount = modifier.amount;
+            data.modifiers.add(modifierData);
+        }
+        return data;
+    }
+
+    public static CardModifierList fromData(ModifierListData data) {
+        CardModifierList list = new CardModifierList();
+        if (data == null || data.modifiers == null) {
+            return list;
+        }
+
+        for (ModifierData modifierData : data.modifiers) {
+            if (modifierData == null || modifierData.className == null) {
+                continue;
+            }
+            AbstractCardModifier modifier = createModifier(modifierData.className, modifierData.amount);
+            if (modifier != null) {
+                list.addModifier(modifier);
+            }
+        }
+        return list;
+    }
+
+    private static AbstractCardModifier createModifier(String className, int amount) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            if (!AbstractCardModifier.class.isAssignableFrom(clazz)) {
+                return null;
+            }
+            @SuppressWarnings("unchecked")
+            Class<? extends AbstractCardModifier> modifierClass = (Class<? extends AbstractCardModifier>) clazz;
+            return modifierClass.getDeclaredConstructor(int.class).newInstance(amount);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public static class ModifierListData {
+        public ArrayList<ModifierData> modifiers = new ArrayList<>();
+    }
+
+    public static class ModifierData {
+        public String className;
+        public int amount;
     }
 
     @SpirePatch(clz = AbstractCard.class, method = "applyPowers")

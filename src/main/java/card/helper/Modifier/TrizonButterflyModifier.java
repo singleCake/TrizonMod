@@ -3,6 +3,8 @@ package card.helper.Modifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 
+import card.helper.Tip.TimingTip;
+
 public class TrizonButterflyModifier extends AbstractCardModifier {
     private static final String DESCRIPTION = AbstractCardModifier.getDescription(TrizonButterflyModifier.class);
 
@@ -27,6 +29,11 @@ public class TrizonButterflyModifier extends AbstractCardModifier {
     @Override
     public String rawDescription() {
         return String.format(DESCRIPTION, amount);
+    }
+
+    @Override
+    public TimingTip getTimingTip() {
+        return new TimingTip("蝴蝶", rawDescription());
     }
 
     @Override

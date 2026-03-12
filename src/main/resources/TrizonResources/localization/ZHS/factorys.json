@@ -242,5 +242,9 @@
 
     "TrizonPenguinModifier": {
         "DESCRIPTION": "本场战斗中每冻结一张手牌或一名敌人，伤害+ %d 。"
+    },
+
+    "TrizonGhostModifier": {
+        "DESCRIPTION": "本场战斗中每消耗一张牌，耗能减 %d [E] "
     }
 }

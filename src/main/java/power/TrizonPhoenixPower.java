@@ -18,9 +18,11 @@ public class TrizonPhoenixPower extends AbstractPower {
 
     AbstractCard cardToCopy;
 
+    private static int idOffset = 0;
+
     public TrizonPhoenixPower(AbstractCreature owner, AbstractCard card, int amount) {
         this.name = NAME;
-        this.ID = POWER_ID;
+        this.ID = POWER_ID + idOffset++;
         this.owner = owner;
         this.cardToCopy = card;
         this.amount = amount;
@@ -42,6 +44,6 @@ public class TrizonPhoenixPower extends AbstractPower {
     public void atStartOfTurn() {
         flash();
         this.addToBot(new MakeTempCardInHandAction(cardToCopy, amount));
-        this.addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
+        this.addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }

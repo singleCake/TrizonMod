@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.factory.AbstractTrizonFactory;
 import card.TrizonCard;
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 
 public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList> {

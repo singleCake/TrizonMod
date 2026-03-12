@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
 import action.factory.AbstractTrizonFactory;
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class AttackActionFactoryList extends AbstractFactoryList {
     public AttackActionFactoryList() {
@@ -25,7 +25,7 @@ public class AttackActionFactoryList extends AbstractFactoryList {
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[ATTACK] + " NL " + description;
+        return FUSED_CARD_TIMING[ATTACK] + " NL " + description + " NL ";
     }
 
     @Override

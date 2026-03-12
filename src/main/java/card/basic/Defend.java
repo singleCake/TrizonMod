@@ -1,5 +1,6 @@
 package card.basic;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
@@ -20,6 +21,7 @@ public class Defend extends TrizonCard {
     public Defend() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.block = this.baseBlock = 5;
+        this.tags.add(AbstractCard.CardTags.STARTER_DEFEND);
         reInitBehavior();
     }
 

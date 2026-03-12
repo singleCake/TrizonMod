@@ -1,7 +1,7 @@
 package card.helper.FactoryList;
 
 import action.factory.AbstractTrizonFactory;
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class ExhaustActionFactoryList extends AbstractFactoryList {
     public ExhaustActionFactoryList() {
@@ -21,7 +21,7 @@ public class ExhaustActionFactoryList extends AbstractFactoryList {
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[EXHAUST] + " NL " + description;
+        return FUSED_CARD_TIMING[EXHAUST] + " NL " + description + " NL ";
     }
 
     @Override

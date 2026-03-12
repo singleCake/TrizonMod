@@ -33,6 +33,12 @@
         ]
     },
 
+    "Trizon:PowerFactoryTitle": {
+        "TEXT": [
+            "获得能力："
+        ]
+    },
+
     "Trizon:DefaultCardBooleans": {
         "TEXT": [
             " 消耗 ，",
@@ -50,6 +56,12 @@
             " trizon:金鱼 ，",
             " trizon:替罪羊 ，",
             " trizon:湿哒哒 ，"
+        ]
+    },
+
+    "Trizon:FuseInfoTip": {
+        "TEXT": [
+            "与攻击牌融合时，改为："
         ]
     }
 }

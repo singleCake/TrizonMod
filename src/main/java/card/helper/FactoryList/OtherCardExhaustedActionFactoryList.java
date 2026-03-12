@@ -3,7 +3,7 @@ package card.helper.FactoryList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import action.factory.AbstractTrizonFactory;
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class OtherCardExhaustedActionFactoryList extends AbstractFactoryList {
     public OtherCardExhaustedActionFactoryList() {
@@ -22,7 +22,7 @@ public class OtherCardExhaustedActionFactoryList extends AbstractFactoryList {
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[IN_HAND] + " NL " + description;
+        return FUSED_CARD_TIMING[IN_HAND] + " NL " + description + " NL ";
     }
 
     @Override

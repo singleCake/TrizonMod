@@ -1,6 +1,6 @@
 package card.helper.FactoryList;
 
-import card.helper.TimingTip;
+import card.helper.Tip.TimingTip;
 
 public class StartOfCombatFactoryList extends AbstractFactoryList {
     public StartOfCombatFactoryList() {
@@ -12,7 +12,7 @@ public class StartOfCombatFactoryList extends AbstractFactoryList {
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[START_OF_COMBAT] + " NL " + description;
+        return FUSED_CARD_TIMING[START_OF_COMBAT] + " NL " + description + " NL ";
     }
 
     @Override

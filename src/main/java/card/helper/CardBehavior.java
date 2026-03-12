@@ -236,6 +236,9 @@ public class CardBehavior implements Fusable<CardBehavior> {
     public String generateRawDescription() {
         String rawDescription = "";
 
+        rawDescription += DefaultCardBooleans.getRawDescription(this_card);
+        rawDescription += this_card.trizonBooleans.getRawDescription();
+
         for (AbstractTrizonPowerFactory factory : powerFactorys) {
             rawDescription += factory.rawDescription() + " NL ";
         }
@@ -245,6 +248,20 @@ public class CardBehavior implements Fusable<CardBehavior> {
         }
 
         return rawDescription;
+    }
+
+    // 生成timing tip
+    public ArrayList<TimingTip> generateTimingTips() {
+        ArrayList<TimingTip> tips = new ArrayList<>();
+
+        for (AbstractFactoryList factoryList : allFactoryLists) {
+            TimingTip tip = factoryList.generateTimingTip();
+            if (tip != null) {
+                tips.add(tip);
+            }
+        }
+
+        return tips;
     }
 
     public CardBehavior clone() {

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.factory.AbstractTrizonFactory;
 import card.TrizonCard;
+import card.helper.TimingTip;
 import fusable.Fusable;
 
 public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList> {
@@ -104,7 +105,22 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
     protected static final String[] FUSED_CARD_TIMING = CardCrawlGame.languagePack.getUIString("Trizon:FuseCardTiming").TEXT;
     protected static final int USE = 0, EXHAUST = 1, DRAWN = 2, IN_HAND = 3, 
         END = 4, ATTACK = 5, FROZEN = 6, IN_EXHAUST = 7, START_OF_COMBAT = 8;
+
+    protected String buildFactoriesDescription() {
+        StringBuilder description = new StringBuilder();
+        for (AbstractTrizonFactory factory : factorys) {
+            String raw = factory.rawDescription();
+            if (raw == null || raw.equals(""))
+                continue;
+            if (description.length() > 0)
+                description.append(" NL ");
+            description.append(raw);
+        }
+        return description.toString();
+    }
+
     public abstract String generateRawDescription();
+    public abstract TimingTip generateTimingTip();
 
     protected void addToBot(AbstractGameAction action) {
         AbstractDungeon.actionManager.addToBottom(action);

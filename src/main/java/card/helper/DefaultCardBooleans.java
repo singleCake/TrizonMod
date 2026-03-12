@@ -4,10 +4,13 @@ import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 import fusable.Fusable;
 
 public class DefaultCardBooleans implements Fusable<DefaultCardBooleans> {
+    private static final String[] KEYWORDS_STRINGS = CardCrawlGame.languagePack.getUIString("Trizon:DefaultCardBooleans").TEXT;
+
     public boolean exhaust = false;
     public boolean isEthereal = false;
     public boolean isInnate = false;
@@ -28,6 +31,27 @@ public class DefaultCardBooleans implements Fusable<DefaultCardBooleans> {
         card.isEthereal = booleans.isEthereal;
         card.isInnate = booleans.isInnate;
         card.selfRetain = booleans.selfRetain;
+    }
+
+    public static String getRawDescription(AbstractCard card) {
+        String rawDescription = "";
+        if (card.exhaust) {
+            rawDescription += KEYWORDS_STRINGS[0];
+        }
+        if (card.isEthereal) {
+            rawDescription += KEYWORDS_STRINGS[1];
+        }
+        if (card.isInnate) {
+            rawDescription += KEYWORDS_STRINGS[2];
+        }
+        if (card.selfRetain) {
+            rawDescription += KEYWORDS_STRINGS[3];
+        }
+        if (!rawDescription.isEmpty()) {
+            rawDescription += " NL ";
+        }
+
+        return rawDescription;
     }
 
     @Override

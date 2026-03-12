@@ -1,6 +1,7 @@
 package card.helper.FactoryList;
 
 import action.factory.AbstractTrizonFactory;
+import card.helper.TimingTip;
 
 public class ExhaustActionFactoryList extends AbstractFactoryList {
     public ExhaustActionFactoryList() {
@@ -16,14 +17,18 @@ public class ExhaustActionFactoryList extends AbstractFactoryList {
 
     @Override
     public String generateRawDescription() {
-        if (factorys.isEmpty())
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
             return "";
 
-        String exhaustDescription = FUSED_CARD_TIMING[EXHAUST] + " NL ";
-        
-        for (AbstractTrizonFactory factory : factorys)
-            exhaustDescription += factory.rawDescription() + " NL ";
-        
-        return exhaustDescription;
+        return FUSED_CARD_TIMING[EXHAUST] + " NL " + description;
+    }
+
+    @Override
+    public TimingTip generateTimingTip() {
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
+            return null;
+        return new TimingTip(FUSED_CARD_TIMING[EXHAUST], description);
     }
 }

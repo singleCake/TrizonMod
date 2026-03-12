@@ -289,7 +289,7 @@
 
     "Trizon:Arctic": {
         "NAME": "北极",
-        "DESCRIPTION": "不可被打出 。 NL 保留 。 这张牌被 trizon:冻结 时，使所有 trizon:法术 伤害+ !M! 。"
+        "DESCRIPTION": "不能被打出 。 NL 保留 。 这张牌被 trizon:冻结 时，使所有 trizon:法术 伤害+ !M! 。"
     },
 
     "Trizon:Hermit": {

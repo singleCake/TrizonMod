@@ -1,21 +1,25 @@
 package card.helper.FactoryList;
 
-import action.factory.AbstractTrizonFactory;
+import card.helper.TimingTip;
 
 public class StartOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryList {
     public StartOfTurnAfterExhaustedActionFactoryList() {
     }
-    
+
     @Override
     public String generateRawDescription() {
-        if (factorys.isEmpty())
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
             return "";
 
-        String startOfTurnDescription = FUSED_CARD_TIMING[IN_EXHAUST] + " NL ";
-        
-        for (AbstractTrizonFactory factory : factorys)
-            startOfTurnDescription += factory.rawDescription() + " NL ";
-        
-        return startOfTurnDescription;
+        return FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + description;
+    }
+
+    @Override
+    public TimingTip generateTimingTip() {
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
+            return null;
+        return new TimingTip(FUSED_CARD_TIMING[IN_EXHAUST], description);
     }
 }

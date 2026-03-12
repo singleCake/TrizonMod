@@ -31,5 +31,25 @@
             "这张牌在消耗牌堆时：",
             "每场战斗开始时："
         ]
+    },
+
+    "Trizon:DefaultCardBooleans": {
+        "TEXT": [
+            " 消耗 ，",
+            " 虚无 ，",
+            " 固有 ，",
+            " 保留 ，"
+        ]
+    },
+
+    "Trizon:TrizonCardBooleans": {
+        "TEXT": [
+            " 不能被打出 ，",
+            " trizon:病娇 ，",
+            " trizon:火焰 ，",
+            " trizon:金鱼 ，",
+            " trizon:替罪羊 ，",
+            " trizon:湿哒哒 ，"
+        ]
     }
 }

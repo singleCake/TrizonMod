@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import action.factory.AbstractTrizonFactory;
+import card.helper.TimingTip;
 import card.helper.Targeting.CardTargeting;
 import card.helper.Targeting.SnowballTargeting;
 import com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting;
@@ -59,10 +60,14 @@ public class UseActionFactoryList extends AbstractFactoryList {
 
     @Override
     public String generateRawDescription() {
-        String useDescription = "";
-        for (AbstractTrizonFactory factory : factorys) {
-            useDescription += factory.rawDescription() + " NL ";
-        }
-        return useDescription;
+        return buildFactoriesDescription();
+    }
+
+    @Override
+    public TimingTip generateTimingTip() {
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
+            return null;
+        return new TimingTip(FUSED_CARD_TIMING[USE], description);
     }
 }

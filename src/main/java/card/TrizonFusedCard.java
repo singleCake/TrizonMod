@@ -1,5 +1,6 @@
 package card;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import basemod.abstracts.CustomSavable;
 import card.helper.CardBehavior;
 import card.helper.DefaultCardBooleans;
+import card.helper.TimingTip;
 import card.helper.TrizonCardBooleans;
 import card.helper.CardHelper;
 import fusable.Fusable;
@@ -130,6 +132,10 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             return true;
         }
         return card1.type == card2.type;
+    }
+
+    public ArrayList<TimingTip> getTimingTips() {
+        return this.behavior.generateTimingTips();
     }
 
     @Override

@@ -3,11 +3,12 @@ package card.helper.FactoryList;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import action.factory.AbstractTrizonFactory;
+import card.helper.TimingTip;
 
 public class OtherCardPlayedActionFactoryList extends AbstractFactoryList {
     public OtherCardPlayedActionFactoryList() {
     }
-    
+
     public void behave(AbstractCard card) {
         for (AbstractTrizonFactory factory : factorys) {
             factory.receiveCard(card);
@@ -17,14 +18,18 @@ public class OtherCardPlayedActionFactoryList extends AbstractFactoryList {
 
     @Override
     public String generateRawDescription() {
-        if (factorys.isEmpty())
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
             return "";
 
-        String otherCardPlayedDescription = FUSED_CARD_TIMING[IN_HAND] + " NL ";
-        
-        for (AbstractTrizonFactory factory : factorys)
-            otherCardPlayedDescription += factory.rawDescription() + " NL ";
-        
-        return otherCardPlayedDescription;
+        return FUSED_CARD_TIMING[IN_HAND] + " NL " + description;
+    }
+
+    @Override
+    public TimingTip generateTimingTip() {
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
+            return null;
+        return new TimingTip(FUSED_CARD_TIMING[IN_HAND], description);
     }
 }

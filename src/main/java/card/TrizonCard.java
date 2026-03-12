@@ -32,7 +32,7 @@ public abstract class TrizonCard extends CustomCard {
 
     public CardModifierList modifier = new CardModifierList();
 
-    protected TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
+    public TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
 
     public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);

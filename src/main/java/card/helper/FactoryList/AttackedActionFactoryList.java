@@ -3,6 +3,7 @@ package card.helper.FactoryList;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 
 import action.factory.AbstractTrizonFactory;
+import card.helper.TimingTip;
 
 public class AttackedActionFactoryList extends AbstractFactoryList {
     public AttackedActionFactoryList() {
@@ -17,15 +18,19 @@ public class AttackedActionFactoryList extends AbstractFactoryList {
 
     @Override
     public String generateRawDescription() {
-        if (factorys.isEmpty())
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
             return "";
 
-        String attackedDescription = FUSED_CARD_TIMING[IN_HAND] + " NL ";
-        
-        for (AbstractTrizonFactory factory : factorys)
-            attackedDescription += factory.rawDescription() + " NL ";
-        
-        return attackedDescription;
+        return FUSED_CARD_TIMING[IN_HAND] + " NL " + description;
+    }
+
+    @Override
+    public TimingTip generateTimingTip() {
+        String description = buildFactoriesDescription();
+        if (description.equals(""))
+            return null;
+        return new TimingTip(FUSED_CARD_TIMING[IN_HAND], description);
     }
     
 }

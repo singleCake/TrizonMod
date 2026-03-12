@@ -58,5 +58,41 @@
         "DESCRIPTIONS": [
             "所有 #y法术 伤害增加 #b%d 。"
         ]
+    },
+    "TrizonRecyclePower": {
+        "NAME": "回收",
+        "DESCRIPTIONS": [
+            "本回合每 #y消耗 一张牌，抽 #b%d 张牌。"
+        ]
+    },
+    "TrizonFighterPower": {
+        "NAME": "街霸",
+        "DESCRIPTIONS": [
+            "每当你受到伤害时，对所有敌人造成 #b%d 点伤害。"
+        ]
+    },
+    "TrizonMeatWallPower": {
+        "NAME": "肉山",
+        "DESCRIPTIONS": [
+            "每回合结束时，增加 #b%d 张 #y肉 到你的抽牌堆。"
+        ]
+    },  
+    "TrizonBonfirePower": {
+        "NAME": "篝火",
+        "DESCRIPTIONS": [
+            "每当你抽到一张 #y火焰 牌，抽 #b%d 张牌。"
+        ]
+    },
+    "TrizonTwinsPower": {
+        "NAME": "双子",
+        "DESCRIPTIONS": [
+            "所有 #y火球 额外打出 %d 次。"
+        ]
+    },
+    "TrizonIceAmberPower": {
+        "NAME": "冰琥珀",
+        "DESCRIPTIONS": [
+            "每 #y冻结 一张牌，增加 #b%d 张随机非稀有牌到手牌。"
+        ]
     }
 }

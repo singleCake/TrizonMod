@@ -30,7 +30,7 @@ public class Hunter extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(6);
+            this.upgradeDamage(5);
 
             this.reInitBehavior();
         }

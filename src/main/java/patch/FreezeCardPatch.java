@@ -16,10 +16,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import action.TrizonUnFreezeAllCardAtStartOfTurnAction;
 import card.TrizonCard;
 import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
+import power.TrizonIceAmberPower;
 
 public class FreezeCardPatch {
     private static final String FREEZE_CARD_MESSAGE = CardCrawlGame.languagePack.getUIString("Trizon:FreezeCardMessage").TEXT[0];
@@ -39,6 +41,11 @@ public class FreezeCardPatch {
     }
 
     public static void Freeze(AbstractCard card) {
+        for (AbstractPower power : AbstractDungeon.player.powers) {
+            if (power instanceof TrizonIceAmberPower) {
+                ((TrizonIceAmberPower) power).onCardFrozen();
+            }
+        }
         if (card instanceof TrizonCard) {
             ((TrizonCard) card).triggerOnFrozen();
         }

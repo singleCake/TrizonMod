@@ -1,42 +1,42 @@
-package card.common;
+package card.uncommon;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import card.TrizonCard;
-import power.TrizonScavengerPower;
+import power.TrizonFighterPower;
 import power.factory.TrizonSimpleTemplatePowerFactory;
 
-public class Scavenger extends TrizonCard {
-    public static final String ID = card.helper.CardHelper.makeID(Scavenger.class);
+public class Fighter extends TrizonCard {
+    public static final String ID = card.helper.CardHelper.makeID(Fighter.class);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
-    private static final String IMG_PATH = "TrizonResources/img/cards/Scavenger.png";
-    private static final int COST = 1;
+    private static final String IMG_PATH = "TrizonResources/img/cards/Fighter.png";
+    private static final int COST = 2;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.POWER;
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
-    public Scavenger() {
+    public Fighter() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 2;
-        
+        this.magicNumber = this.baseMagicNumber = 7;
+
         reInitBehavior();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeMagicNumber(1);
+            upgradeName();
+            upgradeMagicNumber(3);
 
-            this.reInitBehavior();
+            reInitBehavior();
         }
     }
 
     @Override
-    protected void setBehavior() {
-        this.behavior.addToPowerFactorys(new TrizonSimpleTemplatePowerFactory(TrizonScavengerPower.class, baseMagicNumber));
+    public void setBehavior() {
+        this.behavior.addToPowerFactorys(new TrizonSimpleTemplatePowerFactory(TrizonFighterPower.class, baseMagicNumber));
     }
 }

@@ -24,6 +24,15 @@ public class TrizonFactoryStrings {
         return strings.DESCRIPTION;
     }
 
+    public static String getDescription(String factoryName) {
+        TrizonFactoryStrings strings = TrizonMod.factoryStringsMap.get(factoryName);
+        if (strings == null) {
+            TrizonMod.logger.warn("No factory strings found for " + factoryName);
+            return "[MISSING_DESCRIPTION]";
+        }
+        return strings.DESCRIPTION;
+    }
+
     public static String[] getExtendedDescription(Class<?> factory) {
         TrizonFactoryStrings strings = TrizonMod.factoryStringsMap.get(factory.getSimpleName());
         if (strings == null) {

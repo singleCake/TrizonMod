@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import action.TrizonSpellAction;
 
 public class TrizonSpellActionFactory extends AbstractTrizonFactory {
-    private int damage;
-    private AttackEffect attackEffect;
+    protected int damage;
+    protected AttackEffect attackEffect;
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSpellActionFactory.class);
 
     public TrizonSpellActionFactory(int damage, AttackEffect attackEffect) {

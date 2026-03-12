@@ -54,7 +54,7 @@ public class TrizonFrozenPower extends AbstractPower {
     }
 
     @Override
-    public void onInitialApplication() {
+    public void atStartOfTurn() {
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             public void update() {
                 if (TrizonFrozenPower.this.owner instanceof AbstractMonster) {

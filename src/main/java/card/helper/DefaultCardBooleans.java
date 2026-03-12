@@ -1,5 +1,8 @@
 package card.helper;
 
+import com.evacipated.cardcrawl.modthespire.lib.ByRef;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import fusable.Fusable;
@@ -34,5 +37,16 @@ public class DefaultCardBooleans implements Fusable<DefaultCardBooleans> {
         this.isInnate = this.isInnate || other.isInnate;
         this.selfRetain = this.selfRetain || other.selfRetain;
         return true;
+    }
+
+    @SpirePatch(clz = AbstractCard.class, method = "makeStatEquivalentCopy")
+    public static class MakeStatEquivalentCopyPatch {
+        @SpireInsertPatch(rloc = 6, localvars = {"card"})
+        public static void Insert(AbstractCard __instance, @ByRef AbstractCard[] card) {
+            card[0].exhaust = __instance.exhaust;
+            card[0].isEthereal = __instance.isEthereal;
+            card[0].isInnate = __instance.isInnate;
+            card[0].selfRetain = __instance.selfRetain;
+        }
     }
 }

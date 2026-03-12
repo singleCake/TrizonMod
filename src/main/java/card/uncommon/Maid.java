@@ -6,7 +6,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonAttackActionFactory;
 import card.TrizonCard;
-import power.factory.TrizonMaidPowerFactory;
+import power.TrizonMaidPower;
+import power.factory.TrizonSimpleTemplatePowerFactory;
 
 public class Maid extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Maid.class);
@@ -39,6 +40,6 @@ public class Maid extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HEAVY));
-        this.behavior.addToPowerFactorys(new TrizonMaidPowerFactory(1));
+        this.behavior.addToPowerFactorys(new TrizonSimpleTemplatePowerFactory(TrizonMaidPower.class, 1));
     }
 }

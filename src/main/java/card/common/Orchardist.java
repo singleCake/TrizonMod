@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import card.TrizonCard;
-import power.factory.TrizonOrchardistPowerFactory;
+import power.TrizonOrchardistPower;
+import power.factory.TrizonSimpleTemplatePowerFactory;
 
 public class Orchardist extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Orchardist.class);
@@ -36,6 +37,6 @@ public class Orchardist extends TrizonCard {
 
     @Override
     protected void setBehavior() {
-        this.behavior.addToPowerFactorys(new TrizonOrchardistPowerFactory(baseMagicNumber));
+        this.behavior.addToPowerFactorys(new TrizonSimpleTemplatePowerFactory(TrizonOrchardistPower.class, baseMagicNumber));
     }
 }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import action.TrizonUnFreezeCardAction;
 
 public class TrizonSwimActionFactory extends AbstractTrizonFactory {
-    AbstractCard card = null;
+    transient AbstractCard card = null;
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSwimActionFactory.class);
 
     public TrizonSwimActionFactory(int amount) {

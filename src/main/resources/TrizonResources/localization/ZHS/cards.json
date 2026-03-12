@@ -138,7 +138,7 @@
 
     "Trizon:Attack": {
         "NAME": "出击",
-        "DESCRIPTION": "随机打出手牌中一张攻击牌。 NL 消耗 。 NL 这张牌与攻击牌融合时，改为使攻击次数+1。"
+        "DESCRIPTION": "随机打出手牌中一张攻击牌。 NL 消耗 。"
     },
 
     "Trizon:Orchardist": {
@@ -159,7 +159,7 @@
 
     "Trizon:Hunter": {
         "NAME": "猎手",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 此牌击杀敌人后，返回手牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 此牌击杀敌人后，返回手牌且本回合耗能变为0。"
     },
 
     "Trizon:Demon": {
@@ -220,8 +220,8 @@
 
     "Trizon:Mushroom": {
         "NAME": "蘑菇",
-        "DESCRIPTION": "保留 。 NL 获得 [E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。",
-        "UPGRADE_DESCRIPTION": "保留 。 NL 获得 [E][E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。"
+        "DESCRIPTION": "保留 。 NL 获得 [E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "保留 。 NL 获得 [E] [E] 。 NL 回合结束时，若这张牌在手牌中，增加一张 *蘑菇 到手牌。 NL 消耗 。"
     },
 
     "Trizon:Harvest": {
@@ -292,6 +292,11 @@
         "DESCRIPTION": "不可被打出 。 NL 保留 。 这张牌被 trizon:冻结 时，使所有 trizon:法术 伤害+ !M! 。"
     },
 
+    "Trizon:Hermit": {
+        "NAME": "隐者",
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 随机冻结 !M! 张手牌。"
+    },
+
     "Trizon:Fighter": {
         "NAME": "街霸",
         "DESCRIPTION": "每当你受到伤害时，对所有敌人造成 !M! 点伤害。"
@@ -309,17 +314,12 @@
 
     "Trizon:Twins": {
         "NAME": "双子",
-        "DESCRIPTION": "trizon:火焰 。 NL 所有 *火球 额外造成一次伤害。"
+        "DESCRIPTION": "trizon:火焰 。 NL 所有 *火球 额外打出一次。"
     },
 
     "Trizon:IceAmber": {
         "NAME": "冰琥珀",
         "DESCRIPTION": "接下来 !M! 回合，每有一张手牌被 trizon:冻结 时，增加一张随机非稀有牌到手牌。"
-    },
-
-    "Trizon:Hermit": {
-        "NAME": "隐者",
-        "DESCRIPTION": "接下来 !M! 回合，每受到一次伤害， trizon:冻结 随机敌人。"
     },
 
 
@@ -362,7 +362,7 @@
     "Trizon:Recycle": {
         "NAME": "回收",
         "DESCRIPTION": "本回合每 消耗 一张牌，抽 !M! 张牌。",
-        "UPGRADE_DESCRIPTION": "保留 本回合每 消耗 一张牌，抽 !M! 张牌。"
+        "UPGRADE_DESCRIPTION": "保留 NL 本回合每 消耗 一张牌，抽 !M! 张牌。"
     },
     
     "Trizon:Abyss": {

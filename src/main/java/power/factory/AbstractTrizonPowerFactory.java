@@ -30,27 +30,15 @@ public abstract class AbstractTrizonPowerFactory implements Fusable<AbstractTriz
             fusedFactories.add(factory1.clone());
         }
 
-        // 相同的工厂进行融合，不同的工厂直接加入
-        for (AbstractTrizonPowerFactory factory1 : fusedFactories) {
-            for (AbstractTrizonPowerFactory factory2 : factories2) {
-                if (factory1.getClass().equals(factory2.getClass())) {
-                    if (!factory1.fuse(factory2)) {
-                        fusedFactories.add(factory2.clone());
-                    }
-                    break;
-                }
-            }
-        }
-
         for (AbstractTrizonPowerFactory factory2 : factories2) {
-            boolean found = false;
+            boolean fused = false;
             for (AbstractTrizonPowerFactory factory1 : fusedFactories) {
-                if (factory1.getClass().equals(factory2.getClass())) {
-                    found = true;
+                if (factory1.fuse(factory2)) {
+                    fused = true;
                     break;
                 }
             }
-            if (!found) {
+            if (!fused) {
                 fusedFactories.add(factory2.clone());
             }
         }

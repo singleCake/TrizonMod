@@ -67,19 +67,19 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     private void antiModifyCost(TrizonCard card1, TrizonCard card2) {
         this.anti_num = card1.anti_num + card2.anti_num;
         if (this.cost > 0) {
-            this.cost = Math.max(0, this.cost - this.anti_num);
+            int newCost = Math.max(0, this.cost - this.anti_num);
+            this.anti_num -= (this.cost - newCost);
+            this.cost = newCost;
         }
         this.costForTurn = this.cost;
     }
 
     // 融合行为
     private void fuseBehavior(TrizonCard card1, TrizonCard card2) {
-        if (card1.equals(this)) {
-            this.behavior.fuse(card2.behavior);
-        } else {
-            this.behavior = card1.behavior.clone();
-            this.behavior.fuse(card2.behavior);
-        }
+        CardBehavior behavior1 = card1.getShiftBehavior();
+        CardBehavior behavior2 = card2.getShiftBehavior();
+        behavior1.fuse(behavior2);
+        this.behavior = behavior1;
         this.behavior.setThisCard(this);
     }
 

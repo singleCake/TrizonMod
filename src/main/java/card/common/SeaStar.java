@@ -5,7 +5,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonGainBlockActionFactory;
 import card.TrizonCard;
-import power.factory.TrizonSeaStarPowerFactory;
+import power.TrizonSeaStarPower;
+import power.factory.TrizonSimpleTemplatePowerFactory;
 
 public class SeaStar extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(SeaStar.class);
@@ -40,6 +41,6 @@ public class SeaStar extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(baseBlock));
-        this.behavior.addToPowerFactorys(new TrizonSeaStarPowerFactory(baseMagicNumber));
+        this.behavior.addToPowerFactorys(new TrizonSimpleTemplatePowerFactory(TrizonSeaStarPower.class, baseMagicNumber));
     }
 }

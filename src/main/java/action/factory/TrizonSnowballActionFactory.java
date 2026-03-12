@@ -8,8 +8,8 @@ import action.TrizonFreezeCardAction;
 import action.TrizonFreezeEnemyAction;
 
 public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
-    AbstractCard targetCard;
-    AbstractCreature targetCreature;
+    transient AbstractCard targetCard;
+    transient AbstractCreature targetCreature;
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSnowballActionFactory.class);
 
     public TrizonSnowballActionFactory() {

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import card.TrizonCard;
 import fusable.Fusable;
@@ -39,6 +40,14 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
     }
     public void receiveDamageInfo(DamageInfo info) {}
     public void receiveCard(AbstractCard card) {}
+
+    protected AbstractCard resolveCardById(String cardID) {
+        if (cardID == null) {
+            return null;
+        }
+        AbstractCard base = CardLibrary.getCard(cardID);
+        return base == null ? null : base.makeStatEquivalentCopy();
+    }
 
     @Override
     public boolean fuse(AbstractTrizonFactory other) {

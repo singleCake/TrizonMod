@@ -60,8 +60,9 @@ public abstract class TrizonCard extends CustomCard {
         this.upgradedSpellNumber = true;
     }
 
-    // 部分卡牌在融合时有特殊效果，重写这个方法
-    public void onFuse(TrizonFusedCard fusedCard) {
+    // 部分卡牌在融合时改变效果，重写这个方法
+    public CardBehavior getShiftBehavior() {
+        return this.behavior.clone();
     }
 
     @Override

@@ -76,7 +76,7 @@
     },
 
     "TrizonSummonCardActionFactory": {
-        "DESCRIPTION": "增加 %d 张随机 #非稀有牌 到手牌。",
+        "DESCRIPTION": "增加 %d 张随机 非稀有牌 到手牌。",
         "EXTENDED_DESCRIPTION": [
             "且这些牌本回合耗能变为0。",
             "且这些牌获得 虚无 。"
@@ -95,7 +95,7 @@
     },
 
     "TrizonTempCardInHandActionFactory": {
-        "DESCRIPTION": "增加一张 %s 到手牌， %d 次。"
+        "DESCRIPTION": "增加 %d 张 %s 到手牌。"
     },
 
     "TrizonTempCardInDrawPileActionFactory": {
@@ -205,6 +205,30 @@
 
     "TrizonCremationPowerFactory": {
         "DESCRIPTION": "本回合每 消耗 一张非 火焰 牌，增加一张 火球 到手牌。"
+    },
+
+    "TrizonRecyclePowerFactory": {
+        "DESCRIPTION": "本回合每 消耗 一张牌，抽 %d 张牌。"
+    },
+
+    "TrizonFighterPowerFactory": {
+        "DESCRIPTION": "每当你受到伤害时，对所有敌人造成 %d 点伤害。"
+    },
+
+    "TrizonMeatWallPowerFactory": {
+        "DESCRIPTION": "每回合结束时，增加 %d 张 肉 到你的抽牌堆。"
+    },
+
+    "TrizonBonfirePowerFactory": {
+        "DESCRIPTION": "每当你抽到一张 火焰 牌，抽 %d 张牌。"
+    },
+
+    "TrizonTwinsPowerFactory": {
+        "DESCRIPTION": "所有 火球 额外打出一次。"
+    },
+
+    "TrizonIceAmberPowerFactory": {
+        "DESCRIPTION": "每冻结一张牌，增加 %d 张随机 非稀有牌 到手牌。"
     },
 
 

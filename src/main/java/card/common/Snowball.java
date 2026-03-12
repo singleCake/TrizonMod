@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonSnowballActionFactory;
+import action.factory.TrizonTempCardInHandActionFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
 
 public class Snowball extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Snowball.class);
@@ -39,5 +41,13 @@ public class Snowball extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonSnowballActionFactory());
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior ShiftBehavior = new CardBehavior();
+        ShiftBehavior.addToUseBehavior(new TrizonTempCardInHandActionFactory(new Snowball()));
+        
+        return ShiftBehavior;
     }
 }

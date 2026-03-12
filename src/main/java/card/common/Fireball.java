@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonSpellActionFactory;
+import action.factory.TrizonTempCardInHandActionFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
 
 public class Fireball extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Fireball.class);
@@ -41,5 +43,13 @@ public class Fireball extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.FIRE));
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior shiftBehavior = new CardBehavior();
+        shiftBehavior.addToUseBehavior(new TrizonTempCardInHandActionFactory(new Fireball()));
+
+        return shiftBehavior;
     }
 }

@@ -22,6 +22,7 @@ public class Mushroom extends TrizonCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 1;
         this.selfRetain = true;
+        this.exhaust = true;
         
         reInitBehavior();
     }
@@ -33,6 +34,8 @@ public class Mushroom extends TrizonCard {
             this.upgradeMagicNumber(1);
 
             this.reInitBehavior();
+            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 

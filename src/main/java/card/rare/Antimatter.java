@@ -18,6 +18,7 @@ public class Antimatter extends TrizonCard {
 
     public Antimatter() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
+        this.anti_num = 1;
         
         reInitBehavior();
     }

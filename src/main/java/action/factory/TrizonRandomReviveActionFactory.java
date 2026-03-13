@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 public class TrizonRandomReviveActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonRandomReviveActionFactory.class);
 
-    public TrizonRandomReviveActionFactory() {
-        this.amount = 1;
+    public TrizonRandomReviveActionFactory(int amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -21,9 +21,7 @@ public class TrizonRandomReviveActionFactory extends AbstractTrizonFactory {
 
     @Override
     public AbstractTrizonFactory clone() {
-        TrizonRandomReviveActionFactory copy = new TrizonRandomReviveActionFactory();
-        copy.amount = this.amount;
-        return copy;
+        return new TrizonRandomReviveActionFactory(this.amount);
     }
 
     @Override

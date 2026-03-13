@@ -1,12 +1,12 @@
 package card.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonSpellActionFactory;
 import action.factory.TrizonVampireActionFactory;
 import card.TrizonCard;
+import patch.TrizonEnum;
 
 public class Vampire extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Vampire.class);
@@ -39,7 +39,7 @@ public class Vampire extends TrizonCard {
 
     @Override
     public void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, AttackEffect.LIGHTNING));
+        this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, TrizonEnum.VAMPIRE));
         this.behavior.addToAttackBehavior(new TrizonVampireActionFactory());
     }
 }

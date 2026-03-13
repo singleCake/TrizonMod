@@ -30,6 +30,8 @@ public class IceCream extends TrizonCard {
             this.selfRetain = true;
 
             this.reInitBehavior();
+            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
         }
     }
 

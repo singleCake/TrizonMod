@@ -20,7 +20,7 @@ public class Fodder extends TrizonCard {
 
     public Fodder() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 8;
+        this.damage = this.baseDamage = 7;
         this.exhaust = true;
         
         reInitBehavior();

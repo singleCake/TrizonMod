@@ -20,7 +20,7 @@ public class Healing extends TrizonCard {
 
     public Healing() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 10;
+        this.magicNumber = this.baseMagicNumber = 8;
         this.isInnate = true;
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);
@@ -32,7 +32,7 @@ public class Healing extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(6);
+            this.upgradeMagicNumber(4);
 
             this.reInitBehavior();
         }

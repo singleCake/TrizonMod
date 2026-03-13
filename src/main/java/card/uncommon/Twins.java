@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import card.TrizonCard;
+import card.common.Fireball;
 import power.TrizonTwinsPower;
 import power.factory.TrizonSimpleTemplatePowerFactory;
 
@@ -21,6 +22,7 @@ public class Twins extends TrizonCard {
     public Twins() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.trizonBooleans.fire = true;
+        this.cardsToPreview = new Fireball();
         
         reInitBehavior();
     }

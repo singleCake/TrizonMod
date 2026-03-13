@@ -33,12 +33,12 @@
 
     "Trizon:Cat": {
         "NAME": "猫",
-        "DESCRIPTION": "造成 !D! 点伤害。 增加一张随机非稀有牌到你的手牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 增加一张随机非稀有牌到你的手牌。"
     },
 
     "Trizon:Butterfly": {
         "NAME": "蝶",
-        "DESCRIPTION": "造成 !D! 点伤害。这张牌在手牌中时，你每打出一张非攻击牌，伤害+ !M! 。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌在手牌中时，你每打出一张非攻击牌，伤害+ !M! 。"
     },
 
     "Trizon:Yandere": {
@@ -133,7 +133,7 @@
 
     "Trizon:Summon": {
         "NAME": "招魂",
-        "DESCRIPTION": "将随机一张已 消耗 的牌加入手牌。"
+        "DESCRIPTION": "将随机 !M! 张已 消耗 的牌加入手牌。"
     },
 
     "Trizon:Swim": {
@@ -165,7 +165,7 @@
 
     "Trizon:Hunter": {
         "NAME": "猎手",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 此牌击杀敌人后，返回手牌且本回合耗能变为0。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 此牌击杀敌人后，返回手牌且下次打出前耗能变为0。"
     },
 
     "Trizon:Demon": {
@@ -260,7 +260,7 @@
 
     "Trizon:Truce": {
         "NAME": "休战",
-        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 本回合无法再打出任何牌。 NL 消耗 。",
+        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 消耗 。",
         "EXTENDED_DESCRIPTION": [
             "打出时，给予所有敌人 %d 层虚弱。"
         ]
@@ -345,14 +345,14 @@
         "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点格挡。"
     },
 
-    "Trizon:Capture": {
-        "NAME": "逮捕",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 斩杀 ：本场战斗胜利后额外获得一次卡牌奖励。"
-    },
-
     "Trizon:Thunder": {
         "NAME": "天罚",
         "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌造成攻击伤害时，额外随机造成 !S! 点 trizon:法术 伤害。"
+    },
+    
+    "Trizon:Capture": {
+        "NAME": "逮捕",
+        "DESCRIPTION": "不可融合。 NL 不可升级。 NL 从牌组中移除这张牌。 NL 选择一张手牌 消耗 ，将选择的牌加入牌组。 NL 消耗 。"
     },
 
     "Trizon:Antimatter": {
@@ -382,7 +382,7 @@
     
     "Trizon:Abyss": {
         "NAME": "深渊",
-        "DESCRIPTION": "这张牌在消耗牌堆中时，每回合开始时增加 !M! 张非稀有牌到手牌，且这张牌获得 虚无 。 NL 消耗 。"
+        "DESCRIPTION": "消耗 。 NL 每回合开始时，若这张牌在消耗牌堆，增加 !M! 张非稀有牌到手牌，且这张牌获得 虚无 。"
     },
 
     "Trizon:Rain": {

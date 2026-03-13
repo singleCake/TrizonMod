@@ -17,7 +17,12 @@ public class TrizonHunterAction extends AbstractTrizonAction {
 
     @Override
     public void update() {
+        if (this.target == null || !(this.target instanceof AbstractMonster)) {
+            this.isDone = true;
+            return;
+        }
         if (((AbstractMonster) this.target).isDying || this.target.currentHealth <= 0) {
+            this.cardToModify.freeToPlayOnce = true;
             this.addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -31,13 +36,6 @@ public class TrizonHunterAction extends AbstractTrizonAction {
                         cardToModify.targetDrawScale = 0.75F;
                         cardToModify.applyPowers();
                         AbstractDungeon.player.discardPile.removeCard(cardToModify);
-                        this.addToBot(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                cardToModify.setCostForTurn(0);
-                                this.isDone = true;
-                            }
-                        });
                     }
                     
                     AbstractDungeon.player.hand.refreshHandLayout();

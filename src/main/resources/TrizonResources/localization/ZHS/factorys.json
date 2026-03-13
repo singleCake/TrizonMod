@@ -107,7 +107,7 @@
     },
 
     "TrizonHunterActionFactory": {
-        "DESCRIPTION": "若击杀敌人，这张牌返回手牌且本回合耗能变为0。"
+        "DESCRIPTION": "若击杀敌人，这张牌返回手牌且下次打出前耗能变为0。"
     },
 
     "TrizonVampireActionFactory": {
@@ -208,6 +208,10 @@
 
     "TrizonChimeraActionFactory": {
         "DESCRIPTION": "打出并消耗所有与其融合的牌。"
+    },
+
+    "TrizonCaptureActionFactory": {
+        "DESCRIPTION": "选择一张手牌消耗，将选择的牌加入牌组。"
     },
 
 

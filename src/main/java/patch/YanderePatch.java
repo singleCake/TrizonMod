@@ -19,9 +19,12 @@ public class YanderePatch {
 
     @SpirePatch(clz = AbstractCreature.class, method = "heal", paramtypez = {int.class, boolean.class})
     public static class HealPatch {
-        @SpireInsertPatch(rloc = 9)
+        @SpireInsertPatch(rloc = 22)
         public static void Insert(AbstractCreature __instance, int healAmount, boolean showEffect) {
             if (__instance.isPlayer) {
+                if (__instance.currentHealth == __instance.maxHealth || healAmount <= 0) {
+                    return;
+                }
                 AbstractDungeon.actionManager.addToTop(new TrizonYandereAction());
             }
         }

@@ -51,5 +51,7 @@ public class TrizonDrawFireAction extends AbstractTrizonAction {
         } 
 
         this.addToTop(new DrawCardAction(draw_count));
+
+        this.isDone = true;
     }
 }

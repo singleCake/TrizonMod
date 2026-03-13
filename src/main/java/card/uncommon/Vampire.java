@@ -22,6 +22,7 @@ public class Vampire extends TrizonCard {
     public Vampire() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.spellNumber = this.baseSpellNumber = 3;
+        this.tags.add(CardTags.HEALING);
         
         reInitBehavior();
     }

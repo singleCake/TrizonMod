@@ -12,7 +12,7 @@ public class EndOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryLis
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + description + " NL ";
+        return FUSED_CARD_TIMING[END_IN_EXHAUST] + " NL " + description + " NL ";
     }
 
     @Override
@@ -20,6 +20,6 @@ public class EndOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryLis
         String description = buildFactoriesDescription();
         if (description.equals(""))
             return null;
-        return new TimingTip(FUSED_CARD_TIMING[IN_EXHAUST], description);
+        return new TimingTip(FUSED_CARD_TIMING[END_IN_EXHAUST], description);
     }
 }

@@ -49,8 +49,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         addToFusionData(card1);
         addToFusionData(card2);
         this.name = CardHelper.getFusedCardName(this);
-        this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
-        this.initializeDescription();
+        this.initDescription();
     }
 
     @Override
@@ -62,8 +61,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         fuseDamageAndBlock(this, other);
         addToFusionData(other);
         this.name = CardHelper.getFusedCardName(this);
-        this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
-        this.initializeDescription();
+        this.initDescription();
 
         return true;
     }
@@ -81,8 +79,17 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
     // 融合行为
     private void fuseBehavior(TrizonCard card1, TrizonCard card2) {
-        CardBehavior behavior1 = card1.getShiftBehavior();
-        CardBehavior behavior2 = card2.getShiftBehavior();
+        CardBehavior behavior1 = null, behavior2 = null;
+        if (card1.type == CardType.ATTACK && card2.type == CardType.SKILL) {
+            behavior1 = card1.behavior.clone();
+            behavior2 = card2.getShiftBehavior();
+        } else if (card1.type == CardType.SKILL && card2.type == CardType.ATTACK) {
+            behavior1 = card1.getShiftBehavior();
+            behavior2 = card2.behavior.clone();
+        } else {
+            behavior1 = card1.behavior.clone();
+            behavior2 = card2.behavior.clone();
+        }
         behavior1.fuse(behavior2);
         this.behavior = behavior1;
         this.behavior.setThisCard(this);
@@ -145,6 +152,11 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         return card1.type == card2.type;
     }
 
+    public void initDescription() {
+        this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
+        this.initializeDescription();
+    }
+
     public ArrayList<TimingTip> getTimingTips() {
         ArrayList<TimingTip> tips = new ArrayList<>();
         tips.addAll(this.behavior.generateTimingTips());
@@ -161,27 +173,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     @Override
     public AbstractCard makeStatEquivalentCopy() {
         TrizonFusedCard copy = (TrizonFusedCard) super.makeStatEquivalentCopy();
-        copy.anti_num = this.anti_num;
-        copy.behavior = this.behavior.clone();
-        copy.behavior.setThisCard(copy);
-        copy.modifier = this.modifier.clone();
-        copy.trizonBooleans = this.trizonBooleans.clone();
-        copy.textureImg = this.textureImg;
-        copy.loadCardImage(copy.textureImg);
         copy.fusionData = new HashMap<>(this.fusionData);
-        copy.cardID = this.cardID;
-        copy.type = this.type;
-        copy.rarity = this.rarity;
-        copy.target = this.target;
-        copy.cost = this.cost;
-        copy.costForTurn = this.costForTurn;
-        copy.damage = copy.baseDamage = this.baseDamage;
-        copy.block = copy.baseBlock = this.baseBlock;
-        copy.damageTimes = copy.baseDamageTimes = this.baseDamageTimes;
-        copy.spellNumber = copy.baseSpellNumber = this.baseSpellNumber;
-        copy.name = this.name;
-        copy.rawDescription = this.rawDescription;
-        copy.initializeDescription();
         return copy;
     }
     
@@ -238,8 +230,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
             }
 
             this.name = CardHelper.getFusedCardName(this);
-            this.rawDescription = behavior.generateRawDescription() + modifier.rawDescription();
-            this.initializeDescription();
+            this.initDescription();
         }
     }
 

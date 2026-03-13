@@ -12,28 +12,39 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 public class TrizonPlayCardAction extends AbstractTrizonAction {
     private AbstractCard source_card;
     private CardGroup sourceGroup;
+    private boolean exhaust;
 
-    public TrizonPlayCardAction(AbstractCard source_card, AbstractCreature target, CardGroup sourceGroup) {
+    public TrizonPlayCardAction(AbstractCard source_card, AbstractCreature target, CardGroup sourceGroup, boolean exhaust) {
         this.duration = Settings.ACTION_DUR_FAST;
         this.source = (AbstractCreature)AbstractDungeon.player;
         this.source_card = source_card;
         this.target = target;
         this.sourceGroup = sourceGroup;
+        this.exhaust = exhaust;
     }
 
     public TrizonPlayCardAction(AbstractCard source_card, CardGroup sourceGroup) {
-        this(source_card, null, sourceGroup);
+        this(source_card, null, sourceGroup, false);
+    }
+
+    public TrizonPlayCardAction(AbstractCard source_card, boolean exhaust) {
+        this(source_card, null, null, exhaust);
     }
   
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
-            if (!this.sourceGroup.contains(source_card)) {
-                this.isDone = true;
-                return;
+            if (this.sourceGroup != null) {
+                if (!this.sourceGroup.contains(source_card)) {
+                    this.isDone = true;
+                    return;
+                }
+                this.sourceGroup.group.remove(source_card);
+                (AbstractDungeon.getCurrRoom()).souls.remove(source_card);
             }
-            this.sourceGroup.group.remove(source_card);
-            (AbstractDungeon.getCurrRoom()).souls.remove(source_card);
             AbstractCard card = source_card.makeSameInstanceOf();
+            if (this.exhaust) {
+                card.exhaustOnUseOnce = true;
+            }
             AbstractDungeon.player.limbo.group.add(card);
             card.target_x = Settings.WIDTH / 2.0F + 200.0F * Settings.xScale;
             card.target_y = Settings.HEIGHT / 2.0F;

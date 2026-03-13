@@ -12,7 +12,7 @@ public class OtherCardFrozenAfterExhaustedActionFactoryList extends AbstractFact
         if (description.equals(""))
             return "";
 
-        return FUSED_CARD_TIMING[IN_EXHAUST] + " NL " + description + " NL ";
+        return FUSED_CARD_TIMING[CARD_FROZEN_IN_EXHAUST] + " NL " + description + " NL ";
     }
 
     @Override
@@ -20,6 +20,6 @@ public class OtherCardFrozenAfterExhaustedActionFactoryList extends AbstractFact
         String description = buildFactoriesDescription();
         if (description.equals(""))
             return null;
-        return new TimingTip(FUSED_CARD_TIMING[IN_EXHAUST], description);
+        return new TimingTip(FUSED_CARD_TIMING[CARD_FROZEN_IN_EXHAUST], description);
     }
 }

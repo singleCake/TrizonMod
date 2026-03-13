@@ -1,40 +1,40 @@
-package card.DynamicVariable;
+package card.helper.DynamicVariable;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.DynamicVariable;
 import card.TrizonCard;
 
-public class SpellNumber extends DynamicVariable {
+public class DamageTimes extends DynamicVariable {
     @Override
     public String key() {
-        return "S"; 
+        return "T"; 
     }
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return card instanceof TrizonCard && ((TrizonCard)card).isSpellNumberModified;
+        return card instanceof TrizonCard && ((TrizonCard)card).isDamageTimesModified;
     }
 
     @Override
     public void setIsModified(AbstractCard card, boolean v) {
         if (card instanceof TrizonCard) {
-            ((TrizonCard)card).isSpellNumberModified = v;
+            ((TrizonCard)card).isDamageTimesModified = v;
         }
     }
 
     @Override
     public int value(AbstractCard card) {
-        return card instanceof TrizonCard ? ((TrizonCard)card).spellNumber : 0;
+        return card instanceof TrizonCard ? ((TrizonCard)card).damageTimes : 1;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return card instanceof TrizonCard ? ((TrizonCard)card).baseSpellNumber : 0;
+        return card instanceof TrizonCard ? ((TrizonCard)card).baseDamageTimes : 1;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return card instanceof TrizonCard && ((TrizonCard)card).upgradedSpellNumber;
+        return card instanceof TrizonCard && ((TrizonCard)card).upgradedDamageTimes;
     }
 }

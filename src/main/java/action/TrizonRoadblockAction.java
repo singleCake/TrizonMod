@@ -15,11 +15,11 @@ public class TrizonRoadblockAction extends AbstractTrizonAction {
     @Override
     public void update() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            RoadBlockPatch.CanUseThisTurnField.canUseThisTurn.set(c, false);
-            num--;
             if (num <= 0) {
                 break;
             }
+            RoadBlockPatch.CanUseThisTurnField.canUseThisTurn.set(c, false);
+            num--;
         }
         this.isDone = true;
     }

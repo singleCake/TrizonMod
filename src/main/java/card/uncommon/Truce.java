@@ -3,8 +3,11 @@ package card.uncommon;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
+import action.factory.TrizonFusedTruceActionFactory;
 import action.factory.TrizonTruceActionFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class Truce extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Truce.class);
@@ -20,6 +23,7 @@ public class Truce extends TrizonCard {
     public Truce() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
+        this.magicNumber = this.baseMagicNumber = 4;
         
         reInitBehavior();
     }
@@ -37,5 +41,17 @@ public class Truce extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonTruceActionFactory());
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior shiftBehavior = new CardBehavior();
+        shiftBehavior.addToUseBehavior(new TrizonFusedTruceActionFactory(baseMagicNumber));
+        return shiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(String.format(CARD_STRINGS.EXTENDED_DESCRIPTION[0], baseMagicNumber));
     }
 }

@@ -1,5 +1,6 @@
 package action;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -7,9 +8,16 @@ import patch.FreezeCardPatch;
 
 public class TrizonFreezeCardAction extends AbstractTrizonAction {
     AbstractCard card;
+    AbstractGameAction followUpAction;
+
     public TrizonFreezeCardAction(AbstractCard card) {
-        System.out.println("TrizonFreezeCardAction Freezing card " + card.name);
+        this(card, null);   
+    }
+
+    public TrizonFreezeCardAction(AbstractCard card, AbstractGameAction followUpAction) {
         this.card = card;
+        this.followUpAction = followUpAction;
+
     }
 
     @Override
@@ -19,6 +27,9 @@ public class TrizonFreezeCardAction extends AbstractTrizonAction {
                 FreezeCardPatch.Freeze(c);
                 break;
             }
+        }
+        if (followUpAction != null) {
+            this.addToTop(followUpAction);
         }
         this.isDone = true;
     }

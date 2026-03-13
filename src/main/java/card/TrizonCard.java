@@ -1,5 +1,6 @@
 package card;
 
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,7 @@ import card.helper.CardBehavior;
 import card.helper.TrizonCardBooleans;
 import card.helper.Modifier.CardModifierList;
 import card.helper.Tip.FuseInfoTip;
+import card.rare.Rain;
 import power.TrizonSpellBuffPower;
 
 import static modcore.TrizonMod.PlayerColorEnum.Trizon_COLOR;
@@ -95,6 +97,7 @@ public abstract class TrizonCard extends CustomCard {
 
     @Override
     public void triggerOnExhaust() {
+        this.rainExhaust();
         behavior.onExhaustBehavior();
     }
 
@@ -170,6 +173,48 @@ public abstract class TrizonCard extends CustomCard {
 
     public boolean isScapegoat() {
         return trizonBooleans.scapegoat;
+    }
+
+    public boolean isRain() {
+        return trizonBooleans.rain;
+    }
+
+    private void rainExhaust() {
+        if (isRain()) {
+            this.trizonBooleans.rain = false;
+            this.addToTop(new MakeTempCardInHandAction(this));
+            if (this instanceof Rain) {
+                ((Rain)this).afterExhaust();
+            } else if (this instanceof TrizonFusedCard) {
+                ((TrizonFusedCard) this).initDescription();
+            }
+        }
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        TrizonCard copy = (TrizonCard) super.makeStatEquivalentCopy();
+        copy.anti_num = this.anti_num;
+        copy.behavior = this.behavior.clone();
+        copy.behavior.setThisCard(copy);
+        copy.modifier = this.modifier.clone();
+        copy.trizonBooleans = this.trizonBooleans.clone();
+        copy.textureImg = this.textureImg;
+        copy.loadCardImage(copy.textureImg);
+        copy.cardID = this.cardID;
+        copy.type = this.type;
+        copy.rarity = this.rarity;
+        copy.target = this.target;
+        copy.cost = this.cost;
+        copy.costForTurn = this.costForTurn;
+        copy.damage = copy.baseDamage = this.baseDamage;
+        copy.block = copy.baseBlock = this.baseBlock;
+        copy.damageTimes = copy.baseDamageTimes = this.baseDamageTimes;
+        copy.spellNumber = copy.baseSpellNumber = this.baseSpellNumber;
+        copy.name = this.name;
+        copy.rawDescription = this.rawDescription;
+        copy.initializeDescription();
+        return copy;
     }
 
     @Override

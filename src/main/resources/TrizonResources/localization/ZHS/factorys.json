@@ -68,7 +68,7 @@
     },
 
     "TrizonSnowballActionFactory": {
-        "DESCRIPTION": "冻结一张手牌或一名敌人。"
+        "DESCRIPTION": "冻结一张手牌或一名敌人。若冻结手牌，获得 [E] [E] 。"
     },
 
     "TrizonSpellActionFactory": {
@@ -77,7 +77,7 @@
 
     "TrizonSummonCardActionFactory": {
         "DESCRIPTION": "增加 %d 张随机 非稀有牌 到手牌。",
-        "EXTENDED_DESCRIPTION": [
+        "EXTENDED_DESCRIPTIONS": [
             "且这些牌本回合耗能变为0。",
             "且这些牌获得 虚无 。"
         ]
@@ -85,9 +85,13 @@
 
     "TrizonSummonFireActionFactory": {
         "DESCRIPTION": "增加 %d 张随机 火焰牌 到手牌。",
-        "EXTENDED_DESCRIPTION": [
+        "EXTENDED_DESCRIPTIONS": [
             "且这些牌本回合耗能变为0。"
         ]
+    },
+
+    "TrizonFreezeAllEnemyActionFactory": {
+        "DESCRIPTION": "冻结所有敌人。"
     },
 
     "TrizonSwimActionFactory": {
@@ -111,7 +115,7 @@
     },
 
     "TrizonHarvestDrawnActionFactory": {
-        "DESCRIPTION": "若为未被格挡的法术伤害，抽 %d 张牌。"
+        "DESCRIPTION": "若为法术伤害，抽 %d 张牌。"
     },
 
     "TrizonHarvestActionFactory": {
@@ -182,6 +186,30 @@
         "DESCRIPTION": " 消耗 所有手牌，抽等量的牌， %d 次。"
     },
 
+    "TrizonTortureActionFactory": {
+        "DESCRIPTION": "对你造成 %d 点 法术 伤害 %d 次。"
+    },
+
+    "TrizonFusedTruceActionFactory": {
+        "DESCRIPTION": "给予所有敌人 %d 层虚弱。"
+    },
+
+    "TrizonFusedBlizzardActionFactory": {
+        "DESCRIPTION": "所有敌人失去 %d 点力量。"
+    },
+
+    "TrizonTravelerActionFactory": {
+        "DESCRIPTION": "将牌组中所有已消耗的牌放入抽牌堆。"
+    },
+
+    "TrizonHermitActionFactory": {
+        "DESCRIPTION": "随机冻结 %d 张手牌。"
+    },
+
+    "TrizonChimeraActionFactory": {
+        "DESCRIPTION": "打出并消耗所有与其融合的牌。"
+    },
+
 
     "TrizonPinataPowerFactory": {
         "DESCRIPTION": "本回合每受到一次伤害，增加 %d 张随机非稀有牌到你的手牌。"
@@ -228,7 +256,7 @@
     },
 
     "TrizonIceAmberPowerFactory": {
-        "DESCRIPTION": "每冻结一张牌，增加 %d 张随机 非稀有牌 到手牌。"
+        "DESCRIPTION": "接下来 %d 回合，每冻结一张牌，增加一张随机 非稀有牌 到手牌。"
     },
 
 

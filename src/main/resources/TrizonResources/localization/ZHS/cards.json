@@ -83,7 +83,7 @@
 
     "Trizon:Snowball": {
         "NAME": "雪球",
-        "DESCRIPTION": " trizon:冻结 一张手牌或一名敌人。 NL 消耗 。",
+        "DESCRIPTION": " trizon:冻结 一张手牌或一名敌人。若冻结手牌，获得 [E] [E] 。 NL 消耗 。",
         "EXTENDED_DESCRIPTION": [
             "打出时，增加一张雪球到手牌。"
         ]
@@ -200,7 +200,7 @@
 
     "Trizon:Chimera": {
         "NAME": "喀迈拉",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌被 消耗 时，打出并消耗所有与其融合的牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌被 消耗 时，打出并消耗所有与其 *融合 的牌。"
     },
 
     "Trizon:Phoenix": {
@@ -232,7 +232,7 @@
 
     "Trizon:Harvest": {
         "NAME": "秋收",
-        "DESCRIPTION": "对你与所有敌人造成 !S! 点 trizon:法术 伤害。 NL 每造成一次未被格挡的 trizon:法术 伤害，抽1张牌。"
+        "DESCRIPTION": "对你与所有敌人造成 !S! 点 trizon:法术 伤害。 NL 每造成一次 trizon:法术 伤害，抽1张牌。"
     },
 
     "Trizon:Raid": {
@@ -242,12 +242,15 @@
 
     "Trizon:Torture": {
         "NAME": "凌迟",
-        "DESCRIPTION": "对你或一名敌人造成 !S! 点 trizon:法术 伤害 !T! 次。 NL 消耗 。"
+        "DESCRIPTION": "对你或一名敌人造成 !S! 点 trizon:法术 伤害 !T! 次。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，对你造成 %d 点法术伤害 %d 次。"
+        ]
     },
 
     "Trizon:GoldFish": {
         "NAME": "金鱼",
-        "DESCRIPTION": " trizon:金鱼 。 NL 抽到这张牌时，增加 !M! 张随机0费牌到你的手牌。"
+        "DESCRIPTION": " trizon:金鱼 。 NL 抽到这张牌时，增加 !M! 张随机0费牌到你的手牌。 NL 消耗 。"
     },
 
     "Trizon:NewYear": {
@@ -257,7 +260,10 @@
 
     "Trizon:Truce": {
         "NAME": "休战",
-        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 本回合无法再打出任何牌。 NL 消耗 。"
+        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 本回合无法再打出任何牌。 NL 消耗 。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，给予所有敌人 %d 层虚弱。"
+        ]
     },
 
     "Trizon:Wise": {
@@ -295,7 +301,7 @@
 
     "Trizon:Arctic": {
         "NAME": "北极",
-        "DESCRIPTION": "不能被打出 。 NL 保留 。 这张牌被 trizon:冻结 时，使所有 trizon:法术 伤害+ !M! 。"
+        "DESCRIPTION": "不能被打出 。 NL 保留 。 NL 这张牌被 trizon:冻结 时，使所有 trizon:法术 伤害+ !M! 。"
     },
 
     "Trizon:Hermit": {
@@ -356,7 +362,10 @@
 
     "Trizon:Blizzard": {
         "NAME": "暴风雪",
-        "DESCRIPTION": " trizon:冻结 所有敌人。 NL 消耗 。"
+        "DESCRIPTION": " trizon:冻结 所有敌人。 NL 消耗 。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，所有敌人失去 %d 点力量。"
+        ]
     },
 
     "Trizon:Stillbirth": {
@@ -378,7 +387,10 @@
 
     "Trizon:Rain": {
         "NAME": "雨",
-        "DESCRIPTION": " trizon:湿哒哒 。 NL 消耗 。"
+        "DESCRIPTION": " trizon:湿哒哒 。 NL 不可升级。 NL 消耗 。",
+        "EXTENDED_DESCRIPTION": [
+            "不可升级。 NL 消耗 。"
+        ]
     },
 
     "Trizon:Croissant": {
@@ -394,7 +406,8 @@
 
     "Trizon:Traveler": {
         "NAME": "旅人",
-        "DESCRIPTION": "将牌组中所有已 消耗 的牌放入抽牌堆。"
+        "DESCRIPTION": "将牌组中所有已 消耗 的牌放入抽牌堆。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "将牌组中所有已 消耗 的牌放入抽牌堆。"
     },
 
 

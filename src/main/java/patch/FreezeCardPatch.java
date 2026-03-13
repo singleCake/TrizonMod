@@ -1,5 +1,6 @@
 package patch;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
@@ -75,6 +76,7 @@ public class FreezeCardPatch {
                 Texture freezeTexture = getFreezeTexture();
                 float drawX = __instance.current_x;
                 float drawY = __instance.current_y;
+                sb.setColor(Color.WHITE.cpy());
                 sb.draw(freezeTexture, drawX - 256.0F, drawY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, __instance.drawScale * Settings.scale, __instance.drawScale * Settings.scale, __instance.angle, 0, 0, 512, 512, false, false);
             }
         }

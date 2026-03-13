@@ -1,11 +1,14 @@
 package action.factory;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.TrizonFreezeCardAction;
-import action.TrizonFreezeEnemyAction;
+import action.TrizonGainEnergyAction;
+import power.TrizonFrozenPower;
 
 public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
     transient AbstractCard targetCard;
@@ -28,10 +31,10 @@ public class TrizonSnowballActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         if (targetCreature != null) {
-            return new TrizonFreezeEnemyAction(targetCreature);
+            return new ApplyPowerAction(targetCreature, AbstractDungeon.player, new TrizonFrozenPower(targetCreature));
         }
         if (targetCard != null) {
-            return new TrizonFreezeCardAction(targetCard);
+            return new TrizonFreezeCardAction(targetCard, new TrizonGainEnergyAction(2));
         }
         return null;
     }

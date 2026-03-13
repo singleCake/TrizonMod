@@ -1,6 +1,9 @@
 package power;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -37,6 +40,17 @@ public class TrizonIceAmberPower extends AbstractPower {
 
     public void onCardFrozen() {
         flash();
-        this.addToTop(new TrizonSummonCardAction(amount));
+        this.addToTop(new TrizonSummonCardAction(1));
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        flash();
+        addToBot(new DrawCardAction(1));
+
+        addToBot(new ReducePowerAction(owner, owner, POWER_ID, 1));
+        if (this.amount <= 0) {
+            addToBot(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
+        }
     }
 }

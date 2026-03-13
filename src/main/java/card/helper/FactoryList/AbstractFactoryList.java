@@ -104,7 +104,9 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
 
     protected static final String[] FUSED_CARD_TIMING = CardCrawlGame.languagePack.getUIString("Trizon:FuseCardTiming").TEXT;
     protected static final int USE = 0, EXHAUST = 1, DRAWN = 2, IN_HAND = 3, 
-        END = 4, ATTACK = 5, FROZEN = 6, IN_EXHAUST = 7, START_OF_COMBAT = 8;
+        END = 4, ATTACK = 5, FROZEN = 6, 
+        CARD_FROZEN_IN_EXHAUST = 7, ENEMY_FROZEN_IN_EXHAUST = 8, END_IN_EXHAUST = 9, START_IN_EXHAUST = 10,
+        START_OF_COMBAT = 11;
 
     protected String buildFactoriesDescription() {
         StringBuilder description = new StringBuilder();

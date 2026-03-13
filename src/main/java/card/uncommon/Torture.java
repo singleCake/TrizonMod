@@ -7,7 +7,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonSpellActionFactory;
+import action.factory.TrizonTortureActionFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class Torture extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Torture.class);
@@ -41,5 +44,17 @@ public class Torture extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonSpellActionFactory(baseSpellNumber, baseDamageTimes, AttackEffect.POISON));
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior shiftBehavior = new CardBehavior();
+        shiftBehavior.addToUseBehavior(new TrizonTortureActionFactory(baseSpellNumber, baseDamageTimes, AttackEffect.POISON));
+        return shiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(String.format(CARD_STRINGS.EXTENDED_DESCRIPTION[0], baseSpellNumber, baseDamageTimes));
     }
 }

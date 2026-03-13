@@ -92,7 +92,7 @@
     "TrizonIceAmberPower": {
         "NAME": "冰琥珀",
         "DESCRIPTIONS": [
-            "每 #y冻结 一张牌，增加 #b%d 张随机非稀有牌到手牌。"
+            "接下来 #b%d 回合， 每 #y冻结 一张牌，增加一张随机非稀有牌到手牌。"
         ]
     }
 }

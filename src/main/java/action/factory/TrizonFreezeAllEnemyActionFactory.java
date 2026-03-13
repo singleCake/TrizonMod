@@ -2,7 +2,8 @@ package action.factory;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
-import action.TrizonFreezeAllEnemyAction;
+import action.TrizonDebuffAllEnemyAction;
+import power.TrizonFrozenPower;
 
 public class TrizonFreezeAllEnemyActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonFreezeAllEnemyActionFactory.class);
@@ -12,7 +13,7 @@ public class TrizonFreezeAllEnemyActionFactory extends AbstractTrizonFactory {
 
     @Override
     public AbstractGameAction create() {
-        return new TrizonFreezeAllEnemyAction();
+        return new TrizonDebuffAllEnemyAction(TrizonFrozenPower::new);
     }
 
     @Override

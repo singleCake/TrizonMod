@@ -4,8 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.AbstractTrizonAction;
-import action.TrizonFreezeAllEnemyAction;
+import action.TrizonDebuffAllEnemyAction;
 import action.TrizonFreezeCardAction;
+import power.TrizonFrozenPower;
 
 public class TrizonTruceActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonTruceActionFactory.class);
@@ -34,7 +35,7 @@ public class TrizonTruceActionFactory extends AbstractTrizonFactory {
             for (int i = AbstractDungeon.player.hand.group.size() - 1; i >= 0; i--) {
                 this.addToTop(new TrizonFreezeCardAction(AbstractDungeon.player.hand.group.get(i)));
             }
-            this.addToTop(new TrizonFreezeAllEnemyAction());
+            this.addToTop(new TrizonDebuffAllEnemyAction(TrizonFrozenPower::new));
             this.isDone = true;
         }
     }

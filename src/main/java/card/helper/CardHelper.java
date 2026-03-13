@@ -11,6 +11,7 @@ import card.TrizonFusedCard;
 
 import static card.helper.Targeting.CardTargeting.CARD;
 import static card.helper.Targeting.SnowballTargeting.CARD_OR_ENEMY;
+import static com.evacipated.cardcrawl.mod.stslib.cards.targeting.SelfOrEnemyTargeting.SELF_OR_ENEMY;
 
 public class CardHelper {
     public static String makeID(Class<? extends CustomCard> cardClass) {
@@ -68,6 +69,8 @@ public class CardHelper {
         if (card1.target == CardTarget.SELF_AND_ENEMY || card2.target == CardTarget.SELF_AND_ENEMY || 
             card1.target == CardTarget.ENEMY || card2.target == CardTarget.ENEMY) {
             return CardTarget.ENEMY; // 必须指定一个敌人
+        } else if (card1.target == SELF_OR_ENEMY || card2.target == SELF_OR_ENEMY) {
+            return SELF_OR_ENEMY; // 需要指定一个目标，可以是自己或敌人
         } else if (card1.target == CARD_OR_ENEMY || card2.target == CARD_OR_ENEMY) {
             return CARD_OR_ENEMY; // 需要指定卡牌或敌人
         } else if (card1.target == CARD || card2.target == CARD) {

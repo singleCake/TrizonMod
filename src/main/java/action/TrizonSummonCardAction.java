@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTags;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import card.TrizonCard;
@@ -54,7 +55,7 @@ public class TrizonSummonCardAction extends AbstractTrizonAction {
     private TrizonCard getRandomTrizonCard() {
         CardGroup trizonCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (Map.Entry<String, AbstractCard> c : CardLibrary.cards.entrySet()) {
-            if (c.getValue() instanceof TrizonCard) {
+            if (c.getValue() instanceof TrizonCard && !c.getValue().hasTag(CardTags.HEALING)) {
                 if (this.cardFilter.test((TrizonCard) c.getValue())) {
                     trizonCards.addToBottom(c.getValue());
                 }

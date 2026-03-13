@@ -10,6 +10,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,6 +20,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import card.TrizonCard;
+import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -51,6 +54,16 @@ public class TrizonFrozenPower extends AbstractPower {
 
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0]);
+    }
+
+    @Override
+    public void onInitialApplication() {
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof TrizonCard) {
+                ((TrizonCard) c).triggerOnEnemyFrozenAfterExhausted();
+            }
+        }
+        FrozenNumFieldPatch.addFrozenNum();
     }
 
     @Override
@@ -127,7 +140,9 @@ public class TrizonFrozenPower extends AbstractPower {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractMonster __instance) {
             if (__instance.hasPower(POWER_ID)) {
-                return SpireReturn.Return(null);
+                if (((TrizonFrozenPower)__instance.getPower(POWER_ID)).isFrozen) {
+                    return SpireReturn.Return();
+                }
             }
             return SpireReturn.Continue();
         }

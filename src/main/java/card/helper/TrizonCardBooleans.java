@@ -14,6 +14,8 @@ public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
     public boolean scapegoat = false;
     public boolean rain = false;
 
+    public boolean gold = false;
+
     public TrizonCardBooleans() {
     }
 
@@ -53,6 +55,7 @@ public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
         this.goldfish = this.goldfish || other.goldfish;
         this.scapegoat = this.scapegoat || other.scapegoat;
         this.rain = this.rain || other.rain;
+        this.gold = this.gold || other.gold;
 
         return true;
     }
@@ -65,6 +68,7 @@ public class TrizonCardBooleans implements Fusable<TrizonCardBooleans> {
         copy.goldfish = this.goldfish;
         copy.scapegoat = this.scapegoat;
         copy.rain = this.rain;
+        copy.gold = this.gold;
         return copy;
     }
 }

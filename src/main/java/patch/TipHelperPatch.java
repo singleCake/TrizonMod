@@ -11,6 +11,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.StaticSpireField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -84,8 +85,14 @@ public class TipHelperPatch {
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTips")
     public static class SingleCardViewPopupRenderTipsPatch {
-        @SpireInsertPatch(rloc = 13, localvars = {"t"})
-        public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, @ByRef ArrayList<PowerTip>[] t) throws NoSuchFieldException, IllegalAccessException {
+        private static final String GOLD_CARD_TITLE = CardCrawlGame.languagePack
+                .getUIString("Trizon:GoldenCardTip").TEXT[0];
+        private static final String GOLD_CARD_DESC = CardCrawlGame.languagePack
+                .getUIString("Trizon:GoldenCardTip").TEXT[1];
+
+        @SpireInsertPatch(rloc = 13, localvars = { "t" })
+        public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, @ByRef ArrayList<PowerTip>[] t)
+                throws NoSuchFieldException, IllegalAccessException {
             Field cardField = SingleCardViewPopup.class.getDeclaredField("card");
             cardField.setAccessible(true);
             AbstractCard card = (AbstractCard) cardField.get(__instance);
@@ -97,6 +104,9 @@ public class TipHelperPatch {
                 FuseInfoTip fuseInfoTip = ((TrizonCard) card).getFuseInfoTip();
                 if (fuseInfoTip != null) {
                     t[0].add(0, new PowerTip(FuseInfoTip.TITLE, fuseInfoTip.description));
+                }
+                if (card instanceof TrizonCard && ((TrizonCard) card).trizonBooleans.gold) {
+                    t[0].add(0, new PowerTip(GOLD_CARD_TITLE, GOLD_CARD_DESC));
                 }
             }
         }

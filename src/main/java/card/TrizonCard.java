@@ -37,13 +37,16 @@ public abstract class TrizonCard extends CustomCard {
 
     public TrizonCardBooleans trizonBooleans = new TrizonCardBooleans();
 
-    public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
+    public TrizonCard(String id, String name, String img, int cost, String rawDescription, AbstractCard.CardType type,
+            AbstractCard.CardRarity rarity, AbstractCard.CardTarget target) {
         super(id, name, img, cost, rawDescription, type, Trizon_COLOR, rarity, target);
         this.textureImg = img;
         this.behavior.setThisCard(this);
+        setBgTexture();
     }
 
     protected abstract void setBehavior();
+
     protected void reInitBehavior() {
         this.behavior.clearBehavior();
         this.modifier.clear();
@@ -127,7 +130,7 @@ public abstract class TrizonCard extends CustomCard {
         behavior.onOtherCardExhaustedBehavior(c);
         modifier.triggerOnOtherCardExhausted(c);
     }
-    
+
     public void triggerOnFrozen() {
         behavior.onFrozenBehavior();
     }
@@ -158,11 +161,10 @@ public abstract class TrizonCard extends CustomCard {
         behavior.onEnemyFrozenAfterExhaustedBehavior();
     }
 
-
     public boolean isFire() {
         return trizonBooleans.fire;
     }
-    
+
     public boolean isYandere() {
         return trizonBooleans.yandere;
     }
@@ -184,7 +186,7 @@ public abstract class TrizonCard extends CustomCard {
             this.trizonBooleans.rain = false;
             this.addToTop(new MakeTempCardInHandAction(this));
             if (this instanceof Rain) {
-                ((Rain)this).afterExhaust();
+                ((Rain) this).afterExhaust();
             } else if (this instanceof TrizonFusedCard) {
                 ((TrizonFusedCard) this).initDescription();
             }
@@ -221,7 +223,8 @@ public abstract class TrizonCard extends CustomCard {
     public void applyPowers() {
         if (AbstractDungeon.player.hasPower(TrizonSpellBuffPower.POWER_ID)) {
             int tmp = this.baseSpellNumber;
-            TrizonSpellBuffPower power = (TrizonSpellBuffPower) AbstractDungeon.player.getPower(TrizonSpellBuffPower.POWER_ID);
+            TrizonSpellBuffPower power = (TrizonSpellBuffPower) AbstractDungeon.player
+                    .getPower(TrizonSpellBuffPower.POWER_ID);
             tmp += power.amount;
             this.spellNumber = tmp;
         }
@@ -230,16 +233,41 @@ public abstract class TrizonCard extends CustomCard {
         this.isSpellNumberModified = this.spellNumber != this.baseSpellNumber;
     }
 
-     @Override
-     public void calculateCardDamage(AbstractMonster mo) {
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
         if (AbstractDungeon.player.hasPower(TrizonSpellBuffPower.POWER_ID)) {
             int tmp = this.baseSpellNumber;
-            TrizonSpellBuffPower power = (TrizonSpellBuffPower) AbstractDungeon.player.getPower(TrizonSpellBuffPower.POWER_ID);
+            TrizonSpellBuffPower power = (TrizonSpellBuffPower) AbstractDungeon.player
+                    .getPower(TrizonSpellBuffPower.POWER_ID);
             tmp += power.amount;
             this.spellNumber = tmp;
         }
         super.calculateCardDamage(mo);
         this.isDamageTimesModified = this.damageTimes != this.baseDamageTimes;
         this.isSpellNumberModified = this.spellNumber != this.baseSpellNumber;
-     }
+    }
+
+    private static final String GOLD_ATTACK_512 = "TrizonResources/img/512/gold_attack_512.png";
+    private static final String GOLD_POWER_512 = "TrizonResources/img/512/gold_power_512.png";
+    private static final String GOLD_SKILL_512 = "TrizonResources/img/512/gold_skill_512.png";
+    private static final String GOLD_ATTACK_1024 = "TrizonResources/img/1024/gold_attack.png";
+    private static final String GOLD_POWER_1024 = "TrizonResources/img/1024/gold_power.png";
+    private static final String GOLD_SKILL_1024 = "TrizonResources/img/1024/gold_skill.png";
+    public void setBgTexture() {
+        if (this.trizonBooleans.gold) {
+            switch (this.type) {
+                case ATTACK:
+                    this.setBackgroundTexture(GOLD_ATTACK_512, GOLD_ATTACK_1024);
+                    break;
+                case POWER:
+                    this.setBackgroundTexture(GOLD_POWER_512, GOLD_POWER_1024);
+                    break;
+                case SKILL:
+                    this.setBackgroundTexture(GOLD_SKILL_512, GOLD_SKILL_1024);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

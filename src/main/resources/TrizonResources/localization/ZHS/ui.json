@@ -62,9 +62,29 @@
         ]
     },
 
+    "Trizon:GoldenCardTip": {
+        "TEXT": [
+            "金色",
+            "战斗掉落的稀有牌有小概率变为金色牌。"
+        ]
+    },
+
     "Trizon:FuseInfoTip": {
         "TEXT": [
             "与攻击牌融合时，改为："
+        ]
+    },
+
+    "Trizon:ChangeImgButton": {
+        "TEXT": [
+            "更换卡图"
+        ]
+    },
+
+    "Trizon:ChangeImgSelectCardEffect": {
+        "TEXT": [
+            "选择一张牌来作为卡图",
+            "取消"
         ]
     }
 }

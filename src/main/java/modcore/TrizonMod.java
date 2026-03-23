@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 
 import basemod.AutoAdd;
@@ -165,6 +166,7 @@ public class TrizonMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, "TrizonResources/localization/" + lang + "/powers.json");
         BaseMod.loadCustomStringsFile(RelicStrings.class, "TrizonResources/localization/" + lang + "/relics.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, "TrizonResources/localization/" + lang + "/ui.json");
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, "TrizonResources/localization/" + lang + "/tutorials.json");
         
         logger.info("loadJsonStrings: " + TrizonFactoryStrings.class.getSimpleName());
         @SuppressWarnings("unchecked")

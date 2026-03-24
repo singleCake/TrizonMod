@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public abstract class AbstractTrizonAction extends AbstractGameAction {
-    protected TrizonCard this_card; // 触发这个action的卡牌
+    protected AbstractTrizonCard<?> this_card; // 触发这个action的卡牌
     protected int times;
 
     protected int baseDamage;

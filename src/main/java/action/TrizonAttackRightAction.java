@@ -3,10 +3,10 @@ package action;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonAttackRightAction extends AbstractTrizonAction {
-    public TrizonAttackRightAction(TrizonCard cardPlayed, int damage, int times) {
+    public TrizonAttackRightAction(AbstractTrizonCard<?> cardPlayed, int damage, int times) {
         this.this_card = cardPlayed;
         for (int i = AbstractDungeon.getCurrRoom().monsters.monsters.size() - 1; i >= 0; i--) {
             if (!((AbstractDungeon.getCurrRoom()).monsters.monsters.get(i)).isDying &&

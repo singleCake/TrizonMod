@@ -1,5 +1,6 @@
 package card;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,7 +10,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
-import basemod.abstracts.CustomSavable;
 import card.helper.CardBehavior;
 import card.helper.DefaultCardBooleans;
 import card.helper.TrizonCardBooleans;
@@ -18,8 +18,7 @@ import card.helper.Tip.TimingTip;
 import card.helper.CardHelper;
 import fusable.Fusable;
 
-public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, CustomSavable<card.TrizonFusedCard.CardData> {
-
+public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.CardData> implements Fusable<AbstractTrizonCard<?>> {
     public HashMap<String, Integer> fusionData = new HashMap<>();
 
     public static final String ID = "TrizonMod:FusedCard";
@@ -33,7 +32,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
                 AbstractCard.CardTarget.NONE);
     }
 
-    public TrizonFusedCard(TrizonCard card1, TrizonCard card2) {
+    public TrizonFusedCard(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         super(ID, "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
                 CardHelper.getFusedCardCost(card1, card2),
                 "融合卡牌",
@@ -48,12 +47,13 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         fuseDamageAndBlock(card1, card2);
         addToFusionData(card1);
         addToFusionData(card2);
+        setBgTexture();
         this.name = CardHelper.getFusedCardName(this);
         this.initDescription();
     }
 
     @Override
-    public boolean fuse(TrizonCard other) {
+    public boolean fuse(AbstractTrizonCard<?> other) {
         antiModifyCost(this, other);
         fuseBehavior(this, other);
         fuseModifier(this, other);
@@ -67,7 +67,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 反物质修改费用
-    private void antiModifyCost(TrizonCard card1, TrizonCard card2) {
+    private void antiModifyCost(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         this.anti_num = card1.anti_num + card2.anti_num;
         if (this.cost > 0) {
             int newCost = Math.max(0, this.cost - this.anti_num);
@@ -78,7 +78,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 融合行为
-    private void fuseBehavior(TrizonCard card1, TrizonCard card2) {
+    private void fuseBehavior(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         CardBehavior behavior1 = null, behavior2 = null;
         if (card1.type == CardType.ATTACK && card2.type == CardType.SKILL) {
             behavior1 = card1.behavior.clone();
@@ -96,7 +96,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 融合修改器
-    private void fuseModifier(TrizonCard card1, TrizonCard card2) {
+    private void fuseModifier(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         CardModifierList modifiers1 = card1.modifier.clone();
         CardModifierList modifiers2 = card2.modifier.clone();
         modifiers1.fuse(modifiers2);
@@ -104,7 +104,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 融合词条
-    private void fuseBoolean(TrizonCard card1, TrizonCard card2) {
+    private void fuseBoolean(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         DefaultCardBooleans booleans;
         if (card1.type == CardType.ATTACK && card2.type == CardType.SKILL) {
             booleans = new DefaultCardBooleans(card1);
@@ -125,14 +125,14 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 融合伤害与格挡值（用于生成描述）
-    public void fuseDamageAndBlock(TrizonCard card1, TrizonCard card2) {
+    public void fuseDamageAndBlock(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         this.baseDamage = card1.baseDamage + card2.baseDamage;
         this.baseBlock = card1.baseBlock + card2.baseBlock;
         this.baseDamageTimes = Math.max(card1.baseDamageTimes, card2.baseDamageTimes);
     }
 
     // 记录融合材料
-    private void addToFusionData(TrizonCard material) {
+    private void addToFusionData(AbstractTrizonCard<?> material) {
         if (material instanceof TrizonFusedCard) {
             TrizonFusedCard fusedMaterial = (TrizonFusedCard) material;
             for (String key : fusedMaterial.fusionData.keySet()) {
@@ -144,7 +144,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
     }
 
     // 判断两种卡牌类型是否支持融合
-    public static boolean canFuse(TrizonCard card1, TrizonCard card2) {
+    public static boolean canFuse(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         if ((card1.type == CardType.ATTACK && card2.type == CardType.SKILL) ||
             (card1.type == CardType.SKILL && card2.type == CardType.ATTACK)) {
             return true;
@@ -192,6 +192,11 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
 
     // 存档逻辑
     @Override
+    public Type savedType() {
+        return CardData.class;
+    }
+
+    @Override
     public CardData onSave() {
         return new CardData(this);
     }  
@@ -216,6 +221,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
                 DefaultCardBooleans.applyBooleansToCard(data.booleans, this);
             }
             this.trizonBooleans = data.trizonBooleans != null ? data.trizonBooleans : new TrizonCardBooleans();
+            setBgTexture();
 
             if (data.behaviorData != null) {
                 this.behavior = CardBehavior.fromData(data.behaviorData);
@@ -234,7 +240,7 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         }
     }
 
-    public class CardData {
+    public static class CardData {
         public String img;
         public AbstractCard.CardType type;
         public AbstractCard.CardRarity rarity;
@@ -250,6 +256,9 @@ public class TrizonFusedCard extends TrizonCard implements Fusable<TrizonCard>, 
         public CardBehavior.BehaviorData behaviorData;
         public CardModifierList.ModifierListData modifierData;
         public HashMap<String, Integer> fusionData = null;
+
+        public CardData() {
+        }
 
         public CardData(TrizonFusedCard card) {
             this.img = card.textureImg;

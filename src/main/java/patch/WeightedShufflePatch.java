@@ -11,8 +11,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 
-import card.TrizonCard;
-
+import card.AbstractTrizonCard;
 
 public class WeightedShufflePatch {
     private static class WeightedCard {
@@ -29,8 +28,8 @@ public class WeightedShufflePatch {
         List<WeightedCard> weightedCards = new ArrayList<>();
         for (AbstractCard card : group.group) {
             float weight = AbstractDungeon.cardRandomRng.random(0.0F, 1.0F);
-            if (card instanceof TrizonCard) {
-                if (((TrizonCard) card).isGoldFish()) {
+            if (card instanceof AbstractTrizonCard) {
+                if (((AbstractTrizonCard<?>) card).isGoldFish()) {
                     weight *= 0.5F;
                 }
             }

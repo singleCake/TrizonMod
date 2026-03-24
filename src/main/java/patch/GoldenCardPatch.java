@@ -18,7 +18,9 @@ public class GoldenCardPatch {
         public static void Prefix(CardRewardScreen __instance, ArrayList<AbstractCard> cards, RewardItem rItem, String header) {
             for (AbstractCard card : cards) {
                 if (card instanceof TrizonCard && card.rarity == AbstractCard.CardRarity.RARE) {
-                    if (AbstractDungeon.cardRandomRng.randomBoolean(0.05f)) {
+                    float random = AbstractDungeon.cardRng.random();
+                    System.out.println("Random number for golden card: " + random);
+                    if (random < 0.05f) {
                         ((TrizonCard) card).trizonBooleans.gold = true;
                         ((TrizonCard) card).setBgTexture();
                     }

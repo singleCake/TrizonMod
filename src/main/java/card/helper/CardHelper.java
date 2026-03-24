@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import basemod.abstracts.CustomCard;
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.TrizonFusedCard;
 
 import static card.helper.Targeting.CardTargeting.CARD;
@@ -31,21 +31,21 @@ public class CardHelper {
         return cardName;
     }
 
-    public static int getFusedCardCost(TrizonCard card1, TrizonCard card2) {
+    public static int getFusedCardCost(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         // 暂时不考虑X费牌
         int cost1 = card1.cost >= 0 ? card1.cost : 0;
         int cost2 = card2.cost >= 0 ? card2.cost : 0;
         return cost1 + cost2;
     }
 
-    public static String getFusedCardImg(TrizonCard card1, TrizonCard card2) {
+    public static String getFusedCardImg(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         if (card2.type == CardType.ATTACK && card1.type == CardType.SKILL) {
             return card2.textureImg;
         }
         return card1.textureImg;
     }
 
-    public static CardType getFusedCardType(TrizonCard card1, TrizonCard card2) {
+    public static CardType getFusedCardType(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         if (card1.type == CardType.ATTACK || card2.type == CardType.ATTACK) {
             return CardType.ATTACK;
         } else if (card1.type == CardType.SKILL && card2.type == CardType.SKILL) {
@@ -57,7 +57,7 @@ public class CardHelper {
         }
     }
 
-    public static CardRarity getFusedCardRarity(TrizonCard card1, TrizonCard card2) {
+    public static CardRarity getFusedCardRarity(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         if (card1.rarity.ordinal() > card2.rarity.ordinal()) {
             return card1.rarity;
         } else {
@@ -65,7 +65,7 @@ public class CardHelper {
         }
     }
 
-    public static CardTarget getFusedCardTarget(TrizonCard card1, TrizonCard card2) {
+    public static CardTarget getFusedCardTarget(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
         if (card1.target == CardTarget.SELF_AND_ENEMY || card2.target == CardTarget.SELF_AND_ENEMY || 
             card1.target == CardTarget.ENEMY || card2.target == CardTarget.ENEMY) {
             return CardTarget.ENEMY; // 必须指定一个敌人

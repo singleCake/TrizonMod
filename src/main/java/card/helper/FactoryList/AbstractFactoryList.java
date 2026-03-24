@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import action.factory.AbstractTrizonFactory;
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 
 public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList> {
-    transient TrizonCard this_card;
+    transient AbstractTrizonCard<?> this_card;
     protected ArrayList<AbstractTrizonFactory> factorys = new ArrayList<>();
 
     public void clear() {
@@ -57,7 +57,7 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
         return copy;
     }
 
-    public void receiveThisCard(TrizonCard card) {
+    public void receiveThisCard(AbstractTrizonCard<?> card) {
         this.this_card = card;
         for (AbstractTrizonFactory factory : factorys) {
             factory.receiveThisCard(card);

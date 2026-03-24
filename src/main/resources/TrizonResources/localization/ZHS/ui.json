@@ -75,9 +75,12 @@
         ]
     },
 
-    "Trizon:ChangeImgButton": {
+    "Trizon:SingleCardViewButton": {
         "TEXT": [
-            "更换卡图"
+            "更换卡图",
+            "加入初始牌组",
+            "删除此牌",
+            "确定？"
         ]
     },
 
@@ -85,6 +88,21 @@
         "TEXT": [
             "选择一张牌来作为卡图",
             "取消"
+        ]
+    },
+
+    "Trizon:Collect": {
+        "TEXT": [
+            "将一张牌加入收藏"
+        ]
+    },
+
+    "Trizon:ChooseCollectScreen": {
+        "TEXT": [
+            "查看收藏",
+            "你收藏的卡牌，可左键选择一张加入初始牌组。",
+            "携带：",
+            "撤销"
         ]
     }
 }

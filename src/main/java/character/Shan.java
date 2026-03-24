@@ -7,6 +7,7 @@ import card.basic.Meat;
 import card.basic.Strike;
 import modcore.TrizonMod;
 import relics.TrizonFuseRelic;
+import ui.collect.ChooseCollectScreen;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -79,6 +80,13 @@ public class Shan extends CustomPlayer  {
         retVal.add(Meat.ID);
         retVal.add(Bear.ID);
         return retVal;
+    }
+
+    public void initializeStarterDeck() {
+        super.initializeStarterDeck();
+        if (ChooseCollectScreen.Inst.cardToObtain != null) {
+            this.masterDeck.addToTop(ChooseCollectScreen.Inst.cardToObtain.makeStatEquivalentCopy());
+        }
     }
 
     public ArrayList<String> getStartingRelics() {

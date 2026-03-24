@@ -8,7 +8,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.helper.Tip.TimingTip;
 import fusable.Fusable;
 
@@ -34,7 +34,7 @@ public class CardModifierList implements Fusable<CardModifierList> {
         return modifiedDamage;
     }
 
-    public void updateCost(TrizonCard this_card) {
+    public void updateCost(AbstractTrizonCard<?> this_card) {
         if (this_card.cost < 0) {
             return ;
         }
@@ -171,8 +171,8 @@ public class CardModifierList implements Fusable<CardModifierList> {
     public static class ApplyPowersPatch {
         @SpireInsertPatch(rloc = 9, localvars = {"tmp"})
         public static void Insert(AbstractCard __instance, @ByRef float[] tmp) {
-            if (__instance instanceof TrizonCard) {
-                tmp[0] = ((TrizonCard) __instance).modifier.modifyDamage((int)tmp[0]);
+            if (__instance instanceof AbstractTrizonCard) {
+                tmp[0] = ((AbstractTrizonCard<?>) __instance).modifier.modifyDamage((int)tmp[0]);
             }
         }   
     }
@@ -181,8 +181,8 @@ public class CardModifierList implements Fusable<CardModifierList> {
     public static class CalculateCardDamagePatch {
         @SpireInsertPatch(rloc = 9, localvars = {"tmp"})
         public static void Insert(AbstractCard __instance, AbstractMonster mo, @ByRef float[] tmp) {
-            if (__instance instanceof TrizonCard) {
-                tmp[0] = ((TrizonCard) __instance).modifier.modifyDamage((int)tmp[0]);
+            if (__instance instanceof AbstractTrizonCard) {
+                tmp[0] = ((AbstractTrizonCard<?>) __instance).modifier.modifyDamage((int)tmp[0]);
             }
         }
     }

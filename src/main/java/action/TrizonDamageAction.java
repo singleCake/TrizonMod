@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import patch.TrizonEnum;
 
 public class TrizonDamageAction extends AbstractTrizonAction {
     private DamageInfo info;
     private AttackEffect attackEffect;
 
-    public TrizonDamageAction(TrizonCard cardPlayed, AbstractCreature target, DamageInfo info,
+    public TrizonDamageAction(AbstractTrizonCard<?> cardPlayed, AbstractCreature target, DamageInfo info,
             AttackEffect attackEffect) {
         this.this_card = cardPlayed;
         this.target = target;
@@ -60,8 +60,10 @@ public class TrizonDamageAction extends AbstractTrizonAction {
                         .add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
             }
 
-            this.target.damage(this.info);
-            this.this_card.triggerOnAttack(this.target, this.info);
+            if (!this.target.isDying && !this.target.halfDead) {
+                this.target.damage(this.info);
+                this.this_card.triggerOnAttack(this.target, this.info);
+            }
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
                 AbstractDungeon.actionManager.clearPostCombatActions();

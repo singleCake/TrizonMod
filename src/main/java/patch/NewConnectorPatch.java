@@ -10,9 +10,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+
+import card.AbstractTrizonCard;
+
 import com.megacrit.cardcrawl.cards.CardGroup;
 
-import card.TrizonCard;
 
 public class NewConnectorPatch {
     @SpirePatch(clz = AbstractPlayer.class, method = "damage")
@@ -20,8 +22,8 @@ public class NewConnectorPatch {
         @SpireInsertPatch(rloc = 47, localvars = { "damageAmount" })
         public static void Insert(AbstractPlayer __instance, DamageInfo info, @ByRef int[] damageAmount) {
             for (AbstractCard c : __instance.hand.group) {
-                if (c instanceof TrizonCard) {
-                    damageAmount[0] = ((TrizonCard) c).triggerOnAttacked(info, damageAmount[0]);
+                if (c instanceof AbstractTrizonCard) {
+                    damageAmount[0] = ((AbstractTrizonCard<?>) c).triggerOnAttacked(info, damageAmount[0]);
                 }
             }
         }
@@ -32,8 +34,8 @@ public class NewConnectorPatch {
         @SpirePrefixPatch
         public static void Prefix(CardGroup __instance, AbstractCard c) {
             for (AbstractCard card : AbstractDungeon.player.hand.group) {
-                if (card instanceof TrizonCard && card.uuid != c.uuid) {
-                    ((TrizonCard) card).triggerOnOtherCardExhausted(c);
+                if (card instanceof AbstractTrizonCard && card.uuid != c.uuid) {
+                    ((AbstractTrizonCard<?>) card).triggerOnOtherCardExhausted(c);
                 }
             }
         }
@@ -45,8 +47,8 @@ public class NewConnectorPatch {
         public static void Postfix(AbstractPlayer __instance) {
             System.out.println("start of turn, powers: " + AbstractDungeon.player.powers.size());
             for (AbstractCard c : __instance.exhaustPile.group) {
-                if (c instanceof TrizonCard) {
-                    ((TrizonCard) c).triggerAtStartOfTurnAfterExhausted();
+                if (c instanceof AbstractTrizonCard) {
+                    ((AbstractTrizonCard<?>) c).triggerAtStartOfTurnAfterExhausted();
                 }
             }
         }
@@ -57,13 +59,13 @@ public class NewConnectorPatch {
         @SpirePostfixPatch
         public static void Postfix(GameActionManager __instance) {
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                if (c instanceof TrizonCard) {
-                    ((TrizonCard) c).triggerAtEndOfTurn();
+                if (c instanceof AbstractTrizonCard) {
+                    ((AbstractTrizonCard<?>) c).triggerAtEndOfTurn();
                 }
             }
             for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-                if (c instanceof TrizonCard) {
-                    ((TrizonCard) c).triggerAtEndOfTurnAfterExhausted();
+                if (c instanceof AbstractTrizonCard) {
+                    ((AbstractTrizonCard<?>) c).triggerAtEndOfTurnAfterExhausted();
                 }
             }
         }
@@ -74,8 +76,8 @@ public class NewConnectorPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractPlayer __instance) {
             for (AbstractCard c : __instance.drawPile.group) {
-                if (c instanceof TrizonCard) {
-                    ((TrizonCard) c).triggerAtStartOfCombatPreDraw();
+                if (c instanceof AbstractTrizonCard) {
+                    ((AbstractTrizonCard<?>) c).triggerAtStartOfCombatPreDraw();
                 }
             }
         }

@@ -14,36 +14,45 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 
 import basemod.ReflectionHacks;
-import card.TrizonCard;
+import basemod.abstracts.CustomCard;
 import card.TrizonFusedCard;
 import effect.ChangeImgSelectCardEffect;
-import ui.singleCardView.ChangeImgButton;
+import ui.singleCardView.SingleCardViewButton;
 
 public class ChangeImgPatch {
+    private static final String[] TEXT = CardCrawlGame.languagePack.getUIString("Trizon:SingleCardViewButton").TEXT;
+
     private static TrizonFusedCard card = null;
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = SpirePatch.CLASS)
     public static class ChangeImgButtonField {
-        public static SpireField<ChangeImgButton> changeImgButton = new SpireField<>(() -> null);
+        public static SpireField<SingleCardViewButton> changeImgButton = new SpireField<>(() -> null);
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = { AbstractCard.class, CardGroup.class })
     public static class OpenPatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance, AbstractCard card, CardGroup group) {
+            ChangeImgButtonField.changeImgButton.set(__instance, null);
+            ChangeImgPatch.card = null;
+
             if (AbstractDungeon.player == null) {
                 return;
             }
             if (card instanceof TrizonFusedCard && group.equals(AbstractDungeon.player.masterDeck)) {
                 ChangeImgButtonField.changeImgButton.set(__instance,
-                        new ChangeImgButton(300.0F * Settings.scale, Settings.HEIGHT / 5.0F * 4.0F));
+                        new SingleCardViewButton(300.0F * Settings.scale, Settings.HEIGHT / 5.0F * 4.0F, TEXT[0]));
                 ChangeImgPatch.card = (TrizonFusedCard) card;
-            } else {
-                ChangeImgButtonField.changeImgButton.set(__instance, null);
-                ChangeImgPatch.card = null;
             }
+        }
+    }
 
-            GridCardSelectScreenField.forChangeImg.set(AbstractDungeon.gridSelectScreen, false);
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = { AbstractCard.class })
+    public static class OpenNoGroupPatch {
+        @SpirePostfixPatch
+        public static void Postfix(SingleCardViewPopup __instance, AbstractCard card) {
+            ChangeImgButtonField.changeImgButton.set(__instance, null);
+            ChangeImgPatch.card = null;
         }
     }
 
@@ -51,7 +60,7 @@ public class ChangeImgPatch {
     public static class UpdatePatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance) {
-            ChangeImgButton button = ChangeImgButtonField.changeImgButton.get(__instance);
+            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
             if (button != null) {
                 button.update();
             }
@@ -62,7 +71,7 @@ public class ChangeImgPatch {
     public static class UpdateInputPatch {
         @SpireInsertPatch(rloc = 16)
         public static void Insert(SingleCardViewPopup __instance) {
-            ChangeImgButton button = ChangeImgButtonField.changeImgButton.get(__instance);
+            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
             if (button != null) {
                 if (button.hb.hovered) {
                     button.hb.clickStarted = true;
@@ -78,7 +87,7 @@ public class ChangeImgPatch {
     public static class RenderPatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance, SpriteBatch sb) {
-            ChangeImgButton button = ChangeImgButtonField.changeImgButton.get(__instance);
+            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
             if (button != null) {
                 button.render(sb);
             }
@@ -90,15 +99,25 @@ public class ChangeImgPatch {
         public static SpireField<Boolean> forChangeImg = new SpireField<>(() -> false);
     }
 
+    @SpirePatch(clz = GridCardSelectScreen.class, method = "open", paramtypez = { CardGroup.class, int.class,
+            String.class, boolean.class, boolean.class, boolean.class, boolean.class })
+    public static class GridCardSelectScreenOpenPatch {
+        @SpirePostfixPatch
+        public static void Postfix(GridCardSelectScreen __instance, CardGroup group, int numCards, String tipMsg,
+                boolean forUpgrade, boolean forTransform, boolean canCancel, boolean forPurge) {
+            GridCardSelectScreenField.forChangeImg.set(AbstractDungeon.gridSelectScreen, false);
+        }
+    }
+
     @SpirePatch(clz = GridCardSelectScreen.class, method = "update")
     public static class GridCardSelectScreenUpdatePatch {
-        private static TrizonCard hoveredCard = null;
+        private static AbstractCard hoveredCard = null;
 
         @SpireInsertPatch(rloc = 96)
         public static void Insert1(GridCardSelectScreen __instance) {
             if (GridCardSelectScreenField.forChangeImg.get(__instance)) {
-                TrizonCard hoveredCard = (TrizonCard) ReflectionHacks.getPrivate(
-                __instance, GridCardSelectScreen.class, "hoveredCard");
+                CustomCard hoveredCard = (CustomCard) ReflectionHacks.getPrivate(
+                        __instance, GridCardSelectScreen.class, "hoveredCard");
                 if (hoveredCard == null) {
                     return;
                 }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonBonfirePower extends AbstractPower {
     public static final String POWER_ID = TrizonBonfirePower.class.getSimpleName();
@@ -39,8 +39,8 @@ public class TrizonBonfirePower extends AbstractPower {
 
     @Override
     public void onCardDraw(AbstractCard card) {
-        if (card instanceof TrizonCard) {
-            if (((TrizonCard) card).isFire()) {
+        if (card instanceof AbstractTrizonCard) {
+            if (((AbstractTrizonCard<?>) card).isFire()) {
                 flash();
                 this.addToTop(new DrawCardAction(amount));
             }

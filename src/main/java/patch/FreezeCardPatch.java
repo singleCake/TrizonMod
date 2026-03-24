@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import action.TrizonUnFreezeAllCardAtStartOfTurnAction;
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 import power.TrizonIceAmberPower;
 
@@ -47,12 +47,12 @@ public class FreezeCardPatch {
                 ((TrizonIceAmberPower) power).onCardFrozen();
             }
         }
-        if (card instanceof TrizonCard) {
-            ((TrizonCard) card).triggerOnFrozen();
+        if (card instanceof AbstractTrizonCard) {
+            ((AbstractTrizonCard<?>) card).triggerOnFrozen();
         }
         for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-            if (c instanceof TrizonCard) {
-                ((TrizonCard) c).triggerOnOtherCardFrozenAfterExhausted();
+            if (c instanceof AbstractTrizonCard) {
+                ((AbstractTrizonCard<?>) c).triggerOnOtherCardFrozenAfterExhausted();
             }
         }
         FrozenNumFieldPatch.addFrozenNum();

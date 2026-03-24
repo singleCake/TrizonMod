@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.helper.Modifier.TrizonPenguinModifier.FrozenNumFieldPatch;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
@@ -59,8 +59,8 @@ public class TrizonFrozenPower extends AbstractPower {
     @Override
     public void onInitialApplication() {
         for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-            if (c instanceof TrizonCard) {
-                ((TrizonCard) c).triggerOnEnemyFrozenAfterExhausted();
+            if (c instanceof AbstractTrizonCard) {
+                ((AbstractTrizonCard<?>) c).triggerOnEnemyFrozenAfterExhausted();
             }
         }
         FrozenNumFieldPatch.addFrozenNum();

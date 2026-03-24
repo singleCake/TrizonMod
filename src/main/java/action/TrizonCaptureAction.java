@@ -15,8 +15,7 @@ public class TrizonCaptureAction extends AbstractTrizonAction {
 
     @Override
     public void update() {
-        AbstractDungeon.player.masterDeck.addToTop(card.makeStatEquivalentCopy());
-        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(card, Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
+        AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(card.makeStatEquivalentCopy(), Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
         this.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.hand));
         this.isDone = true;
     }

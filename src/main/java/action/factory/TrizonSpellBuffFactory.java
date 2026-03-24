@@ -8,7 +8,6 @@ import power.TrizonSpellBuffPower;
 
 public class TrizonSpellBuffFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonSpellBuffFactory.class);
-    private int amount;
 
     public TrizonSpellBuffFactory(int amount) {
         this.amount = amount;

@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import action.factory.AbstractTrizonFactory;
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.helper.FactoryList.AbstractFactoryList;
 import card.helper.FactoryList.AttackActionFactoryList;
 import card.helper.FactoryList.AttackedActionFactoryList;
@@ -36,7 +36,7 @@ import fusable.Fusable;
 import power.factory.AbstractTrizonPowerFactory;
 
 public class CardBehavior implements Fusable<CardBehavior> {
-    transient TrizonCard this_card = null;
+    transient AbstractTrizonCard<?> this_card = null;
     private ArrayList<AbstractTrizonPowerFactory> powerFactorys = new ArrayList<>();
     private ArrayList<AbstractFactoryList> allFactoryLists = new ArrayList<>();
 
@@ -320,7 +320,7 @@ public class CardBehavior implements Fusable<CardBehavior> {
         return true;
     }
 
-    public void setThisCard(TrizonCard card) {
+    public void setThisCard(AbstractTrizonCard<?> card) {
         this.this_card = card;
 
         for (AbstractFactoryList factoryList : allFactoryLists) {

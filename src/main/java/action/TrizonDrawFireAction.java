@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonDrawFireAction extends AbstractTrizonAction {
     public TrizonDrawFireAction(int amount) {
@@ -25,12 +25,12 @@ public class TrizonDrawFireAction extends AbstractTrizonAction {
             return;
         }
 
-        ArrayList<TrizonCard> cardsToDraw = new ArrayList<>();
+        ArrayList<AbstractTrizonCard<?>> cardsToDraw = new ArrayList<>();
         int draw_count = 0;
         for (AbstractCard c : p.drawPile.group) {
-            if (c instanceof TrizonCard) {
-                if (((TrizonCard)c).isFire()) {
-                    cardsToDraw.add((TrizonCard)c);
+            if (c instanceof AbstractTrizonCard) {
+                if (((AbstractTrizonCard<?>) c).isFire()) {
+                    cardsToDraw.add((AbstractTrizonCard<?>) c);
                     draw_count++;
                     if (draw_count >= this.amount) {
                         break;
@@ -39,7 +39,7 @@ public class TrizonDrawFireAction extends AbstractTrizonAction {
             }
         }
 
-        for (TrizonCard c : cardsToDraw) {
+        for (AbstractTrizonCard<?> c : cardsToDraw) {
             p.drawPile.removeCard(c);
             p.drawPile.addToTop(c);
         }

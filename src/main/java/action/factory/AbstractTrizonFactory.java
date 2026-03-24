@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import fusable.Fusable;
 import localization.TrizonFactoryStrings;
 
 public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFactory> {
-    protected transient TrizonCard this_card = null;  // 触发这个Action的卡牌
+    protected transient AbstractTrizonCard<?> this_card = null;  // 触发这个Action的卡牌
     protected transient AbstractCreature target = null;
     protected int times;
     protected int amount;
@@ -32,7 +32,7 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
 
 
     // 用于在调用接口中接收参数
-    public void receiveThisCard(TrizonCard card) {
+    public void receiveThisCard(AbstractTrizonCard<?> card) {
         this.this_card = card;  // 这个目前作为私有接口，在创建卡牌与融合卡牌时分配
     }
     public void receiveTarget(AbstractCreature target) {

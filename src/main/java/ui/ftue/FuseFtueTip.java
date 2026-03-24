@@ -1,4 +1,4 @@
-package ui.fute;
+package ui.ftue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.ui.FtueTip;
 
-public class FuseFuteTip extends FtueTip {
+public class FuseFtueTip extends FtueTip {
     private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack
             .getTutorialString("TrizonFuseTutorial");
 
@@ -41,7 +41,7 @@ public class FuseFuteTip extends FtueTip {
 
     private float startX;
 
-    public FuseFuteTip() {
+    public FuseFtueTip() {
         int i;
         for (i = 0; i < 7; i++) {
             this.img[++this.pageNum] = ImageMaster.loadImage("TrizonResources/img/tutorial/" + (i + 1) + ".jpg");

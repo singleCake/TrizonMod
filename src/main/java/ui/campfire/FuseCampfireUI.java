@@ -24,7 +24,7 @@ import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.TrizonFusedCard;
 import card.special.Empty;
 import card.special.EmptyFuseCard;
@@ -154,8 +154,8 @@ public class FuseCampfireUI {
         Iterator<AbstractCard> var2 = AbstractDungeon.player.masterDeck.group.iterator();
         while (var2.hasNext()) {
             AbstractCard c = var2.next();
-            if (c instanceof TrizonCard) {
-                TrizonCard trizonCard = (TrizonCard) c;
+            if (c instanceof AbstractTrizonCard) {
+                AbstractTrizonCard<?> trizonCard = (AbstractTrizonCard<?>) c;
                 if (trizonCard.canFuse()) {
                     cardGroup.addToTop(c);
                 }
@@ -213,8 +213,8 @@ public class FuseCampfireUI {
             card2 = card;
         }
         if (card1.cardID != Empty.ID && card2.cardID != Empty.ID) {
-            if (TrizonFusedCard.canFuse((TrizonCard) card1, (TrizonCard) card2)) {
-                fuseCard = new TrizonFusedCard((TrizonCard) card1, (TrizonCard) card2);
+            if (TrizonFusedCard.canFuse((AbstractTrizonCard<?>) card1, (AbstractTrizonCard<?>) card2)) {
+                fuseCard = new TrizonFusedCard((AbstractTrizonCard<?>) card1, (AbstractTrizonCard<?>) card2);
             } else {
                 fuseCard = new EmptyFuseCard();
             }

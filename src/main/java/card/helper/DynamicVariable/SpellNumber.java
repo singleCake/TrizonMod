@@ -3,7 +3,7 @@ package card.helper.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import basemod.abstracts.DynamicVariable;
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class SpellNumber extends DynamicVariable {
     @Override
@@ -13,28 +13,28 @@ public class SpellNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return card instanceof TrizonCard && ((TrizonCard)card).isSpellNumberModified;
+        return card instanceof AbstractTrizonCard && ((AbstractTrizonCard<?>)card).isSpellNumberModified;
     }
 
     @Override
     public void setIsModified(AbstractCard card, boolean v) {
-        if (card instanceof TrizonCard) {
-            ((TrizonCard)card).isSpellNumberModified = v;
+        if (card instanceof AbstractTrizonCard) {
+            ((AbstractTrizonCard<?>)card).isSpellNumberModified = v;
         }
     }
 
     @Override
     public int value(AbstractCard card) {
-        return card instanceof TrizonCard ? ((TrizonCard)card).spellNumber : 0;
+        return card instanceof AbstractTrizonCard ? ((AbstractTrizonCard<?>)card).spellNumber : 0;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return card instanceof TrizonCard ? ((TrizonCard)card).baseSpellNumber : 0;
+        return card instanceof AbstractTrizonCard ? ((AbstractTrizonCard<?>)card).baseSpellNumber : 0;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return card instanceof TrizonCard && ((TrizonCard)card).upgradedSpellNumber;
+        return card instanceof AbstractTrizonCard && ((AbstractTrizonCard<?>)card).upgradedSpellNumber;
     }
 }

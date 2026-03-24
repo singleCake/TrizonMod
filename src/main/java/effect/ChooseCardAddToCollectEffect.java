@@ -3,69 +3,49 @@ package effect;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
-import basemod.abstracts.CustomCard;
-import card.TrizonFusedCard;
-import patch.ChangeImgPatch.GridCardSelectScreenField;
+import patch.CollectPatch;
+import ui.collect.ChooseCollectScreen;
 
-public class ChangeImgSelectCardEffect extends AbstractGameEffect {
+public class ChooseCardAddToCollectEffect extends AbstractGameEffect {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack
-            .getUIString("Trizon:ChangeImgSelectCardEffect");
+            .getUIString("Trizon:Collect");
 
     public static final String[] TEXT = uiStrings.TEXT;
 
     private Color screenColor = AbstractDungeon.fadeColor.cpy();
 
-    private TrizonFusedCard card;
-
     private boolean imgSelected = false;
 
-    public ChangeImgSelectCardEffect(TrizonFusedCard card) {
+    public ChooseCardAddToCollectEffect() {
         if (AbstractDungeon.isScreenUp) {
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.overlayMenu.cancelButton.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
-        this.card = card;
         this.duration = 1.0F;
         this.screenColor.a = 0.0F;
 
-        CardGroup imgCardGroup = getImgCardGroup();
-        AbstractDungeon.gridSelectScreen.open(imgCardGroup, 1, TEXT[0], true, false, false, false);
-        GridCardSelectScreenField.forChangeImg.set(AbstractDungeon.gridSelectScreen, true);
+        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, TEXT[0], false, false, true, true);
     }
 
     public void update() {
         if (!imgSelected && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             imgSelected = true;
             AbstractCard selectedCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            card.textureImg = ((CustomCard) selectedCard).textureImg;
-            card.loadCardImage(card.textureImg);
-            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndDontObtainEffect(card.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-
+            ChooseCollectScreen.Inst.addToCollection(selectedCard.makeStatEquivalentCopy());
+            CollectPatch.hasChosenCollect = true;
+            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardBrieflyEffect(selectedCard.makeStatEquivalentCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             this.isDone = true;
         }
-    }
-
-    private CardGroup getImgCardGroup() {
-        CardGroup imgCardGroup = new CardGroup(CardGroupType.UNSPECIFIED);
-        for (String key : card.fusionData.keySet()) {
-            AbstractCard c = CardLibrary.getCard(key);
-            if (c.type == card.type) {
-                imgCardGroup.addToBottom(c);
-            }
-        }
-        return imgCardGroup;
     }
 
     public void render(SpriteBatch sb) {

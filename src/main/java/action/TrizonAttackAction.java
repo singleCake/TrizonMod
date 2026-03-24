@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonAttackAction extends AbstractTrizonAction {
-    public TrizonAttackAction(TrizonCard cardPlayed, AbstractCreature target, int damage, int times, AttackEffect attackEffect) {
+    public TrizonAttackAction(AbstractTrizonCard<?> cardPlayed, AbstractCreature target, int damage, int times, AttackEffect attackEffect) {
         this.this_card = cardPlayed;
         this.target = target;
         this.damage = this.baseDamage = damage;

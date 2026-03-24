@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StasisPower;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonYandereAction extends AbstractTrizonAction {
     private ArrayList<AbstractCard> yanderes = new ArrayList<>();
@@ -64,8 +64,8 @@ public class TrizonYandereAction extends AbstractTrizonAction {
     }
 
     private boolean isYandere(AbstractCard c) {
-        if (c instanceof TrizonCard) {
-            return ((TrizonCard) c).isYandere();
+        if (c instanceof AbstractTrizonCard) {
+            return ((AbstractTrizonCard<?>) c).isYandere();
         }
         return false;
     }

@@ -18,6 +18,7 @@ public class TrizonRemoveCardFromDeckAction extends AbstractTrizonAction {
             if (c.uuid.equals(card.uuid)) {
                 AbstractDungeon.player.masterDeck.removeCard(c);
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
+                break;
             }
         }
 

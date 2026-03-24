@@ -2,7 +2,6 @@ package relics;
 
 import java.util.ArrayList;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -11,7 +10,7 @@ import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 
 import basemod.abstracts.CustomRelic;
 import ui.campfire.FuseOption;
-import ui.fute.FuseFuteTip;
+import ui.ftue.FuseFtueTip;
 
 public class TrizonFuseRelic extends CustomRelic {
     public static final String ID = TrizonFuseRelic.class.getSimpleName();
@@ -31,7 +30,7 @@ public class TrizonFuseRelic extends CustomRelic {
 
     private void updateInput() {
         if (this.hb.hovered && InputHelper.justClickedRight) {
-            AbstractDungeon.ftue = new FuseFuteTip();
+            AbstractDungeon.ftue = new FuseFtueTip();
         }
     }
 

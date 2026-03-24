@@ -2,13 +2,11 @@ package action;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 
 public class TrizonHarvestAction extends AbstractTrizonAction {
-    TrizonCard cardPlayed;
-
-    public TrizonHarvestAction(TrizonCard cardPlayed, int amount) {
-        this.cardPlayed = cardPlayed;
+    public TrizonHarvestAction(AbstractTrizonCard<?> cardPlayed, int amount) {
+        this.this_card = cardPlayed;
         this.amount = amount;
     }
 
@@ -18,11 +16,11 @@ public class TrizonHarvestAction extends AbstractTrizonAction {
             if (!((AbstractDungeon.getCurrRoom()).monsters.monsters.get(i)).isDying &&
                     ((AbstractDungeon.getCurrRoom()).monsters.monsters.get(i)).currentHealth > 0 &&
                     !((AbstractDungeon.getCurrRoom()).monsters.monsters.get(i)).isEscaping) {
-                this.addToTop(new TrizonSpellAction(cardPlayed, (AbstractDungeon.getCurrRoom()).monsters.monsters.get(i), amount, 1, AttackEffect.FIRE));
+                this.addToTop(new TrizonSpellAction(this.this_card, (AbstractDungeon.getCurrRoom()).monsters.monsters.get(i), amount, 1, AttackEffect.FIRE));
             }
         }
 
-        this.addToTop(new TrizonSpellAction(cardPlayed, AbstractDungeon.player, amount, 1, AttackEffect.FIRE));
+        this.addToTop(new TrizonSpellAction(this.this_card, AbstractDungeon.player, amount, 1, AttackEffect.FIRE));
         this.isDone = true;
     }
 }

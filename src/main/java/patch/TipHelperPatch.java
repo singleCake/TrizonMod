@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
-import card.TrizonCard;
+import card.AbstractTrizonCard;
 import card.TrizonFusedCard;
 import card.helper.Tip.FuseInfoTip;
 import card.helper.Tip.TimingTip;
@@ -100,14 +100,14 @@ public class TipHelperPatch {
                 for (TimingTip tip : ((TrizonFusedCard) card).getTimingTips()) {
                     t[0].add(new PowerTip(tip.title, tip.description));
                 }
-            } else if (card instanceof TrizonCard) {
-                FuseInfoTip fuseInfoTip = ((TrizonCard) card).getFuseInfoTip();
+            } else if (card instanceof AbstractTrizonCard) {
+                FuseInfoTip fuseInfoTip = ((AbstractTrizonCard<?>) card).getFuseInfoTip();
                 if (fuseInfoTip != null) {
                     t[0].add(0, new PowerTip(FuseInfoTip.TITLE, fuseInfoTip.description));
                 }
-                if (card instanceof TrizonCard && ((TrizonCard) card).trizonBooleans.gold) {
-                    t[0].add(0, new PowerTip(GOLD_CARD_TITLE, GOLD_CARD_DESC));
-                }
+            }
+            if (card instanceof AbstractTrizonCard && ((AbstractTrizonCard<?>) card).trizonBooleans.gold) {
+                t[0].add(0, new PowerTip(GOLD_CARD_TITLE, GOLD_CARD_DESC));
             }
         }
     }

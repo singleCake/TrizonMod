@@ -13,7 +13,7 @@ public class Butterfly extends TrizonCard {
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
     private static final String IMG_PATH = "TrizonResources/img/cards/Butterfly.png";
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -21,7 +21,7 @@ public class Butterfly extends TrizonCard {
 
     public Butterfly() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 8;
+        this.damage = this.baseDamage = 2;
         this.magicNumber = this.baseMagicNumber = 2;
         reInitBehavior();
     }

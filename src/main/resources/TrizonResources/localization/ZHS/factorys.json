@@ -98,6 +98,10 @@
         "DESCRIPTION": "使一张已 冻结 的手牌解冻，然后你获得 %d 点 力量 。"
     },
 
+    "TrizonUnFreezeSelfFactory": {
+        "DESCRIPTION": "这张牌解冻。"
+    },
+
     "TrizonTempCardInHandActionFactory": {
         "DESCRIPTION": "增加 %d 张 %s 到手牌。"
     },
@@ -212,6 +216,10 @@
 
     "TrizonCaptureActionFactory": {
         "DESCRIPTION": "选择一张手牌消耗，将选择的牌加入牌组。"
+    },
+
+    "TrizonAlfneyActionFactory": {
+        "DESCRIPTION": "给予随机单位 %d 点格挡。"
     },
 
 

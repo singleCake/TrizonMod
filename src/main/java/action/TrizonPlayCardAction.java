@@ -2,7 +2,6 @@ package action;
 
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -58,11 +57,6 @@ public class TrizonPlayCardAction extends AbstractTrizonAction {
             else
                 addToTop(new NewQueueCardAction(card, true, false, true));
             addToTop(new UnlimboAction(card));
-            if (!Settings.FAST_MODE) {
-                addToTop(new WaitAction(Settings.ACTION_DUR_MED));
-            } else {
-                addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
-            } 
         } 
         this.isDone = true;
     }

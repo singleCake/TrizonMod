@@ -66,26 +66,19 @@ public class FuseCampfireUI {
         updateCardsMode();
         updateClicking();
 
-        if (fuseCard.cardID != EmptyFuseCard.ID) {
-            confirmButton.show();
-            confirmButton.isDisabled = false;
-            if (confirmButton.hb.hovered) {
-                if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed()) {
-                    // AbstractDungeon.effectList.add(new CampfireSelectCardEffect(2, fuseCard));
-                    // selectingCard = true;
-                    AbstractDungeon.topLevelEffects
-                            .add(new PurgeCardEffect(card1, Settings.WIDTH / 3.0F, Settings.HEIGHT / 2.0F));
-                    AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card1.uuid));
-                    AbstractDungeon.topLevelEffects
-                            .add(new PurgeCardEffect(card2, Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
-                    AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card2.uuid));
-                    AbstractDungeon.effectList.add(new CampfireFuseEffect(fuseCard));
-                    ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected = true;
-                }
+        if (confirmButton.hb.hovered && !confirmButton.isDisabled) {
+            if (InputHelper.justClickedLeft || CInputActionSet.select.isJustPressed()) {
+                AbstractDungeon.topLevelEffects
+                        .add(new PurgeCardEffect(card1, Settings.WIDTH / 3.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card1.uuid));
+                AbstractDungeon.topLevelEffects
+                        .add(new PurgeCardEffect(card2, Settings.WIDTH / 3.0F * 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.player.masterDeck.group.removeIf(c -> c.uuid.equals(card2.uuid));
+                AbstractDungeon.effectList.add(new CampfireFuseEffect(fuseCard));
+                ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.somethingSelected = true;
+                confirmButton.hide();
+                confirmButton.isDisabled = true;
             }
-        } else {
-            confirmButton.hide();
-            confirmButton.isDisabled = true;
         }
 
         this.cancelButton.update();
@@ -220,6 +213,14 @@ public class FuseCampfireUI {
             }
         } else {
             fuseCard = new EmptyFuseCard();
+        }
+
+        if (fuseCard.cardID != EmptyFuseCard.ID) {
+            confirmButton.show();
+            confirmButton.isDisabled = false;
+        } else {
+            confirmButton.hide();
+            confirmButton.isDisabled = true;
         }
     }
 

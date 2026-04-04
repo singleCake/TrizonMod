@@ -11,9 +11,8 @@ import card.TrizonFusedCard;
 public class TrizonChimeraAction extends AbstractTrizonAction {
     ArrayList<AbstractCard> cardsToPlay = new ArrayList<>();
     
-    public TrizonChimeraAction(AbstractTrizonCard<?> this_card, int times) {
+    public TrizonChimeraAction(AbstractTrizonCard<?> this_card) {
         this.this_card = this_card;
-        this.times = times;
 
         if (this_card instanceof TrizonFusedCard) {
             for (String key : ((TrizonFusedCard)this_card).fusionData.keySet()) {
@@ -28,9 +27,10 @@ public class TrizonChimeraAction extends AbstractTrizonAction {
     }
 
     @Override
-    public void actionRepeat() {
+    public void update() {
         for (AbstractCard c : cardsToPlay) {
             this.addToTop(new TrizonPlayCardAction(c, true));
         }
+        this.isDone = true;
     }
 }

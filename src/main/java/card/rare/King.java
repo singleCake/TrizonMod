@@ -21,8 +21,8 @@ public class King extends TrizonCard {
 
     public King() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 15;
-        this.block = this.baseBlock = 15;
+        this.damage = this.baseDamage = 16;
+        this.block = this.baseBlock = 16;
         
         reInitBehavior();
     }
@@ -31,8 +31,8 @@ public class King extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(5);
-            this.upgradeBlock(5);
+            this.upgradeDamage(4);
+            this.upgradeBlock(4);
 
             this.reInitBehavior();
         }

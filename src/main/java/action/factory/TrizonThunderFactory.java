@@ -10,7 +10,7 @@ import action.TrizonSpellAction;
 
 public class TrizonThunderFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonThunderFactory.class);
-    DamageInfo info;
+    transient DamageInfo info;
 
     public TrizonThunderFactory(int amount) {
         this.amount = amount;

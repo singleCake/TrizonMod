@@ -20,7 +20,7 @@ public class Hermit extends TrizonCard {
 
     public Hermit() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.block = this.baseBlock = 14;
+        this.block = this.baseBlock = 12;
         this.magicNumber = this.baseMagicNumber = 2;
         
         reInitBehavior();
@@ -30,7 +30,7 @@ public class Hermit extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeBlock(5);
+            this.upgradeBlock(4);
 
             this.reInitBehavior();
         }

@@ -38,6 +38,9 @@ public class TrizonDamageAction extends AbstractTrizonAction {
         }
         this.tickDuration();
         if (this.isDone) {
+            if (this.target == null) {
+                return;
+            }
             if (this.attackEffect == AttackEffect.POISON) {
                 this.target.tint.color.set(Color.CHARTREUSE.cpy());
                 this.target.tint.changeColor(Color.WHITE.cpy());

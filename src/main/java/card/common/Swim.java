@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonSwimActionFactory;
+import action.factory.TrizonUnFreezeSelfFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class Swim extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(Swim.class);
@@ -41,5 +44,18 @@ public class Swim extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonSwimActionFactory(baseMagicNumber));
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior shiftBehavior = new CardBehavior();
+        shiftBehavior.addToFrozenBehavior(new TrizonUnFreezeSelfFactory());
+
+        return shiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(CARD_STRINGS.EXTENDED_DESCRIPTION[0]);
     }
 }

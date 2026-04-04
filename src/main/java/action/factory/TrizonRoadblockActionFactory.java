@@ -12,13 +12,15 @@ public class TrizonRoadblockActionFactory extends AbstractTrizonFactory {
     @Override
     public AbstractGameAction create() {
         int num = 0;
+        boolean in_hand = false;
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             if (c.uuid.equals(this_card.uuid)) {
+                in_hand = true;
                 break;
             }
             num++;
         }
-        return new action.TrizonRoadblockAction(num);
+        return new action.TrizonRoadblockAction(in_hand ? num : 0);
     }
 
     @Override

@@ -80,4 +80,25 @@ public abstract class AbstractTrizonAction extends AbstractGameAction {
 
         this.damage = MathUtils.floor(tmp);
     }
+
+    @SuppressWarnings("rawtypes")
+    protected void applyPowersToBlock() {
+        float tmp = (float)this.baseBlock;
+
+        Iterator var2;
+        AbstractPower p;
+        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlock(tmp, this.this_card)) {
+            p = (AbstractPower)var2.next();
+        }
+
+        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlockLast(tmp)) {
+            p = (AbstractPower)var2.next();
+        }
+
+        if (tmp < 0.0F) {
+            tmp = 0.0F;
+        }
+
+        this.block = MathUtils.floor(tmp);
+    }
 }

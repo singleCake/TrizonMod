@@ -39,6 +39,6 @@ public class Chimera extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
-        this.behavior.addToExhaustBehavior(new TrizonChimeraActionFactory(1));
+        this.behavior.addToExhaustBehavior(new TrizonChimeraActionFactory());
     }
 }

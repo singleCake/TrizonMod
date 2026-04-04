@@ -12,7 +12,7 @@ public class Dragon extends TrizonCard {
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
     private static final String IMG_PATH = "TrizonResources/img/cards/Dragon.png";
-    private static final int COST = 3;
+    private static final int COST = 2;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -20,7 +20,7 @@ public class Dragon extends TrizonCard {
 
     public Dragon() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 11;
+        this.damage = this.baseDamage = 9;
         this.damageTimes = this.baseDamageTimes = 2;
         
         reInitBehavior();

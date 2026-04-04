@@ -13,7 +13,7 @@ public class Demon extends TrizonCard {
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String IMG_PATH = "TrizonResources/img/cards/Demon.png";
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -21,7 +21,7 @@ public class Demon extends TrizonCard {
 
     public Demon() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 12;
+        this.damage = this.baseDamage = 7;
 
         this.reInitBehavior();
     }
@@ -30,7 +30,7 @@ public class Demon extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(4);
+            this.upgradeDamage(3);
 
             this.reInitBehavior();
         }

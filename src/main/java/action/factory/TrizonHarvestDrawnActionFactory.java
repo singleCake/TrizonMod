@@ -9,7 +9,7 @@ import action.TrizonCheckAction;
 
 public class TrizonHarvestDrawnActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonHarvestDrawnActionFactory.class);
-    DamageInfo info;
+    transient DamageInfo info;
 
     public TrizonHarvestDrawnActionFactory(int amount) {
         this.amount = amount;

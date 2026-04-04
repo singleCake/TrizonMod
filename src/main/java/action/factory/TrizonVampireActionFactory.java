@@ -7,7 +7,7 @@ import action.TrizonVampireAction;
 
 public class TrizonVampireActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonVampireActionFactory.class);
-    DamageInfo info;
+    transient DamageInfo info;
 
     public TrizonVampireActionFactory() {
     }

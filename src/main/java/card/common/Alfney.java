@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
+import action.factory.TrizonAlfneyActionFactory;
 import action.factory.TrizonAttackActionFactory;
-import action.factory.TrizonSelfCopyToDrawPileActionFactory;
 import card.TrizonCard;
 
 public class Alfney extends TrizonCard {
@@ -21,7 +21,8 @@ public class Alfney extends TrizonCard {
 
     public Alfney() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 7;
+        this.damage = this.baseDamage = 8;
+        this.block = this.baseBlock = 8;
         this.isEthereal = true;
         reInitBehavior();
     }
@@ -31,7 +32,7 @@ public class Alfney extends TrizonCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(3);
-            
+            this.upgradeBlock(3);
             this.reInitBehavior();
         }
     }
@@ -39,6 +40,6 @@ public class Alfney extends TrizonCard {
     @Override
     protected void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
-        this.behavior.addToExhaustBehavior(new TrizonSelfCopyToDrawPileActionFactory());
+        this.behavior.addToExhaustBehavior(new TrizonAlfneyActionFactory(baseBlock));
     }
 }

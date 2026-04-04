@@ -34,6 +34,7 @@ public class Fireball extends TrizonCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.exhaust = false;
+            this.upgradeSpellNumber(5);
             
             this.reInitBehavior();
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

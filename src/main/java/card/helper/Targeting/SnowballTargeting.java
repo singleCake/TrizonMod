@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import basemod.abstracts.CustomCard;
+
 public class SnowballTargeting extends TargetingHandler<card.helper.Targeting.SnowballTargeting.SnowballTarget> {
     @SpireEnum
     public static AbstractCard.CardTarget CARD_OR_ENEMY;
@@ -66,14 +68,23 @@ public class SnowballTargeting extends TargetingHandler<card.helper.Targeting.Sn
         hoveredCreature = null;
     }
 
+    private AbstractCard lastHoveredCard = null;
+
     @Override
     public void renderReticle(SpriteBatch sb) {
         if (hoveredCard != null) {
-            AbstractCard preview = hoveredCard.makeSameInstanceOf();
+            if (lastHoveredCard == null || !lastHoveredCard.uuid.equals(hoveredCard.uuid)) {
+                lastHoveredCard = hoveredCard.makeSameInstanceOf();
+            }
+
+            AbstractCard preview = lastHoveredCard;
+
             preview.drawScale = hoveredCard.drawScale;
             preview.current_x = hoveredCard.current_x;
             preview.current_y = hoveredCard.current_y + AbstractCard.IMG_HEIGHT;
             preview.render(sb);
+        } else {
+            lastHoveredCard = null;
         }
 
         if (hoveredCreature != null) {

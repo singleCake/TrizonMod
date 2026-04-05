@@ -20,7 +20,7 @@ public class Typhoid extends TrizonCard {
 
     public Typhoid() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.spellNumber = this.baseSpellNumber = 8;
+        this.spellNumber = this.baseSpellNumber = 6;
         this.exhaust = true;
         
         reInitBehavior();
@@ -30,7 +30,7 @@ public class Typhoid extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeSpellNumber(4);
+            this.upgradeSpellNumber(3);
 
             this.reInitBehavior();
         }  

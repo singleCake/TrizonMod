@@ -16,7 +16,7 @@ import card.AbstractTrizonCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 
 
-public class NewConnectorPatch {
+public class NewHooksPatch {
     @SpirePatch(clz = AbstractPlayer.class, method = "damage")
     public static class DamagePatch {
         @SpireInsertPatch(rloc = 47, localvars = { "damageAmount" })

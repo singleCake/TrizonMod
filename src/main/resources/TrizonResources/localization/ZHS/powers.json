@@ -62,7 +62,7 @@
     "TrizonRecyclePower": {
         "NAME": "回收",
         "DESCRIPTIONS": [
-            "本回合每 #y消耗 一张牌，抽 #b%d 张牌。"
+            "本回合 #y临时添加卡牌 时，立即将那张牌移入消耗牌堆并获得 #b%d 点 #y格挡 。"
         ]
     },
     "TrizonFighterPower": {

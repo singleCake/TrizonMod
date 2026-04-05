@@ -97,6 +97,16 @@ public class CollectPatch {
         }
     }
 
+    @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = { AbstractCard.class })
+    public static class OpenNoGroupPatch {
+        @SpirePostfixPatch
+        public static void Postfix(SingleCardViewPopup __instance, AbstractCard card) {
+            ButtonField.obtainButton.set(__instance, null);
+            ButtonField.deleteButton.set(__instance, null);
+            cardInst = null;
+        }
+    }
+
     @SpirePatch(clz = SingleCardViewPopup.class, method = "update")
     public static class SingleCardViewUpdatePatch {
         @SpirePostfixPatch
@@ -158,17 +168,24 @@ public class CollectPatch {
     }
 
     @SpirePatch(clz = ReturnToMenuButton.class, method = SpirePatch.CLASS)
-    public static class EndRestartButtonField {
-        public static SpireField<CollectButton> restartField = new SpireField<>(() -> null);
+    public static class AddToCollectButtonField {
+        public static SpireField<CollectButton> collectField = new SpireField<>(() -> null);
     }
 
     public static boolean hasChosenCollect = false;
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "generateSeeds")
+    public static class ResetCollectPatch {
+        public static void Prefix() {
+            hasChosenCollect = false;
+        }
+    }
 
     @SpirePatch(clz = ReturnToMenuButton.class, method = SpirePatch.CONSTRUCTOR)
     public static class RButtonAdder {
         public static void Postfix(ReturnToMenuButton __instance) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                EndRestartButtonField.restartField.set(__instance, new CollectButton());
+                AddToCollectButtonField.collectField.set(__instance, new CollectButton());
             }
         }
     }
@@ -177,7 +194,8 @@ public class CollectPatch {
     public static class AppearInjecter {
         public static void Postfix(ReturnToMenuButton __instance, float x, float y, String label) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(__instance)).appear(x - 300.0F * Settings.scale,
+                ((CollectButton) AddToCollectButtonField.collectField.get(__instance)).appear(
+                        x - 300.0F * Settings.scale,
                         y, COLLECT_TEXT[0]);
             }
         }
@@ -187,7 +205,7 @@ public class CollectPatch {
     public static class HideInjecter {
         public static void Postfix(ReturnToMenuButton __instance) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(__instance)).hide();
+                ((CollectButton) AddToCollectButtonField.collectField.get(__instance)).hide();
             }
         }
     }
@@ -196,7 +214,7 @@ public class CollectPatch {
     public static class OptionsUpdateInjecter {
         public static void Postfix(ReturnToMenuButton __instance) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(__instance)).update();
+                ((CollectButton) AddToCollectButtonField.collectField.get(__instance)).update();
             }
         }
     }
@@ -205,7 +223,7 @@ public class CollectPatch {
     public static class OptionsRenderInjecter {
         public static void Postfix(ReturnToMenuButton __instance, SpriteBatch sb) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(__instance)).render(sb);
+                ((CollectButton) AddToCollectButtonField.collectField.get(__instance)).render(sb);
             }
         }
     }
@@ -215,7 +233,7 @@ public class CollectPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(VictoryScreen __instance, ReturnToMenuButton ___returnButton, float ___statsTimer) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(___returnButton)).y = Interpolation.pow3In
+                ((CollectButton) AddToCollectButtonField.collectField.get(___returnButton)).y = Interpolation.pow3In
                         .apply(Settings.HEIGHT * 0.1F, Settings.HEIGHT * 0.15F, ___statsTimer * 1.0F / 0.5F);
             }
         }
@@ -234,7 +252,7 @@ public class CollectPatch {
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(DeathScreen __instance, ReturnToMenuButton ___returnButton, float ___statsTimer) {
             if (AbstractDungeon.player instanceof Shan && !hasChosenCollect) {
-                ((CollectButton) EndRestartButtonField.restartField.get(___returnButton)).y = Interpolation.pow3In
+                ((CollectButton) AddToCollectButtonField.collectField.get(___returnButton)).y = Interpolation.pow3In
                         .apply(Settings.HEIGHT * 0.1F, Settings.HEIGHT * 0.15F, ___statsTimer * 1.0F / 0.5F);
             }
         }

@@ -3,6 +3,7 @@ package card.basic;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
+import action.factory.TrizonGainBlockActionFactory;
 import action.factory.TrizonGainEnergyActionFactory;
 import card.TrizonCard;
 
@@ -20,6 +21,7 @@ public class Meat extends TrizonCard {
     public Meat() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
+        this.block = this.baseBlock = 4;
         this.magicNumber = this.baseMagicNumber = 1;
         
         reInitBehavior();
@@ -29,16 +31,15 @@ public class Meat extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(1);
+            this.upgradeBlock(3);
 
             reInitBehavior();
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
         }
     }
 
     @Override
     protected void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonGainEnergyActionFactory(this.baseMagicNumber));
+        this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(this.baseBlock));
+        this.behavior.addToExhaustBehavior(new TrizonGainEnergyActionFactory(this.baseMagicNumber));
     }
 }

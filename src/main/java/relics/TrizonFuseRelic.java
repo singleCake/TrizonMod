@@ -29,6 +29,9 @@ public class TrizonFuseRelic extends CustomRelic {
     }
 
     private void updateInput() {
+        if (AbstractDungeon.player == null) {
+            return;
+        }
         if (this.hb.hovered && InputHelper.justClickedRight) {
             AbstractDungeon.ftue = new FuseFtueTip();
         }

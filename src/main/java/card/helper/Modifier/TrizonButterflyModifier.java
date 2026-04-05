@@ -33,7 +33,7 @@ public class TrizonButterflyModifier extends AbstractCardModifier {
 
     @Override
     public TimingTip getTimingTip() {
-        return new TimingTip("蝴蝶", rawDescription());
+        return new TimingTip("蝶", rawDescription());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TrizonButterflyModifier extends AbstractCardModifier {
 
     @Override
     public boolean fuse(AbstractCardModifier other) {
-        if (other instanceof TrizonLycorisModifier) {
+        if (other instanceof TrizonButterflyModifier) {
             this.amount += other.amount;
             return true;
         }

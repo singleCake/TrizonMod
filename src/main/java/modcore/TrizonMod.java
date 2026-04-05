@@ -141,6 +141,7 @@ public class TrizonMod implements
     @Override
     public void receiveEditRelics() {
         BaseMod.addRelicToCustomPool(new relics.TrizonFuseRelic(), PlayerColorEnum.Trizon_COLOR);
+        BaseMod.addRelicToCustomPool(new relics.TrizonChefRelic(), PlayerColorEnum.Trizon_COLOR);
     }
 
     @Override

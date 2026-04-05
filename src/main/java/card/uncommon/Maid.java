@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 
 import action.factory.TrizonAttackActionFactory;
 import card.TrizonCard;
+import card.basic.Meat;
 import power.TrizonMaidPower;
 import power.factory.TrizonSimpleTemplatePowerFactory;
 
@@ -14,7 +15,7 @@ public class Maid extends TrizonCard {
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
     private static final String IMG_PATH = "TrizonResources/img/cards/Maid.png";
-    private static final int COST = 2;
+    private static final int COST = 3;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -23,6 +24,7 @@ public class Maid extends TrizonCard {
     public Maid() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.damage = this.baseDamage = 11;
+        this.cardsToPreview = new Meat();
         
         reInitBehavior();
     }

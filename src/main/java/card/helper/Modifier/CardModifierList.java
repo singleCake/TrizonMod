@@ -88,30 +88,29 @@ public class CardModifierList implements Fusable<CardModifierList> {
 
     @Override
     public boolean fuse(CardModifierList other) {
-        for (AbstractCardModifier modifier1 : modifiers) {
-            for (AbstractCardModifier modifier2 : other.modifiers) {
-                if (modifier1.getClass().equals(modifier2.getClass())) {
-                    if (!modifier1.fuse(modifier2)) {
-                        this.addModifier(modifier2);
-                    }
-                    break;
-                }
-            }
+        if (other == null) {
+            return false;
         }
+
+        ArrayList<AbstractCardModifier> toAdd = new ArrayList<>();
 
         for (AbstractCardModifier modifier2 : other.modifiers) {
             boolean foundMatch = false;
             for (AbstractCardModifier modifier1 : modifiers) {
                 if (modifier1.getClass().equals(modifier2.getClass())) {
                     foundMatch = true;
+                    if (!modifier1.fuse(modifier2)) {
+                        toAdd.add(modifier2);
+                    }
                     break;
                 }
             }
             if (!foundMatch) {
-                this.addModifier(modifier2);
+                toAdd.add(modifier2);
             }
         }
 
+        modifiers.addAll(toAdd);
         return true;
     }
 

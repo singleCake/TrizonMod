@@ -20,7 +20,7 @@ public class Recycle extends TrizonCard {
 
     public Recycle() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 6;
 
         reInitBehavior();
     }
@@ -29,11 +29,9 @@ public class Recycle extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.selfRetain = true;
+            upgradeMagicNumber(3);
 
             reInitBehavior();
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
-            initializeDescription();
         }
     }
 

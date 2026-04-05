@@ -1,11 +1,10 @@
 package card.common;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
-import action.factory.TrizonAttackActionFactory;
 import action.factory.TrizonDrawFireActionFactory;
+import action.factory.TrizonGainBlockActionFactory;
 import card.TrizonCard;
 
 public class Firefly extends TrizonCard {
@@ -13,15 +12,15 @@ public class Firefly extends TrizonCard {
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String NAME =  CARD_STRINGS.NAME;
     private static final String IMG_PATH = "TrizonResources/img/cards/Firefly.png";
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public Firefly() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 8;
+        this.block = this.baseBlock = 6;
         this.magicNumber = this.baseMagicNumber = 1;
         this.trizonBooleans.fire = true;
         reInitBehavior();
@@ -31,7 +30,7 @@ public class Firefly extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDamage(1);
+            this.upgradeBlock(1);
             this.upgradeMagicNumber(1);
             
             this.reInitBehavior();
@@ -40,7 +39,7 @@ public class Firefly extends TrizonCard {
 
     @Override
     protected void setBehavior() {
-        this.behavior.addToUseBehavior(new TrizonAttackActionFactory(baseDamage, AttackEffect.SLASH_HORIZONTAL));
+        this.behavior.addToUseBehavior(new TrizonGainBlockActionFactory(baseBlock));
         this.behavior.addToExhaustBehavior(new TrizonDrawFireActionFactory(baseMagicNumber));
     }
 }

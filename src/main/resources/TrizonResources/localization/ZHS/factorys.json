@@ -248,7 +248,7 @@
     },
 
     "TrizonRecyclePowerFactory": {
-        "DESCRIPTION": "本回合每 消耗 一张牌，抽 %d 张牌。"
+        "DESCRIPTION": "本回合临时添加卡牌时，立即将那张牌移入消耗牌堆并获得 %d 点 格挡 。"
     },
 
     "TrizonFighterPowerFactory": {

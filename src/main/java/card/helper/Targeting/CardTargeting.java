@@ -7,6 +7,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import basemod.abstracts.CustomCard;
+
 public class CardTargeting extends TargetingHandler<AbstractCard> {
     @SpireEnum
     public static AbstractCard.CardTarget CARD;
@@ -47,14 +49,22 @@ public class CardTargeting extends TargetingHandler<AbstractCard> {
         hovered = null;
     }
 
+    private AbstractCard lastHoveredCard = null;
+
     @Override
     public void renderReticle(SpriteBatch sb) {
         if (hovered != null) {
-            AbstractCard preview = hovered.makeSameInstanceOf();
-            preview.drawScale = hovered.drawScale;
+            if (lastHoveredCard == null || !lastHoveredCard.uuid.equals(hovered.uuid)) {
+                lastHoveredCard = hovered.makeSameInstanceOf();
+            }
+            AbstractCard preview = lastHoveredCard;
+
+            preview.drawScale = hovered .drawScale;
             preview.current_x = hovered.current_x;
             preview.current_y = hovered.current_y + AbstractCard.IMG_HEIGHT;
             preview.render(sb);
+        } else {
+            lastHoveredCard = null;
         }
     }
 

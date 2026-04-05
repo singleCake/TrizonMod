@@ -20,7 +20,7 @@ public class PizzaGuy extends TrizonCard {
 
     public PizzaGuy() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
-        this.damage = this.baseDamage = 9;
+        this.damage = this.baseDamage = 8;
         this.isInnate = true;
         
         reInitBehavior();

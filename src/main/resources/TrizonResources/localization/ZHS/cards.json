@@ -11,8 +11,7 @@
 
     "Trizon:Meat": {
         "NAME": "肉",
-        "DESCRIPTION": "获得 [E] 。 NL 消耗 。",
-        "UPGRADE_DESCRIPTION": "获得 [E] [E] 。 NL 消耗 。"
+        "DESCRIPTION": "获得 !B! 点 格挡 。 NL 这张牌被 消耗 时， NL 获得 [E] 。 NL 消耗 。"
     },
 
     "Trizon:Bear": {
@@ -58,7 +57,7 @@
 
     "Trizon:Firefly": {
         "NAME": "萤火虫",
-        "DESCRIPTION": " trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被 消耗 时，抽 !M! 张 trizon:火焰 牌。"
+        "DESCRIPTION": " trizon:火焰 。 NL 获得 !B! 点 格挡 。 NL 这张牌被 消耗 时，抽 !M! 张 trizon:火焰 牌。"
     },
 
     "Trizon:RedFox": {
@@ -208,7 +207,7 @@
 
     "Trizon:Phoenix": {
         "NAME": "不死鸟",
-        "DESCRIPTION": "trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被消耗后，下回合开始时增加一张此牌复制到手牌。"
+        "DESCRIPTION": "trizon:火焰 。 NL 造成 !D! 点伤害。 NL 这张牌被 消耗 后，下回合开始时增加一张此牌复制到手牌。"
     },
 
     "Trizon:Dragon": {
@@ -223,8 +222,8 @@
 
     "Trizon:Workaholic": {
         "NAME": "加班狗",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合结束时，从消耗牌堆打出这张牌。",
-        "UPGRADE_DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 每回合结束时，从消耗牌堆打出这张牌。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 每回合结束时，若这张牌在消耗牌堆，从消耗牌堆打出这张牌。",
+        "UPGRADE_DESCRIPTION": " 虚无 。 NL 造成 !D! 点伤害。 NL 每回合结束时，若这张牌在消耗牌堆，从消耗牌堆打出这张牌。"
     },
 
     "Trizon:Mushroom": {
@@ -345,7 +344,7 @@
 
     "Trizon:King": {
         "NAME": "王",
-        "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点格挡。"
+        "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点 格挡 。"
     },
 
     "Trizon:Thunder": {
@@ -379,8 +378,7 @@
 
     "Trizon:Recycle": {
         "NAME": "回收",
-        "DESCRIPTION": "本回合每 消耗 一张牌，抽 !M! 张牌。",
-        "UPGRADE_DESCRIPTION": "保留 NL 本回合每 消耗 一张牌，抽 !M! 张牌。"
+        "DESCRIPTION": "打出此牌后，本回合临时添加卡牌时，立即将那张牌移入消耗牌堆并获得 !M! 点 格挡 。"
     },
     
     "Trizon:Abyss": {

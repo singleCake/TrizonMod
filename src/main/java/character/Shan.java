@@ -6,6 +6,7 @@ import card.basic.Defend;
 import card.basic.Meat;
 import card.basic.Strike;
 import modcore.TrizonMod;
+import relics.TrizonChefRelic;
 import relics.TrizonFuseRelic;
 import ui.collect.ChooseCollectScreen;
 
@@ -91,6 +92,7 @@ public class Shan extends CustomPlayer  {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add(TrizonChefRelic.ID);
         retVal.add(TrizonFuseRelic.ID);
         return retVal;
     }

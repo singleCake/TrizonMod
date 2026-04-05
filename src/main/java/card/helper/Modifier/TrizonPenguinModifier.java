@@ -36,7 +36,7 @@ public class TrizonPenguinModifier extends AbstractCardModifier {
 
     @Override
     public boolean fuse(AbstractCardModifier other) {
-        if (other instanceof TrizonLycorisModifier) {
+        if (other instanceof TrizonPenguinModifier) {
             this.amount += other.amount;
             return true;
         }

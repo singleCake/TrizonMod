@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 import card.TrizonCard;
+import card.basic.Meat;
 import power.TrizonMeatWallPower;
 import power.factory.TrizonSimpleTemplatePowerFactory;
 
@@ -21,6 +22,7 @@ public class MeatWall extends TrizonCard {
     public MeatWall() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 1;
+        this.cardsToPreview = new Meat();
 
         reInitBehavior();
     }

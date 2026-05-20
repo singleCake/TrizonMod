@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import action.factory.AbstractTrizonFactory;
 import card.AbstractTrizonCard;
+import card.helper.DynamicVariable.FuseDV.FuseDV;
 import card.helper.FactoryList.AbstractFactoryList;
 import card.helper.FactoryList.AttackActionFactoryList;
 import card.helper.FactoryList.AttackedActionFactoryList;
@@ -280,6 +281,21 @@ public class CardBehavior implements Fusable<CardBehavior> {
         }
 
         return tips;
+    }
+
+    public ArrayList<FuseDV> getFuseDVs() {
+        ArrayList<FuseDV> fuseDVs = new ArrayList<>();
+
+        for (AbstractFactoryList factoryList : allFactoryLists) {
+            for (AbstractTrizonFactory factory : factoryList.factorys) {
+                FuseDV dv = factory.getFuseDV();
+                if (dv != null) {
+                    fuseDVs.add(dv);
+                }
+
+            }
+        }
+        return fuseDVs;
     }
 
     public CardBehavior clone() {

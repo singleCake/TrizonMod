@@ -8,8 +8,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import basemod.abstracts.CustomCard;
-
 public class SnowballTargeting extends TargetingHandler<card.helper.Targeting.SnowballTargeting.SnowballTarget> {
     @SpireEnum
     public static AbstractCard.CardTarget CARD_OR_ENEMY;

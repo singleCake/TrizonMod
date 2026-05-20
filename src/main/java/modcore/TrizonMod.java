@@ -41,6 +41,7 @@ import card.common.Bird;
 import character.Shan;
 import localization.TrizonFactoryStrings;
 import card.helper.DynamicVariable.DamageTimes;
+import card.helper.DynamicVariable.FuseDynamicVariable;
 import card.helper.DynamicVariable.SpellNumber;
 import card.helper.Targeting.CardTargeting;
 import card.helper.Targeting.SnowballTargeting;
@@ -119,6 +120,7 @@ public class TrizonMod implements
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new DamageTimes());
         BaseMod.addDynamicVariable(new SpellNumber());
+        BaseMod.addDynamicVariable(new FuseDynamicVariable());
         BaseMod.addCard(new TrizonFusedCard());
         new AutoAdd("TrizonMod")
         .packageFilter(Meat.class) 

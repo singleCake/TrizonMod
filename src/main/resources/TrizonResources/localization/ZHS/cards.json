@@ -372,8 +372,8 @@
 
     "Trizon:Stillbirth": {
         "NAME": "死胎",
-        "DESCRIPTION": "每场战斗开始时， 消耗 这张牌。",
-        "UPGRADE_DESCRIPTION": "每场战斗开始时， 消耗 这张牌，获得 [E] 。"
+        "DESCRIPTION": "每场战斗开始时， 消耗 这张牌。 NL 消耗 。",
+        "UPGRADE_DESCRIPTION": "每场战斗开始时， 消耗 这张牌，获得 [E] 。 NL 消耗 。"
     },
 
     "Trizon:Recycle": {

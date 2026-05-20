@@ -20,6 +20,7 @@ public class Stillbirth extends TrizonCard {
     
     public Stillbirth() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
+        this.exhaust = true;
 
         reInitBehavior();
     }

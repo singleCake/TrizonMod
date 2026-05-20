@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import card.AbstractTrizonCard;
+import card.helper.DynamicVariable.FuseDV.FuseDV;
 import fusable.Fusable;
 import localization.TrizonFactoryStrings;
 
@@ -22,12 +23,24 @@ public abstract class AbstractTrizonFactory implements Fusable<AbstractTrizonFac
 
     public abstract AbstractTrizonFactory clone();
 
+    public String rawDescriptionForCard() {
+        return rawDescription();
+    }
+
     protected static String getDescription(Class<? extends AbstractTrizonFactory> factoryClass) {
         return TrizonFactoryStrings.getDescription(factoryClass);
     }
 
+    protected static String getDescriptionForCard(Class<? extends AbstractTrizonFactory> factoryClass) {
+        return TrizonFactoryStrings.getDescriptionForCard(factoryClass);
+    }
+
     protected static String[] getExtendedDescription(Class<? extends AbstractTrizonFactory> factoryClass) {
         return TrizonFactoryStrings.getExtendedDescription(factoryClass);
+    }
+
+    public FuseDV getFuseDV() {
+        return null;
     }
 
 

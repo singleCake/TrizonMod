@@ -1,11 +1,14 @@
 package card.helper.Modifier;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.StaticSpireField;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 
+import card.TrizonCard;
 import card.helper.Tip.TimingTip;
 
 public class TrizonGhostModifier extends AbstractCardModifier {
@@ -71,6 +74,25 @@ public class TrizonGhostModifier extends AbstractCardModifier {
         @SpirePrefixPatch
         public static void Prefix() {
             ExhaustNumFieldPatch.exhaustNum.set(0);
+        }
+    }
+
+    @SpirePatch(clz = CardGroup.class, method = "update")
+    public static class CardGroupUpdatePatch {
+        private static boolean isInHand = false;
+
+        @SpirePrefixPatch
+        public static void Prefix(CardGroup __instance) {
+            if (__instance.type == CardGroup.CardGroupType.HAND) {
+                isInHand = true;
+            }
+        }
+
+        @SpireInsertPatch(rloc = 1, localvars = {"c"})
+        public static void Insert(CardGroup __instance, AbstractCard c) {
+            if (isInHand && c instanceof TrizonCard) {
+                ((TrizonCard) c).modifier.updateCost((TrizonCard) c);
+            }
         }
     }
 }

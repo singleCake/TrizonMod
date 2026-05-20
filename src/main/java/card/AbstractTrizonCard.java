@@ -86,12 +86,6 @@ public abstract class AbstractTrizonCard<T> extends CustomCard implements Custom
         return true;
     }
 
-    @Override
-    public void update() {
-        modifier.updateCost(this);
-        super.update();
-    }
-
     // 原版接口
 
     @Override
@@ -216,8 +210,6 @@ public abstract class AbstractTrizonCard<T> extends CustomCard implements Custom
         copy.damageTimes = copy.baseDamageTimes = this.baseDamageTimes;
         copy.spellNumber = copy.baseSpellNumber = this.baseSpellNumber;
         copy.name = this.name;
-        copy.rawDescription = this.rawDescription;
-        copy.initializeDescription();
         return copy;
     }
 

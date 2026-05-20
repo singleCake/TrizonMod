@@ -7,9 +7,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo.DamageType;
 
 import action.TrizonCheckAction;
 import action.TrizonSpellAction;
+import card.helper.DynamicVariable.FuseDV.DamageFuseDV;
+import card.helper.DynamicVariable.FuseDV.FuseDV;
 
 public class TrizonThunderFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonThunderFactory.class);
+    private static final String DESCRIPTION_FOR_CARD = AbstractTrizonFactory.getDescriptionForCard(TrizonThunderFactory.class);
     transient DamageInfo info;
 
     public TrizonThunderFactory(int amount) {
@@ -39,11 +42,21 @@ public class TrizonThunderFactory extends AbstractTrizonFactory {
     }
 
     @Override
+    public String rawDescriptionForCard() {
+        return String.format(DESCRIPTION_FOR_CARD);
+    }
+
+    @Override
     public boolean fuse(AbstractTrizonFactory other) {
         if (other instanceof TrizonThunderFactory) {
             this.amount += other.amount;
             return true;
         }
         return false;
+    }
+
+    @Override
+    public FuseDV getFuseDV() {
+        return new DamageFuseDV(amount, DamageType.THORNS);
     }
 }

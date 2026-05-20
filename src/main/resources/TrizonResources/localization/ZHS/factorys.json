@@ -1,10 +1,12 @@
 {
     "TrizonAttackActionFactory": {
-        "DESCRIPTION": "造成 %d 点伤害 %d 次。"
+        "DESCRIPTION": "造成 %d 点伤害 %d 次。",
+        "DESCRIPTION_FOR_CARD": "造成 !FDV! 点伤害 %d 次。"
     },
 
     "TrizonAttackRightActionFactory": {
-        "DESCRIPTION": "对最右侧的敌人造成 %d 点伤害 %d 次。"
+        "DESCRIPTION": "对最右侧的敌人造成 %d 点伤害 %d 次。",
+        "DESCRIPTION_FOR_CARD": "对最右侧的敌人造成 !FDV! 点伤害 %d 次。"
     },
 
     "TrizonButterflyActionFactory": {
@@ -20,7 +22,8 @@
     },
 
     "TrizonGainBlockActionFactory": {
-        "DESCRIPTION": "获得 %d 点格挡。"
+        "DESCRIPTION": "获得 %d 点格挡。",
+        "DESCRIPTION_FOR_CARD": "获得 !FDV! 点格挡。"
     },
 
     "TrizonGainEnergyActionFactory": {
@@ -72,7 +75,8 @@
     },
 
     "TrizonSpellActionFactory": {
-        "DESCRIPTION": "造成 %d 点 法术 伤害 %d 次。"
+        "DESCRIPTION": "造成 %d 点 法术 伤害 %d 次。",
+        "DESCRIPTION_FOR_CARD": "造成 !FDV! 点 法术 伤害 %d 次。"
     },
 
     "TrizonSummonCardActionFactory": {
@@ -179,7 +183,8 @@
     },
 
     "TrizonThunderFactory": {
-        "DESCRIPTION": "若为攻击伤害，额外随机造成 %d 点 法术 伤害。"
+        "DESCRIPTION": "若为攻击伤害，额外随机造成 %d 点 法术 伤害。",
+        "DESCRIPTION_FOR_CARD": "若为攻击伤害，额外随机造成 !FDV! 点 法术 伤害。"
     },
 
     "TrizonExhaustThisCardActionFactory": {
@@ -191,7 +196,8 @@
     },
 
     "TrizonTortureActionFactory": {
-        "DESCRIPTION": "对你造成 %d 点 法术 伤害 %d 次。"
+        "DESCRIPTION": "对你造成 %d 点 法术 伤害 %d 次。",
+        "DESCRIPTION_FOR_CARD": "对你造成 !FDV! 点 法术 伤害 %d 次。"
     },
 
     "TrizonFusedTruceActionFactory": {
@@ -219,7 +225,8 @@
     },
 
     "TrizonAlfneyActionFactory": {
-        "DESCRIPTION": "给予随机单位 %d 点格挡。"
+        "DESCRIPTION": "给予随机单位 %d 点格挡。",
+        "DESCRIPTION_FOR_CARD": "给予随机单位 !FDV! 点格挡。"
     },
 
 

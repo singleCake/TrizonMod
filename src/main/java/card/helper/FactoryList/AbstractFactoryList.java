@@ -13,7 +13,7 @@ import fusable.Fusable;
 
 public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList> {
     transient AbstractTrizonCard<?> this_card;
-    protected ArrayList<AbstractTrizonFactory> factorys = new ArrayList<>();
+    public ArrayList<AbstractTrizonFactory> factorys = new ArrayList<>();
 
     public void clear() {
         factorys.clear();
@@ -108,10 +108,10 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
         CARD_FROZEN_IN_EXHAUST = 7, ENEMY_FROZEN_IN_EXHAUST = 8, END_IN_EXHAUST = 9, START_IN_EXHAUST = 10,
         START_OF_COMBAT = 11;
 
-    protected String buildFactoriesDescription() {
+    protected String buildFactoriesDescription(boolean forCard) {
         StringBuilder description = new StringBuilder();
         for (AbstractTrizonFactory factory : factorys) {
-            String raw = factory.rawDescription();
+            String raw = forCard ? factory.rawDescriptionForCard() : factory.rawDescription();
             if (raw == null || raw.equals(""))
                 continue;
             if (description.length() > 0)
@@ -119,6 +119,10 @@ public abstract class AbstractFactoryList implements Fusable<AbstractFactoryList
             description.append(raw);
         }
         return description.toString();
+    }
+
+    protected String buildFactoriesDescription() {
+        return buildFactoriesDescription(false);
     }
 
     public abstract String generateRawDescription();

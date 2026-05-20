@@ -61,7 +61,7 @@ public class UseActionFactoryList extends AbstractFactoryList {
 
     @Override
     public String generateRawDescription() {
-        return buildFactoriesDescription() + " NL ";
+        return buildFactoriesDescription(true) + " NL ";
     }
 
     @Override

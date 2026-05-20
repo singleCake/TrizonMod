@@ -13,6 +13,10 @@ public class TrizonRandomReviveAction extends AbstractTrizonAction {
     @Override
     public void actionRepeat() {
         CardGroup exhaustPile = AbstractDungeon.player.exhaustPile;
+        if (exhaustPile.size() == 0) {
+            this.isDone = true;
+            return;
+        }
         int index = AbstractDungeon.cardRandomRng.random(exhaustPile.size() - 1);
         AbstractCard card = exhaustPile.group.get(index);
         AbstractDungeon.player.exhaustPile.removeCard(card);

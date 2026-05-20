@@ -3,7 +3,6 @@ package power;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.evacipated.cardcrawl.mod.stslib.patches.bothInterfaces.OnCreateCardInterface;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -57,7 +56,6 @@ public class TrizonRecyclePower extends AbstractPower implements OnCreateCardInt
                 AbstractDungeon.player.discardPile.removeCard(c);
                 AbstractDungeon.player.hand.removeCard(c);
                 AbstractDungeon.player.exhaustPile.addToTop(c);
-                AbstractDungeon.player.hand.moveToExhaustPile(c);
                 this.isDone = true;
             }
         });

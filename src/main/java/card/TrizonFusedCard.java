@@ -8,11 +8,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 
 import card.helper.CardBehavior;
 import card.helper.DefaultCardBooleans;
 import card.helper.TrizonCardBooleans;
+import card.helper.DynamicVariable.FuseDV.DamageFuseDV;
+import card.helper.DynamicVariable.FuseDV.FuseDV;
 import card.helper.Modifier.CardModifierList;
 import card.helper.Tip.TimingTip;
 import card.helper.CardHelper;
@@ -20,8 +23,10 @@ import fusable.Fusable;
 
 public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.CardData> implements Fusable<AbstractTrizonCard<?>> {
     public HashMap<String, Integer> fusionData = new HashMap<>();
+    public ArrayList<FuseDV> fuseDVs = new ArrayList<>();
 
     public static final String ID = "TrizonMod:FusedCard";
+    public String custom_name = null;
 
     public TrizonFusedCard() {
         super(ID, "融合卡牌", "TrizonResources/img/cards/card.png",
@@ -44,11 +49,10 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         fuseBehavior(card1, card2);
         fuseModifier(card1, card2);
         fuseBoolean(card1, card2);
-        fuseDamageAndBlock(card1, card2);
         addToFusionData(card1);
         addToFusionData(card2);
         setBgTexture();
-        this.name = CardHelper.getFusedCardName(this);
+        this.name = custom_name != null ? custom_name : CardHelper.getFusedCardName(this);
         this.initDescription();
     }
 
@@ -58,9 +62,8 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         fuseBehavior(this, other);
         fuseModifier(this, other);
         fuseBoolean(this, other);
-        fuseDamageAndBlock(this, other);
         addToFusionData(other);
-        this.name = CardHelper.getFusedCardName(this);
+        this.name = custom_name != null ? custom_name : CardHelper.getFusedCardName(this);
         this.initDescription();
 
         return true;
@@ -93,6 +96,7 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         behavior1.fuse(behavior2);
         this.behavior = behavior1;
         this.behavior.setThisCard(this);
+        this.getFuseDVs();
     }
 
     // 融合修改器
@@ -122,13 +126,6 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
             this.trizonBooleans = card1.trizonBooleans.clone();
             this.trizonBooleans.fuse(card2.trizonBooleans);
         }
-    }
-
-    // 融合伤害与格挡值（用于生成描述）
-    public void fuseDamageAndBlock(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
-        this.baseDamage = card1.baseDamage + card2.baseDamage;
-        this.baseBlock = card1.baseBlock + card2.baseBlock;
-        this.baseDamageTimes = Math.max(card1.baseDamageTimes, card2.baseDamageTimes);
     }
 
     // 记录融合材料
@@ -164,6 +161,11 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         return tips;
     }
 
+    private void getFuseDVs() {
+        this.fuseDVs.clear();
+        this.fuseDVs = this.behavior.getFuseDVs();
+    }
+
     @Override
     public AbstractCard makeCopy() {
         // 基本不使用这种复制
@@ -174,6 +176,12 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
     public AbstractCard makeStatEquivalentCopy() {
         TrizonFusedCard copy = (TrizonFusedCard) super.makeStatEquivalentCopy();
         copy.fusionData = new HashMap<>(this.fusionData);
+        copy.getFuseDVs();
+        copy.initDescription();
+        copy.custom_name = this.custom_name;
+        if (copy.custom_name != null) {
+            copy.name = copy.custom_name;
+        }
         return copy;
     }
     
@@ -206,50 +214,63 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         if (data != null) {
             this.fusionData = data.fusionData != null ? new HashMap<>(data.fusionData) : new HashMap<>();
 
+            this.custom_name = data.custom_name;
             this.type = data.type;
             this.rarity = data.rarity;
             this.target = data.target;
             this.cost = data.cost;
             this.costForTurn = data.cost;
-            this.baseDamage = this.damage = data.baseDamage;
-            this.baseBlock = this.block = data.baseBlock;
-            this.baseDamageTimes = this.damageTimes = data.baseDamageTimes;
-            this.baseSpellNumber = this.spellNumber = data.baseSpellNumber;
             this.anti_num = data.antiNum;
-
+            
             if (data.booleans != null) {
                 DefaultCardBooleans.applyBooleansToCard(data.booleans, this);
             }
             this.trizonBooleans = data.trizonBooleans != null ? data.trizonBooleans : new TrizonCardBooleans();
             setBgTexture();
-
+            
             if (data.behaviorData != null) {
                 this.behavior = CardBehavior.fromData(data.behaviorData);
                 this.behavior.setThisCard(this);
+                this.getFuseDVs();
             }
-
+            
             this.modifier = CardModifierList.fromData(data.modifierData);
-
+            
             if (data.img != null) {
                 this.textureImg = data.img;
                 this.loadCardImage(this.textureImg);
             }
-
-            this.name = CardHelper.getFusedCardName(this);
+            
+            this.name = custom_name != null ? custom_name : CardHelper.getFusedCardName(this);
             this.initDescription();
         }
     }
 
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        for (FuseDV dv : fuseDVs) {
+            dv.applyPower(this);
+        }
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        for (FuseDV dv : fuseDVs) {
+            if (dv instanceof DamageFuseDV) {
+                ((DamageFuseDV) dv).applyPower(this, mo);
+            }
+        }
+    }
+
     public static class CardData {
+        public String custom_name;
         public String img;
         public AbstractCard.CardType type;
         public AbstractCard.CardRarity rarity;
         public AbstractCard.CardTarget target;
         public int cost;
-        public int baseDamage;
-        public int baseBlock;
-        public int baseDamageTimes;
-        public int baseSpellNumber;
         public int antiNum;
         public DefaultCardBooleans booleans;
         public TrizonCardBooleans trizonBooleans;
@@ -261,15 +282,12 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         }
 
         public CardData(TrizonFusedCard card) {
+            this.custom_name = card.custom_name;
             this.img = card.textureImg;
             this.type = card.type;
             this.rarity = card.rarity;
             this.target = card.target;
             this.cost = card.cost;
-            this.baseDamage = card.baseDamage;
-            this.baseBlock = card.baseBlock;
-            this.baseDamageTimes = card.baseDamageTimes;
-            this.baseSpellNumber = card.baseSpellNumber;
             this.antiNum = card.anti_num;
             this.booleans = new DefaultCardBooleans(card);
             this.trizonBooleans = card.trizonBooleans.clone();

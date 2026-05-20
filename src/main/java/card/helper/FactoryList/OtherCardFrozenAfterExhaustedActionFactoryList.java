@@ -8,7 +8,7 @@ public class OtherCardFrozenAfterExhaustedActionFactoryList extends AbstractFact
     
     @Override
     public String generateRawDescription() {
-        String description = buildFactoriesDescription();
+        String description = buildFactoriesDescription(true);
         if (description.equals(""))
             return "";
 

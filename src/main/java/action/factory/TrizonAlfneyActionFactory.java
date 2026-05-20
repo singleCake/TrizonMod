@@ -3,9 +3,12 @@ package action.factory;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
 import action.TrizonAlfneyAction;
+import card.helper.DynamicVariable.FuseDV.BlockFuseDV;
+import card.helper.DynamicVariable.FuseDV.FuseDV;
 
 public class TrizonAlfneyActionFactory extends AbstractTrizonFactory {
     private static final String DESCRIPTION = AbstractTrizonFactory.getDescription(TrizonAlfneyActionFactory.class);
+    private static final String DESCRIPTION_FOR_CARD = AbstractTrizonFactory.getDescriptionForCard(TrizonAlfneyActionFactory.class);
 
     public TrizonAlfneyActionFactory(int blockAmount) {
         this.amount = blockAmount;
@@ -22,6 +25,11 @@ public class TrizonAlfneyActionFactory extends AbstractTrizonFactory {
     }
 
     @Override
+    public String rawDescriptionForCard() {
+        return String.format(DESCRIPTION_FOR_CARD);
+    }
+
+    @Override
     public AbstractTrizonFactory clone() {
         return new TrizonAlfneyActionFactory(amount);
     }
@@ -34,5 +42,10 @@ public class TrizonAlfneyActionFactory extends AbstractTrizonFactory {
         }
 
         return false;
+    }
+
+    @Override
+    public FuseDV getFuseDV() {
+        return new BlockFuseDV(this.amount);
     }
 }

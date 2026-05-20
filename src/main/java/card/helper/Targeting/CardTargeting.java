@@ -7,8 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import basemod.abstracts.CustomCard;
-
 public class CardTargeting extends TargetingHandler<AbstractCard> {
     @SpireEnum
     public static AbstractCard.CardTarget CARD;

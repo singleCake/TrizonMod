@@ -23,6 +23,7 @@ public class Capture extends TrizonCard {
     public Capture() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
+        this.tags.add(CardTags.HEALING);
 
         reInitBehavior();
     }

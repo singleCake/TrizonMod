@@ -8,7 +8,7 @@ public class EndOfTurnAfterExhaustedActionFactoryList extends AbstractFactoryLis
 
     @Override
     public String generateRawDescription() {
-        String description = buildFactoriesDescription();
+        String description = buildFactoriesDescription(true);
         if (description.equals(""))
             return "";
 

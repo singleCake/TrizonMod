@@ -155,7 +155,7 @@
     },
 
     "TrizonNewYearActionFactory": {
-        "DESCRIPTION": "本回合结束后执行一个额外回合。结束你的回合。"
+        "DESCRIPTION": "本回合不能再打出牌。本回合结束后执行一个额外回合。结束你的回合。"
     },
 
     "TrizonTruceActionFactory": {

@@ -19,6 +19,7 @@ import card.helper.DynamicVariable.FuseDV.FuseDV;
 import card.helper.Modifier.CardModifierList;
 import card.helper.Tip.TimingTip;
 import card.helper.CardHelper;
+import card.helper.CardIDGenerator;
 import fusable.Fusable;
 
 public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.CardData> implements Fusable<AbstractTrizonCard<?>> {
@@ -38,7 +39,7 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
     }
 
     public TrizonFusedCard(AbstractTrizonCard<?> card1, AbstractTrizonCard<?> card2) {
-        super(ID, "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
+        super(ID + CardIDGenerator.Inst.generateID(), "融合卡牌", CardHelper.getFusedCardImg(card1, card2),
                 CardHelper.getFusedCardCost(card1, card2),
                 "融合卡牌",
                 CardHelper.getFusedCardType(card1, card2),
@@ -97,6 +98,12 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         this.behavior = behavior1;
         this.behavior.setThisCard(this);
         this.getFuseDVs();
+        if (card2 instanceof TrizonFusedCard) {
+            this.custom_name = ((TrizonFusedCard) card2).custom_name;
+        }
+        if (card1 instanceof TrizonFusedCard) {
+            this.custom_name = ((TrizonFusedCard) card1).custom_name != null ? ((TrizonFusedCard) card1).custom_name : this.custom_name;
+        }
     }
 
     // 融合修改器
@@ -154,6 +161,12 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         this.initializeDescription();
     }
 
+    public void rename(String newName) {
+        this.custom_name = newName != null && !newName.trim().isEmpty() ? newName : null;
+        this.name = custom_name != null ? custom_name : CardHelper.getFusedCardName(this);
+        System.out.println("Card renamed to: " + this.name);
+    }
+
     public ArrayList<TimingTip> getTimingTips() {
         ArrayList<TimingTip> tips = new ArrayList<>();
         tips.addAll(this.behavior.generateTimingTips());
@@ -178,6 +191,7 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         copy.fusionData = new HashMap<>(this.fusionData);
         copy.getFuseDVs();
         copy.initDescription();
+        copy.cardID = this.cardID;
         copy.custom_name = this.custom_name;
         if (copy.custom_name != null) {
             copy.name = copy.custom_name;
@@ -214,6 +228,7 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         if (data != null) {
             this.fusionData = data.fusionData != null ? new HashMap<>(data.fusionData) : new HashMap<>();
 
+            this.cardID = data.cardID;
             this.custom_name = data.custom_name;
             this.type = data.type;
             this.rarity = data.rarity;
@@ -265,6 +280,7 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
     }
 
     public static class CardData {
+        public String cardID;
         public String custom_name;
         public String img;
         public AbstractCard.CardType type;
@@ -278,10 +294,8 @@ public class TrizonFusedCard extends AbstractTrizonCard<card.TrizonFusedCard.Car
         public CardModifierList.ModifierListData modifierData;
         public HashMap<String, Integer> fusionData = null;
 
-        public CardData() {
-        }
-
         public CardData(TrizonFusedCard card) {
+            this.cardID = card.cardID;
             this.custom_name = card.custom_name;
             this.img = card.textureImg;
             this.type = card.type;

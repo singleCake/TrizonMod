@@ -56,6 +56,15 @@ public class ChooseCollectScreen implements ISubscriber {
         this.collection.clear();
     }
 
+    public AbstractCard getCollection(AbstractCard card) {
+        for (AbstractCard c : this.collection.group) {
+            if (c.cardID.equals(card.cardID)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public void addToCollection(AbstractCard card) {
         this.collection.addToTop(card);
         saveCollectionToConfig();

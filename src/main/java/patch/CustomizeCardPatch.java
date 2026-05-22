@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -17,32 +18,38 @@ import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
 import card.TrizonFusedCard;
 import effect.ChangeImgSelectCardEffect;
+import ui.panel.CardRenamePanel;
 import ui.singleCardView.SingleCardViewButton;
 
-public class ChangeImgPatch {
+public class CustomizeCardPatch {
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString("Trizon:SingleCardViewButton").TEXT;
 
     private static TrizonFusedCard card = null;
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = SpirePatch.CLASS)
-    public static class ChangeImgButtonField {
+    public static class CustomizeCardPatchField {
         public static SpireField<SingleCardViewButton> changeImgButton = new SpireField<>(() -> null);
+
+        public static SpireField<SingleCardViewButton> renameButton = new SpireField<>(() -> null);
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = { AbstractCard.class, CardGroup.class })
     public static class OpenPatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance, AbstractCard card, CardGroup group) {
-            ChangeImgButtonField.changeImgButton.set(__instance, null);
-            ChangeImgPatch.card = null;
+            CustomizeCardPatchField.changeImgButton.set(__instance, null);
+            CustomizeCardPatchField.renameButton.set(__instance, null);
+            CustomizeCardPatch.card = null;
 
             if (AbstractDungeon.player == null) {
                 return;
             }
             if (card instanceof TrizonFusedCard && group.equals(AbstractDungeon.player.masterDeck)) {
-                ChangeImgButtonField.changeImgButton.set(__instance,
+                CustomizeCardPatchField.changeImgButton.set(__instance,
                         new SingleCardViewButton(300.0F * Settings.scale, Settings.HEIGHT / 5.0F * 4.0F, TEXT[0]));
-                ChangeImgPatch.card = (TrizonFusedCard) card;
+                CustomizeCardPatchField.renameButton.set(__instance, new SingleCardViewButton(300.0F * Settings.scale,
+                        Settings.HEIGHT / 5.0F * 4.0F - 100.0F * Settings.scale, TEXT[4]));
+                CustomizeCardPatch.card = (TrizonFusedCard) card;
             }
         }
     }
@@ -51,8 +58,9 @@ public class ChangeImgPatch {
     public static class OpenNoGroupPatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance, AbstractCard card) {
-            ChangeImgButtonField.changeImgButton.set(__instance, null);
-            ChangeImgPatch.card = null;
+            CustomizeCardPatchField.changeImgButton.set(__instance, null);
+            CustomizeCardPatchField.renameButton.set(__instance, null);
+            CustomizeCardPatch.card = null;
         }
     }
 
@@ -60,26 +68,41 @@ public class ChangeImgPatch {
     public static class UpdatePatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance) {
-            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
-            if (button != null) {
-                button.update();
+            SingleCardViewButton changeImgButton = CustomizeCardPatchField.changeImgButton.get(__instance);
+            SingleCardViewButton renameButton = CustomizeCardPatchField.renameButton.get(__instance);
+            if (changeImgButton != null) {
+                changeImgButton.update();
+            }
+            if (renameButton != null) {
+                renameButton.update();
             }
         }
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "updateInput")
     public static class UpdateInputPatch {
-        @SpireInsertPatch(rloc = 16)
-        public static void Insert(SingleCardViewPopup __instance) {
-            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
-            if (button != null) {
-                if (button.hb.hovered) {
-                    button.hb.clickStarted = true;
+        @SpireInsertPatch(rloc = 15)
+        public static SpireReturn<Void> Insert(SingleCardViewPopup __instance) {
+            SingleCardViewButton changeImgButton = CustomizeCardPatchField.changeImgButton.get(__instance);
+            SingleCardViewButton renameButton = CustomizeCardPatchField.renameButton.get(__instance);
+            if (changeImgButton != null) {
+                if (changeImgButton.hb.hovered) {
+                    changeImgButton.hb.clickStarted = true;
                     CardCrawlGame.sound.play("UI_CLICK_1");
                     AbstractDungeon.closeCurrentScreen();
                     AbstractDungeon.topLevelEffectsQueue.add(new ChangeImgSelectCardEffect(card));
                 }
             }
+            if (renameButton != null) {
+                if (renameButton.hb.hovered) {
+                    renameButton.hb.clickStarted = true;
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    CardRenamePanel.CardRenamePanelField.openRenamePanel(__instance, card,
+                            AbstractDungeon.player.masterDeck);
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
         }
     }
 
@@ -87,9 +110,13 @@ public class ChangeImgPatch {
     public static class RenderPatch {
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup __instance, SpriteBatch sb) {
-            SingleCardViewButton button = ChangeImgButtonField.changeImgButton.get(__instance);
-            if (button != null) {
-                button.render(sb);
+            SingleCardViewButton changeImgButton = CustomizeCardPatchField.changeImgButton.get(__instance);
+            SingleCardViewButton renameButton = CustomizeCardPatchField.renameButton.get(__instance);
+            if (changeImgButton != null) {
+                changeImgButton.render(sb);
+            }
+            if (renameButton != null) {
+                renameButton.render(sb);
             }
         }
     }

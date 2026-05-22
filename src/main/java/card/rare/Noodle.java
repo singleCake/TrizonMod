@@ -3,6 +3,7 @@ package card.rare;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
+import action.factory.TrizonDrawCardActionFactory;
 import action.factory.TrizonSpellBuffFactory;
 import card.TrizonCard;
 
@@ -20,6 +21,7 @@ public class Noodle extends TrizonCard {
     public Noodle() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = 3;
+        this.isInnate = true;
         reInitBehavior();
     }
 
@@ -27,7 +29,6 @@ public class Noodle extends TrizonCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.isInnate = true;
             
             reInitBehavior();
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
@@ -38,6 +39,8 @@ public class Noodle extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonSpellBuffFactory(baseMagicNumber));
-        
+        if (upgraded) {
+            this.behavior.addToUseBehavior(new TrizonDrawCardActionFactory(1));
+        }
     }
 }

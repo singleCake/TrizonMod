@@ -179,12 +179,12 @@ public abstract class AbstractTrizonCard<T> extends CustomCard implements Custom
     private void rainExhaust() {
         if (isRain()) {
             this.trizonBooleans.rain = false;
-            this.addToTop(new MakeTempCardInHandAction(this));
             if (this instanceof Rain) {
                 ((Rain) this).afterExhaust();
             } else if (this instanceof TrizonFusedCard) {
                 ((TrizonFusedCard) this).initDescription();
             }
+            this.addToTop(new MakeTempCardInHandAction(this));
         }
     }
 
@@ -210,6 +210,8 @@ public abstract class AbstractTrizonCard<T> extends CustomCard implements Custom
         copy.damageTimes = copy.baseDamageTimes = this.baseDamageTimes;
         copy.spellNumber = copy.baseSpellNumber = this.baseSpellNumber;
         copy.name = this.name;
+        copy.rawDescription = this.rawDescription;
+        copy.initializeDescription();
         return copy;
     }
 

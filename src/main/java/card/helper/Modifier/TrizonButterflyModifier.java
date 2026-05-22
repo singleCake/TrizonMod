@@ -38,7 +38,9 @@ public class TrizonButterflyModifier extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier clone() {
-        return new TrizonButterflyModifier(amount);
+        TrizonButterflyModifier copy = new TrizonButterflyModifier(amount);
+        copy.additionalDamage = this.additionalDamage;
+        return copy;
     }
 
     @Override

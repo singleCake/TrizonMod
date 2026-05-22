@@ -9,8 +9,10 @@ import modcore.TrizonMod;
 import relics.TrizonChefRelic;
 import relics.TrizonFuseRelic;
 import ui.collect.ChooseCollectScreen;
+import ui.orb.StarEnergyOrb;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -34,26 +36,11 @@ public class Shan extends CustomPlayer  {
     private static final String MY_CHARACTER_SHOULDER_1 = "TrizonResources/img/char/shoulder1.png";
     private static final String MY_CHARACTER_SHOULDER_2 = "TrizonResources/img/char/shoulder2.png";
     private static final String CORPSE_IMAGE = "TrizonResources/img/char/corpse.png";
-    private static final String[] ORB_TEXTURES = new String[]{
-            "TrizonResources/img/ui/orb/layer5.png",
-            "TrizonResources/img/ui/orb/layer4.png",
-            "TrizonResources/img/ui/orb/layer3.png",
-            "TrizonResources/img/ui/orb/layer2.png",
-            "TrizonResources/img/ui/orb/layer1.png",
-            "TrizonResources/img/ui/orb/layer6.png",
-            "TrizonResources/img/ui/orb/layer5d.png",
-            "TrizonResources/img/ui/orb/layer4d.png",
-            "TrizonResources/img/ui/orb/layer3d.png",
-            "TrizonResources/img/ui/orb/layer2d.png",
-            "TrizonResources/img/ui/orb/layer1d.png"
-    };
-
-    private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("Trizon:Shan");
 
     public Shan(String name)  {
-        super(name, Trizon, ORB_TEXTURES,"TrizonResources/img/ui/orb/vfx.png", LAYER_SPEED, null, null);
+        super(name, Trizon, new StarEnergyOrb(), null, null);
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
@@ -111,6 +98,11 @@ public class Shan extends CustomPlayer  {
                 this.getStartingDeck(),
                 false
         );
+    }
+
+    @Override
+    public Texture getEnergyImage() {
+        return new StarEnergyOrb().getEnergyImage();
     }
 
     @Override

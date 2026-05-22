@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import basemod.abstracts.CustomCard;
 import card.TrizonFusedCard;
-import patch.ChangeImgPatch.GridCardSelectScreenField;
+import patch.CustomizeCardPatch.GridCardSelectScreenField;
 
 public class ChangeImgSelectCardEffect extends AbstractGameEffect {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack

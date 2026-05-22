@@ -3,8 +3,12 @@ package card.uncommon;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
+import action.factory.TrizonDrawCardActionFactory;
+import action.factory.TrizonGainEnergyActionFactory;
 import action.factory.TrizonNewYearActionFactory;
 import card.TrizonCard;
+import card.helper.CardBehavior;
+import card.helper.Tip.FuseInfoTip;
 
 public class NewYear extends TrizonCard {
     public static final String ID = card.helper.CardHelper.makeID(NewYear.class);
@@ -20,6 +24,7 @@ public class NewYear extends TrizonCard {
     public NewYear() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, RARITY, TARGET);
         this.exhaust = true;
+        this.magicNumber = this.baseMagicNumber = 3;
         
         reInitBehavior();
     }
@@ -37,5 +42,18 @@ public class NewYear extends TrizonCard {
     @Override
     public void setBehavior() {
         this.behavior.addToUseBehavior(new TrizonNewYearActionFactory());
+    }
+
+    @Override
+    public CardBehavior getShiftBehavior() {
+        CardBehavior shiftBehavior = new CardBehavior();
+        shiftBehavior.addToUseBehavior(new TrizonGainEnergyActionFactory(3));
+        shiftBehavior.addToUseBehavior(new TrizonDrawCardActionFactory(baseMagicNumber));
+        return shiftBehavior;
+    }
+
+    @Override
+    public FuseInfoTip getFuseInfoTip() {
+        return new FuseInfoTip(String.format(CARD_STRINGS.EXTENDED_DESCRIPTION[0], baseMagicNumber));
     }
 }

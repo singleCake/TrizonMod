@@ -28,11 +28,13 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.ReturnToMenuButton;
 
 import basemod.ReflectionHacks;
+import card.TrizonFusedCard;
 import character.Shan;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import ui.collect.ChooseCollectScreen;
 import ui.collect.CollectButton;
+import ui.panel.CardRenamePanel;
 import ui.singleCardView.SingleCardViewButton;
 
 public class CollectPatch {
@@ -77,6 +79,8 @@ public class CollectPatch {
         public static SpireField<SingleCardViewButton> obtainButton = new SpireField<>(() -> null);
 
         public static SpireField<SingleCardViewButton> deleteButton = new SpireField<>(() -> null);
+
+        public static SpireField<SingleCardViewButton> renameButton = new SpireField<>(() -> null);
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = { AbstractCard.class, CardGroup.class })
@@ -88,10 +92,17 @@ public class CollectPatch {
                         Settings.HEIGHT / 5.0F * 4.0F - 100.0F * Settings.scale, SINGLE_CARD_VIEW_TEXT[1]));
                 ButtonField.deleteButton.set(__instance, new SingleCardViewButton(300.0F * Settings.scale,
                         Settings.HEIGHT / 5.0F * 4.0F - 200.0F * Settings.scale, SINGLE_CARD_VIEW_TEXT[2], true));
+                if (card instanceof TrizonFusedCard) {
+                    ButtonField.renameButton.set(__instance, new SingleCardViewButton(300.0F * Settings.scale,
+                            Settings.HEIGHT / 5.0F * 4.0F - 300.0F * Settings.scale, SINGLE_CARD_VIEW_TEXT[4]));
+                } else {
+                    ButtonField.renameButton.set(__instance, null);
+                }
                 cardInst = card.makeSameInstanceOf();
             } else {
                 ButtonField.obtainButton.set(__instance, null);
                 ButtonField.deleteButton.set(__instance, null);
+                ButtonField.renameButton.set(__instance, null);
                 cardInst = null;
             }
         }
@@ -103,6 +114,7 @@ public class CollectPatch {
         public static void Postfix(SingleCardViewPopup __instance, AbstractCard card) {
             ButtonField.obtainButton.set(__instance, null);
             ButtonField.deleteButton.set(__instance, null);
+            ButtonField.renameButton.set(__instance, null);
             cardInst = null;
         }
     }
@@ -113,11 +125,15 @@ public class CollectPatch {
         public static void Postfix(SingleCardViewPopup __instance) {
             SingleCardViewButton obtainButton = ButtonField.obtainButton.get(__instance);
             SingleCardViewButton deleteButton = ButtonField.deleteButton.get(__instance);
+            SingleCardViewButton renameButton = ButtonField.renameButton.get(__instance);
             if (obtainButton != null) {
                 obtainButton.update();
             }
             if (deleteButton != null) {
                 deleteButton.update();
+            }
+            if (renameButton != null) {
+                renameButton.update();
             }
         }
     }
@@ -128,6 +144,7 @@ public class CollectPatch {
         public static SpireReturn<Void> Insert(SingleCardViewPopup __instance) {
             SingleCardViewButton obtainButton = ButtonField.obtainButton.get(__instance);
             SingleCardViewButton deleteButton = ButtonField.deleteButton.get(__instance);
+            SingleCardViewButton renameButton = ButtonField.renameButton.get(__instance);
             if (obtainButton != null) {
                 if (obtainButton.hb.hovered) {
                     obtainButton.hb.clickStarted = true;
@@ -148,6 +165,15 @@ public class CollectPatch {
                     }
                 }
             }
+            if (renameButton != null) {
+                if (renameButton.hb.hovered) {
+                    renameButton.hb.clickStarted = true;
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    CardRenamePanel.CardRenamePanelField.openRenamePanel(__instance, (TrizonFusedCard) cardInst,
+                            ChooseCollectScreen.Inst.collection);
+                    return SpireReturn.Return();
+                }
+            }
             return SpireReturn.Continue();
         }
     }
@@ -158,11 +184,15 @@ public class CollectPatch {
         public static void Postfix(SingleCardViewPopup __instance, SpriteBatch sb) {
             SingleCardViewButton obtainButton = ButtonField.obtainButton.get(__instance);
             SingleCardViewButton deleteButton = ButtonField.deleteButton.get(__instance);
+            SingleCardViewButton renameButton = ButtonField.renameButton.get(__instance);
             if (obtainButton != null) {
                 obtainButton.render(sb);
             }
             if (deleteButton != null) {
                 deleteButton.render(sb);
+            }
+            if (renameButton != null) {
+                renameButton.render(sb);
             }
         }
     }

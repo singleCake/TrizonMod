@@ -38,7 +38,9 @@ public class TrizonLycorisModifier extends AbstractCardModifier {
 
     @Override
     public AbstractCardModifier clone() {
-        return new TrizonLycorisModifier(amount);
+        TrizonLycorisModifier copy = new TrizonLycorisModifier(amount);
+        copy.additionalDamage = this.additionalDamage;
+        return copy;
     }
 
     @Override

@@ -257,12 +257,15 @@
 
     "Trizon:NewYear": {
         "NAME": "过年",
-        "DESCRIPTION": "本回合结束后执行一个额外回合。 NL 结束你的回合。 NL 消耗 。"
+        "DESCRIPTION": "本回合结束后执行一个额外回合。 NL 结束你的回合。 NL 消耗 。",
+        "EXTENDED_DESCRIPTION": [
+            "打出时，获得 [E] [E] [E] ，抽 %d 张牌。"
+        ]
     },
 
     "Trizon:Truce": {
         "NAME": "休战",
-        "DESCRIPTION": "冻结所有敌人与所有手牌。 NL 消耗 。",
+        "DESCRIPTION": " trizon:冻结 所有敌人与所有手牌。 NL 消耗 。",
         "EXTENDED_DESCRIPTION": [
             "打出时，给予所有敌人 %d 层虚弱。"
         ]
@@ -275,8 +278,8 @@
 
     "Trizon:Scapegoat": {
         "NAME": "替罪羊",
-        "DESCRIPTION": "保留 。 NL 你受到未被格挡的伤害时，消耗手牌中这张牌并防止此伤害。",
-        "UPGRADE_DESCRIPTION": "保留 。 NL 你受到未被格挡的伤害时，消耗手牌中这张牌并防止此伤害。 NL 抽到这张牌时，获得 !B! 点 格挡 。"
+        "DESCRIPTION": "保留 。 NL 你受到未被 格挡 的伤害时，消耗手牌中这张牌并防止此伤害。",
+        "UPGRADE_DESCRIPTION": "保留 。 NL 你受到未被 格挡 的伤害时，消耗手牌中这张牌并防止此伤害。 NL 抽到这张牌时，获得 !B! 点 格挡 。"
     },
 
     "Trizon:Healing": {
@@ -402,8 +405,8 @@
 
     "Trizon:Noodle": {
         "NAME": "阳春面",
-        "DESCRIPTION": "所有 trizon:法术 伤害 + !M! 。",
-        "UPGRADE_DESCRIPTION": "固有 。 NL 所有 trizon:法术 伤害 + !M! 。"
+        "DESCRIPTION": "固有 。 NL 所有 trizon:法术 伤害 + !M! 。",
+        "UPGRADE_DESCRIPTION": "固有 。 NL 所有 trizon:法术 伤害 + !M! 。 NL 抽一张牌。"
     },
 
     "Trizon:Traveler": {

@@ -44,6 +44,13 @@ public class CampfireSelectCardEffect extends AbstractGameEffect {
             this.duration -= Gdx.graphics.getDeltaTime();
             updateBlackScreenColor();
         }
+        if (!AbstractDungeon.isScreenUp && this.openedScreen) {
+            this.isDone = true;
+            if (CampfireUI.hidden) {
+                AbstractRoom.waitTimer = 0.0F;
+                ((RestRoom) AbstractDungeon.getCurrRoom()).cutFireSound();
+            }
+        }
         if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
 
@@ -55,17 +62,10 @@ public class CampfireSelectCardEffect extends AbstractGameEffect {
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             ((RestRoom) AbstractDungeon.getCurrRoom()).fadeIn();
         }
-        if (this.duration < 1.0F && !this.openedScreen) {
+        if (this.duration < 1.5F && !this.openedScreen) {
             this.openedScreen = true;
             AbstractDungeon.gridSelectScreen.open(this.cardGroup, 1, TEXT[0], false, false, true, false);
             AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]); 
-        }
-        if (this.duration < 0.0F) {
-            this.isDone = true;
-            if (CampfireUI.hidden) {
-                AbstractRoom.waitTimer = 0.0F;
-                ((RestRoom) AbstractDungeon.getCurrRoom()).cutFireSound();
-            }
         }
     }
 

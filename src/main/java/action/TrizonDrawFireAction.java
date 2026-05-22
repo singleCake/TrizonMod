@@ -44,11 +44,11 @@ public class TrizonDrawFireAction extends AbstractTrizonAction {
             p.drawPile.addToTop(c);
         }
 
-        if (draw_count < this.amount && !p.discardPile.isEmpty()) {
-            this.addToTop(new TrizonDrawFireAction(this.amount - draw_count));
-            this.addToTop(new ShuffleAction(p.drawPile));
-            this.addToTop(new EmptyDeckShuffleAction());
-        } 
+        // if (draw_count < this.amount && !p.discardPile.isEmpty()) {
+        //     this.addToTop(new TrizonDrawFireAction(this.amount - draw_count));
+        //     this.addToTop(new ShuffleAction(p.drawPile));
+        //     this.addToTop(new EmptyDeckShuffleAction());
+        // } 
 
         this.addToTop(new DrawCardAction(draw_count));
 

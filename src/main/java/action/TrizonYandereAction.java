@@ -21,6 +21,10 @@ public class TrizonYandereAction extends AbstractTrizonAction {
 
     @Override
     public void update() {
+        if (AbstractDungeon.player.hand.size() >= 10) {
+            this.isDone = true;
+            return;
+        }
         searchYandere(AbstractDungeon.player.drawPile);
         searchYandere(AbstractDungeon.player.discardPile);
         searchYandere(AbstractDungeon.player.exhaustPile);
